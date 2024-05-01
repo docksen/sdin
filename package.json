@@ -1,13 +1,71 @@
 {
-  "name": "sdin",
+  "name": "sdx",
   "version": "0.0.1",
   "description": "A JavaScript package builder",
-  "license": "MIT",
   "keywords": [
     "sdin"
   ],
-  "homepage": "https://github.com/conerjs/sdin#readme",
-  "bugs": "https://github.com/conerjs/sdin/issues",
-  "repository": "git+https://github.com/conerjs/sdin.git",
-  "devDependencies": {}
+  "homepage": "https://github.com/docksen/sdin#readme",
+  "bugs": "https://github.com/docksen/sdin/issues",
+  "repository": "git+https://github.com/docksen/sdin.git",
+  "license": "MIT",
+  "author": "Docksen Yang <docksen@hotmail.com>",
+  "main": "dist/node",
+  "types": "dist/def",
+  "bin": {
+    "sdx": "./dist/node/bin/index.js"
+  },
+  "files": [
+    "dist/**/*",
+    "pro/**/*"
+  ],
+  "dependencies": {
+    "@babel/core": "7.16.0",
+    "@babel/plugin-transform-runtime": "7.16.4",
+    "@babel/preset-env": "7.16.4",
+    "@babel/preset-react": "7.16.0",
+    "@babel/preset-typescript": "7.16.0",
+    "@babel/runtime": "7.16.3",
+    "babel-loader": "8.2.3",
+    "babel-plugin-module-resolver": "4.1.0",
+    "chardet": "1.4.0",
+    "commander": "8.3.0",
+    "css-loader": "6.5.1",
+    "del": "6.0.0",
+    "enquirer": "2.4.1",
+    "fs-extra": "10.0.0",
+    "gulp": "4.0.2",
+    "gulp-babel": "8.0.0",
+    "gulp-clean-css": "4.3.0",
+    "gulp-filter": "7.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-typescript": "6.0.0-alpha.1",
+    "gulp-uglify": "3.0.2",
+    "lodash": "4.17.21",
+    "mini-css-extract-plugin": "2.4.5",
+    "postcss": "8.4.13",
+    "postcss-import": "14.0.2",
+    "postcss-loader": "6.2.1",
+    "postcss-preset-env": "7.5.0",
+    "sass": "1.43.5",
+    "sass-loader": "12.3.0",
+    "style-loader": "3.3.1",
+    "terser-webpack-plugin": "^5.3.1",
+    "typescript": "4.5.2",
+    "webpack": "5.64.4"
+  },
+  "devDependencies": {
+    "@types/babel__core": "7.20.5",
+    "@types/fs-extra": "9.0.13",
+    "@types/gulp": "4.0.9",
+    "@types/gulp-babel": "6.1.30",
+    "@types/gulp-clean-css": "4.3.0",
+    "@types/gulp-filter": "3.0.34",
+    "@types/gulp-rename": "^2.0.6",
+    "@types/gulp-uglify": "3.0.7",
+    "@types/lodash": "4.14.177",
+    "@types/mini-css-extract-plugin": "2.4.0",
+    "@types/node": "16.11.10",
+    "@types/webpack": "5.28.0"
+  }
 }
