@@ -2,7 +2,7 @@ import { set } from 'lodash'
 import { resolve } from 'path'
 import { pathExists } from 'fs-extra'
 import { isEmail } from './check'
-import { printError } from './print'
+import { green, printError, printLoading, red } from './print'
 import { execute } from './execute'
 
 export interface GitInfo extends Record<string, any> {
@@ -52,9 +52,25 @@ export async function readGlobalGitInfo(strict?: boolean): Promise<GitInfo | und
 /**
  * 创建git仓库
  */
-export async function createGitRepository(path: string) {
-  if (await pathExists(resolve(path, '.git'))) {
+export async function createGitRepository(root: string, silence?: boolean) {
+  if (await pathExists(resolve(root, '.git'))) {
     return
   }
-  await execute(`cd ${path} && git init && git add . && git commit -m "chore: project is created"`)
+  await execute(
+    `cd ${root} && git init && git add . && git commit -m "chore: project is created"`,
+    silence
+  )
+}
+
+export async function createGitRepositoryWithLoading(
+  root: string,
+  silence?: boolean
+): Promise<void> {
+  return printLoading({
+    exitCode: 1212339,
+    success: `Create git repository to ${green(root)} successfully.`,
+    failed: `Failed to create git repository to ${red(root)}.`,
+    pendding: () => `Creating git repository to ${root}`,
+    task: () => createGitRepository(root, silence)
+  })
 }

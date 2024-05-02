@@ -87,19 +87,19 @@ export function getDependenceVersion(pkg: PackageInfo, dep: string): string {
   return curDep || ''
 }
 
-export async function downloadModules(root: string) {
+export async function downloadModules(root: string, silence?: boolean) {
   if (!(await pathExists(root))) {
     printError(`Folder ${root} is not exist.`, 4400981)
   }
-  await execute(`cd ${root} && npm i`)
+  await execute(`cd ${root} && npm i`, silence)
 }
 
-export async function downloadModulesWithLoading(root: string): Promise<void> {
+export async function downloadModulesWithLoading(root: string, silence?: boolean): Promise<void> {
   return printLoading({
     exitCode: 1212339,
     success: `Download modules to ${green(root)} successfully.`,
     failed: `Failed to download modules to ${red(root)}.`,
     pendding: () => `Downloading modules to ${root}`,
-    task: () => downloadModules(root)
+    task: () => downloadModules(root, silence)
   })
 }

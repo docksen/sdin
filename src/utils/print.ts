@@ -1,3 +1,4 @@
+import ora from 'ora'
 import { isFunction } from 'lodash'
 import { FunctionResult, PromiseData } from './types'
 
@@ -30,14 +31,6 @@ export function getErrorMsg(err: any): string {
     return err.message
   } else {
     return err.toString()
-  }
-}
-
-export function getPrintClean(): () => void {
-  process.stdout.write('\x1B[s')
-  return () => {
-    process.stdout.write('\x1B[u')
-    process.stdout.clearScreenDown()
   }
 }
 
@@ -107,29 +100,27 @@ export function printError(msg: any, exitCode?: number) {
   }
 }
 
-const LOADING_ICONS = [red('⠇'), green('⠋'), yellow('⠙'), blue('⠸'), magenta('⠴'), cyan('⠦')]
-
 export function printLoading<T extends () => any>({
   exitCode,
+  start,
   pendding,
   success,
   failed,
   task
 }: {
   exitCode?: number
+  start?: string
   pendding?: string | (() => string)
   success?: string | ((res: PromiseData<FunctionResult<T>>) => string)
   failed?: string | ((err: any) => string)
   task: T
 }): FunctionResult<T | undefined> {
-  let index = 0
-  const clean = getPrintClean()
+  const spinner = ora({})
+  spinner.start(start)
   const onPendding = () => {
     const msg = isFunction(pendding) ? pendding() : pendding
     if (msg) {
-      clean()
-      print(msg, LOADING_ICONS[index % LOADING_ICONS.length])
-      index = index + 1
+      spinner.text = msg
     }
   }
   const timer = setInterval(onPendding, 100)
@@ -137,20 +128,16 @@ export function printLoading<T extends () => any>({
     if (timer) {
       clearInterval(timer)
     }
-    clean()
-    printSuccess(isFunction(success) ? success(res) : success)
+    spinner.succeed(isFunction(success) ? success(res) : success)
     return res
   }
   const onFailed = (err: any) => {
     if (timer) {
       clearInterval(timer)
     }
-    clean()
-    const msg = isFunction(failed) ? failed(err) : `${failed}\n${err}`
+    spinner.fail(isFunction(failed) ? failed(err) : `${failed}\n${err}`)
     if (exitCode) {
-      printError(msg, exitCode)
-    } else {
-      printError(msg)
+      process.exit(exitCode)
     }
   }
   try {
