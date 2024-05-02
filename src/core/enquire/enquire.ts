@@ -41,14 +41,14 @@ export async function enquireSdinQuestions(
       name: 'templateName',
       message: 'which project template do you want to use',
       required: true,
-      initial: templateMetas.findIndex(i => i.templateName === options.templateName),
+      initial: templateMetas.findIndex(i => i.name === options.templateName) || 0,
       choices: templateMetas.map(item => ({
-        name: item.templateName,
-        message: blue(padEnd(item.templateName, 16)) + item.templateDescription
+        name: item.name,
+        message: `${blue(padEnd(item.name, 30))} ${item.description}`
       }))
     }
   ])
-  const templateMeta = templateMetas.find(i => i.templateName === templateName)
+  const templateMeta = templateMetas.find(i => i.name === templateName)
   if (!templateMeta) {
     printError(`find template ${templateName} failed.`, 4988224)
   }
@@ -59,7 +59,10 @@ export async function enquireSdinQuestions(
       name: 'projectParentPath',
       message: 'Where do you want the project to be generated?',
       required: true,
-      initial: options.projectParentPath || CWD_PATH
+      initial: options.projectParentPath || CWD_PATH,
+      result: value => {
+        return resolve(CWD_PATH, value)
+      }
     },
     {
       type: 'input',
@@ -104,8 +107,8 @@ export async function enquireSdinQuestions(
     .join('_')
   const projectPath = resolve(data.projectParentPath, projectFolderName)
   return Object.assign(data, {
-    templatePath: templateMeta.templatePath,
-    templateName: templateMeta.templateName,
+    templatePath: templateMeta.root,
+    templateName: templateMeta.name,
     projectPath,
     projectVersion: options.projectVersion || '0.0.1',
     projectFolderName,

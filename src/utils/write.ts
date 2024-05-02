@@ -2,6 +2,7 @@ import { readFile, outputFile } from 'fs-extra'
 import { resolve } from 'path'
 import { deepRead } from './read'
 import type { DeepReadNode } from './read'
+import { green, magenta, printLoading, red } from './print'
 
 export type DeepCopyNode = DeepReadNode
 
@@ -77,5 +78,28 @@ export async function deepCopy({
     source,
     handler: __handler__,
     filter
+  })
+}
+
+export async function deepCopyWithLoading(options: DeepCopyOptions): Promise<void> {
+  let curNode: DeepReadNode | undefined = undefined
+  return printLoading({
+    exitCode: 3099981,
+    success: `Copy files to ${green(options.target)} successfully.`,
+    failed: `Failed to copy files to ${red(options.target)}.`,
+    pendding: () => `Copying file: ${magenta(curNode?.offset)}.`,
+    task: () => {
+      return deepCopy({
+        ...options,
+        handler: (node, content) => {
+          curNode = node
+          if (options.handler) {
+            return options.handler(node, content)
+          } else {
+            return content
+          }
+        }
+      })
+    }
   })
 }

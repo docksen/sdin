@@ -20,7 +20,7 @@ export async function readGlobalGitInfo(strict?: false): Promise<GitInfo | undef
 export async function readGlobalGitInfo(strict?: boolean): Promise<GitInfo | undefined> {
   let configStr: string = ''
   try {
-    configStr = await execute('git config --global --list')
+    configStr = await execute('git config --global --list', true)
   } catch (err) {
     if (strict) {
       printError(`Cannot read git global config.`, 1058294)

@@ -1,5 +1,5 @@
 import { copySdinTemplate } from './template'
-import { downloadModules } from 'utils/npm'
+import { downloadModulesWithLoading } from 'utils/npm'
 import { createGitRepository } from 'utils/git'
 import { enquireSdinQuestions } from 'core/enquire'
 
@@ -24,6 +24,6 @@ export async function createSdinProject(options: CreateSdinProjectOptions): Prom
     authorEmail: options.authorEmail
   })
   await copySdinTemplate(answers.templatePath, answers.projectPath, answers)
-  downloadModules(answers.projectPath)
-  createGitRepository(answers.projectPath)
+  await downloadModulesWithLoading(answers.projectPath)
+  await createGitRepository(answers.projectPath)
 }

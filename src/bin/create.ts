@@ -10,22 +10,25 @@ const cmd = new Command('sdin create')
 
 cmd
   .description('create project')
-  .argument('[name]', 'project name')
-  .option('-p, --path <projectParentPath>', 'project parent path')
+  .argument('[name]', 'Project name.')
+  .option('-o, --output <projectParentPath>', 'The path to store project.')
+  .option('-t, --template <templateName>', 'Project template.')
   .action(action)
   .parse(process.argv)
 
 interface CreateCommandOptions {
-  path: string
+  output: string
+  template: string
 }
 
 async function action(name?: string) {
   const options: CreateCommandOptions = {
-    path: cmd.getOptionValue('path') || ''
+    output: cmd.getOptionValue('output') || '',
+    template: cmd.getOptionValue('template') || ''
   }
   await createSdinProject({
-    templateName: '',
+    templateName: options.template,
     projectName: name,
-    projectParentPath: resolve(CWD_PATH, options.path)
+    projectParentPath: resolve(CWD_PATH, options.output)
   })
 }

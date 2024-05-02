@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import { pathExists } from 'fs-extra'
 import { readExports } from './read'
-import { printError, printInfo } from './print'
+import { green, printError, printLoading, red } from './print'
 import { isEmail } from './check'
 import { isPlainObject } from 'lodash'
 import { execute } from './execute'
@@ -78,14 +78,6 @@ export async function readPackageInfo(
   return data
 }
 
-export async function downloadModules(root: string) {
-  if (!(await pathExists(root))) {
-    printError(`Folder ${root} is not exist.`, 4400981)
-  }
-  printInfo(`Download modules to ${root}`)
-  await execute(`cd ${root} && npm install`)
-}
-
 export function getDependenceVersion(pkg: PackageInfo, dep: string): string {
   const curDep = pkg.dependencies
     ? pkg.dependencies[dep]
@@ -93,4 +85,21 @@ export function getDependenceVersion(pkg: PackageInfo, dep: string): string {
     ? pkg.devDependencies[dep]
     : ''
   return curDep || ''
+}
+
+export async function downloadModules(root: string) {
+  if (!(await pathExists(root))) {
+    printError(`Folder ${root} is not exist.`, 4400981)
+  }
+  await execute(`cd ${root} && npm i`)
+}
+
+export async function downloadModulesWithLoading(root: string): Promise<void> {
+  return printLoading({
+    exitCode: 1212339,
+    success: `Download modules to ${green(root)} successfully.`,
+    failed: `Failed to download modules to ${red(root)}.`,
+    pendding: () => `Downloading modules to ${root}`,
+    task: () => downloadModules(root)
+  })
 }

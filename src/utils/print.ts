@@ -33,11 +33,10 @@ export function getErrorMsg(err: any): string {
   }
 }
 
-export function getClean(): () => void {
-  const cols = process.stdout.columns
-  const rows = process.stdout.rows
+export function getPrintClean(): () => void {
+  process.stdout.write('\x1B[s')
   return () => {
-    process.stdout.cursorTo(cols, rows)
+    process.stdout.write('\x1B[u')
     process.stdout.clearScreenDown()
   }
 }
@@ -108,6 +107,8 @@ export function printError(msg: any, exitCode?: number) {
   }
 }
 
+const LOADING_ICONS = [red('⠇'), green('⠋'), yellow('⠙'), blue('⠸'), magenta('⠴'), cyan('⠦')]
+
 export function printLoading<T extends () => any>({
   exitCode,
   pendding,
@@ -120,19 +121,18 @@ export function printLoading<T extends () => any>({
   success?: string | ((res: PromiseData<FunctionResult<T>>) => string)
   failed?: string | ((err: any) => string)
   task: T
-}): FunctionResult<T> {
-  const clean = getClean()
+}): FunctionResult<T | undefined> {
   let index = 0
-  const icons = [red('⠇'), green('⠋'), yellow('⠙'), blue('⠸'), magenta('⠴'), cyan('⠦')]
+  const clean = getPrintClean()
   const onPendding = () => {
     const msg = isFunction(pendding) ? pendding() : pendding
     if (msg) {
       clean()
-      print(pendding, icons[index % icons.length])
-      index++
+      print(msg, LOADING_ICONS[index % LOADING_ICONS.length])
+      index = index + 1
     }
   }
-  const timer = setInterval(onPendding, 200)
+  const timer = setInterval(onPendding, 100)
   const onSuccess = (res: any) => {
     if (timer) {
       clearInterval(timer)
@@ -146,16 +146,12 @@ export function printLoading<T extends () => any>({
       clearInterval(timer)
     }
     clean()
-    const msg = isFunction(failed) ? failed(err) : failed
+    const msg = isFunction(failed) ? failed(err) : `${failed}\n${err}`
     if (exitCode) {
       printError(msg, exitCode)
     } else {
       printError(msg)
     }
-    if (!isFunction(failed)) {
-      console.error(err)
-    }
-    return undefined as any
   }
   try {
     const res = task()
@@ -165,6 +161,6 @@ export function printLoading<T extends () => any>({
       return onSuccess(res)
     }
   } catch (err) {
-    return onFailed(err)
+    onFailed(err)
   }
 }

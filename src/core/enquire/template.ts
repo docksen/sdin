@@ -6,43 +6,52 @@ import { readExports } from 'utils/read'
 import { FunctionParam } from 'utils/types'
 
 export const TEMPLATE_LIST_PATH = 'pro/templates'
-export const TEMPLATE_META_FILE_PATH = 'pro/configs/template.ts'
+export const TEMPLATE_CONFIG_FILE_PATH = 'pro/configs/template.ts'
 
 export interface SdinTemplateMeta {
-  templateName: string
-  templateDescription: string
-  questions: FunctionParam<typeof prompt>
+  name: string
+  description: string
+  questions?: FunctionParam<typeof prompt>
 }
 
-export interface SdinTemplateMeta2 extends SdinTemplateMeta {
-  templatePath: string
+export interface SdinTemplateExtraMeta {
+  root: string
+  name: string
+  description: string
+  questions?: FunctionParam<typeof prompt>
 }
 
 /**
  * 扫描文件夹下的所有模板，返回它们的元信息
  */
-export async function readSdinTemplateMetaList(): Promise<SdinTemplateMeta2[]> {
+export async function readSdinTemplateMetaList(): Promise<SdinTemplateExtraMeta[]> {
   const templatesPath = resolve(SELF_PATH, TEMPLATE_LIST_PATH)
   const files = await readdir(templatesPath)
-  const metaList: any[] = []
+  const promises: Promise<any>[] = []
   for (let i = 0; i < files.length; i++) {
     const templatePath = resolve(templatesPath, files[i])
-    const meta = await readSdinTemplateMeta(templatePath)
-    if (meta) {
-      metaList.push({
-        templatePath,
-        ...meta
-      })
-    }
+    promises.push(readSdinTemplateMeta(templatePath))
   }
-  return metaList
+  const originList = await Promise.all(promises)
+  return originList.filter(Boolean)
 }
 
 /**
  * 读取模版的元信息
  */
-async function readSdinTemplateMeta(source: string): Promise<SdinTemplateMeta> {
-  const metaPath = resolve(source, TEMPLATE_META_FILE_PATH)
-  const metaExports = await readExports(metaPath, true)
-  return metaExports?.sdinTemplateMeta
+async function readSdinTemplateMeta(
+  templatePath: string
+): Promise<SdinTemplateExtraMeta | undefined> {
+  const configPath = resolve(templatePath, TEMPLATE_CONFIG_FILE_PATH)
+  const templateConfig = await readExports(configPath, true)
+  const templateMeta = templateConfig?.sdinTemplateMeta
+  if (!templateMeta) {
+    return undefined
+  }
+  return {
+    root: templatePath,
+    name: templateMeta.name,
+    description: templateMeta.description,
+    questions: templateMeta.questions
+  }
 }

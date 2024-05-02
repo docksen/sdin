@@ -2,30 +2,31 @@
 
 import 'utils/entry'
 import { Command } from 'commander'
-import { green } from 'utils/print'
+import { magenta, green } from 'utils/print'
 import { SELF_PATH } from 'utils/path'
 import { PackageInfo } from 'utils/npm'
 
 const pkg: PackageInfo = require(SELF_PATH + '/package.json')
 const cmd = new Command()
 
-const HELP_INFO = green(`
+const VERSION_INFO = `${magenta(pkg.name)} ${green(pkg.version)}`
+const HELP_INFO = `
 Package:
-  name:        ${pkg.name}
-  version:     ${pkg.version}
-  license:     ${pkg.license}
-  author:      ${pkg.author}
-  description: ${pkg.description}
-`)
+  name:         ${magenta(pkg.name)}
+  version:      ${green(pkg.version)}
+  license:      ${pkg.license}
+  author:       ${pkg.author}
+  description:  ${pkg.description}
+`
 
 cmd
-  .command('create', 'create project', {
+  .command('create', 'Create project.', {
     executableFile: './create'
   })
-  .command('build', 'build project to production line', {
+  .command('build', 'Build project in production environment.', {
     executableFile: './build'
   })
   .name(Object.keys(pkg.bin)[0])
-  .version(pkg.name + ' ' + pkg.version, '-v, --version')
+  .version(VERSION_INFO, '-v, --version')
   .on('--help', () => console.log(HELP_INFO))
   .parse(process.argv)

@@ -1,5 +1,5 @@
 {
-  "name": "sdx",
+  "name": "sd",
   "version": "0.0.1",
   "description": "A JavaScript package builder",
   "keywords": [
@@ -13,12 +13,16 @@
   "main": "dist/node",
   "types": "dist/def",
   "bin": {
-    "sdx": "./dist/node/bin/index.js"
+    "sd": "./dist/node/bin/index.js"
   },
   "files": [
     "dist/**/*",
     "pro/**/*"
   ],
+  "scripts": {
+    "build": "sdm build",
+    "dev": "sdm dev"
+  },
   "dependencies": {
     "@babel/core": "7.16.0",
     "@babel/plugin-transform-runtime": "7.16.4",
@@ -31,7 +35,6 @@
     "chardet": "1.4.0",
     "commander": "8.3.0",
     "css-loader": "6.5.1",
-    "del": "6.0.0",
     "enquirer": "2.4.1",
     "fs-extra": "10.0.0",
     "gulp": "4.0.2",
@@ -43,6 +46,7 @@
     "gulp-uglify": "3.0.2",
     "lodash": "4.17.21",
     "mini-css-extract-plugin": "2.4.5",
+    "ora": "^8.0.1",
     "postcss": "8.4.13",
     "postcss-import": "14.0.2",
     "postcss-loader": "6.2.1",

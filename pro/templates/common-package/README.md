@@ -1,6 +1,6 @@
-# <%= name %>
+# <%= projectName %>
 
-<%= description %>
+<%= projectDescription %>
 
 ## Document
 

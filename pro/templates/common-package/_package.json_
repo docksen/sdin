@@ -1,9 +1,9 @@
 {
-  "name": "<%= name %>",
-  "version": "<%= version %>",
-  "author": "<%= author %>",
+  "name": "<%= projectName %>",
+  "version": "<%= projectVersion %>",
+  "author": "<%= authorMark %>",
   "license": "LGPL-3.0",
-  "description": "<%= description %>",
+  "description": "<%= projectDescription %>",
   "main": "dist/node",
   "types": "dist/def",
   "module": "dist/web",
