@@ -1,5 +1,5 @@
 import { pathExists } from 'fs-extra'
-import { resolve } from 'path'
+import { resolve, sep } from 'path'
 
 /** 用户工作目录 */
 export const CWD_PATH = process.cwd()
@@ -26,13 +26,14 @@ export async function resolveExtends(
 }
 
 /**
- * 计算path2中引入path1的相对路径
+ * 计算 path2 中引入 path1 的相对路径，返回的路径以 '/' 为分隔符
+ *
  * relativePosix('/a/b/c/d/e.js', '/a/b/f/g.js')
  * result === '../c/d/e.js'
  */
-export function relativePosix(path1: string, path2: string) {
-  let path1List = path1.split('/')
-  let path2List = path2.split('/')
+export function relativePosix(path1: string, path2: string): string {
+  let path1List = path1.split(sep)
+  let path2List = path2.split(sep)
   const maxLen = Math.max(path1List.length, path2List.length)
   for (let i = 0; i < maxLen; i++) {
     if (path1List[i] !== path2List[i]) {

@@ -1,7 +1,8 @@
-import { copySdinTemplate } from './template'
 import { downloadModulesWithLoading } from 'utils/npm'
 import { createGitRepositoryWithLoading } from 'utils/git'
-import { enquireSdinQuestions } from 'core/enquire'
+import { TEMPLATE_CONFIG_FILE_PATH, enquireSdinQuestions } from 'core/enquire'
+import { deepCopyWithLoading } from 'utils/write'
+import { replaceByLodash } from 'utils/string'
 
 export interface CreateSdinProjectOptions {
   templateName?: string
@@ -23,7 +24,16 @@ export async function createSdinProject(options: CreateSdinProjectOptions): Prom
     authorName: options.authorName,
     authorEmail: options.authorEmail
   })
-  await copySdinTemplate(answers.templatePath, answers.projectPath, answers)
+  await deepCopyWithLoading({
+    source: answers.templatePath,
+    target: answers.projectPath,
+    filter: node => {
+      return node.offset !== TEMPLATE_CONFIG_FILE_PATH
+    },
+    handler: async (_node, content) => {
+      return replaceByLodash(content, answers)
+    }
+  })
   await downloadModulesWithLoading(answers.projectPath, true)
   await createGitRepositoryWithLoading(answers.projectPath, true)
 }

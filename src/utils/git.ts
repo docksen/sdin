@@ -4,6 +4,7 @@ import { pathExists } from 'fs-extra'
 import { isEmail } from './check'
 import { green, printError, printLoading, red } from './print'
 import { execute } from './execute'
+import { ExitCode } from './constants'
 
 export interface GitInfo extends Record<string, any> {
   /** 用户名称 */
@@ -23,7 +24,7 @@ export async function readGlobalGitInfo(strict?: boolean): Promise<GitInfo | und
     configStr = await execute('git config --global --list', true)
   } catch (err) {
     if (strict) {
-      printError(`Cannot read git global config.`, 1058294)
+      printError(`Cannot read git global config.`, ExitCode.READ_GIT_GLOBAL_CONFIG_FAILED)
     } else {
       return undefined
     }
@@ -38,13 +39,13 @@ export async function readGlobalGitInfo(strict?: boolean): Promise<GitInfo | und
     }
   })
   if (!config.user || !config.user.name || !config.user.email) {
-    printError('Please config git global user name and email', 9162801)
+    printError('Please config git global user name and email', ExitCode.NO_GIT_USER_CONFIG)
   } else {
     config.userName = config.user.name
     config.userEmail = config.user.email
   }
   if (!isEmail(config.userEmail)) {
-    printError('Git global user email config format error', 5234868)
+    printError('Git global user email config format error', ExitCode.GIT_USER_EMAIL_FORMAT_ERROR)
   }
   return config as GitInfo
 }
@@ -67,7 +68,7 @@ export async function createGitRepositoryWithLoading(
   silence?: boolean
 ): Promise<void> {
   return printLoading({
-    exitCode: 1212339,
+    exitCode: ExitCode.CREATE_GIT_REPOSITORY_FAILED,
     success: `Create git repository to ${green(root)} successfully.`,
     failed: `Failed to create git repository to ${red(root)}.`,
     pendding: () => `Creating git repository to ${root}`,

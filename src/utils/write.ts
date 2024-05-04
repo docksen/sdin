@@ -1,8 +1,9 @@
-import { readFile, outputFile } from 'fs-extra'
+import { readFile, outputFile, pathExists } from 'fs-extra'
 import { resolve } from 'path'
 import { deepRead } from './read'
 import type { DeepReadNode } from './read'
-import { green, magenta, printLoading, red } from './print'
+import { green, magenta, printError, printLoading, red } from './print'
+import { ExitCode } from './constants'
 
 export type DeepCopyNode = DeepReadNode
 
@@ -82,9 +83,15 @@ export async function deepCopy({
 }
 
 export async function deepCopyWithLoading(options: DeepCopyOptions): Promise<void> {
+  if (await pathExists(options.target)) {
+    printError(
+      `Copied target ${options.target} already exists.`,
+      ExitCode.DEEP_COPIED_TARGET_ALREADY_EXISTS
+    )
+  }
   let curNode: DeepReadNode | undefined = undefined
   return printLoading({
-    exitCode: 3099981,
+    exitCode: ExitCode.DEEP_COPY_FAILED,
     success: `Copy files to ${green(options.target)} successfully.`,
     failed: `Failed to copy files to ${red(options.target)}.`,
     pendding: () => `Copying file: ${magenta(curNode?.offset)}.`,

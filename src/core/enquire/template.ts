@@ -1,6 +1,7 @@
 import { prompt } from 'enquirer'
 import { readdir } from 'fs-extra'
 import { resolve } from 'path'
+import { asyncMap, filterNotNil } from 'utils/array'
 import { SELF_PATH } from 'utils/path'
 import { readExports } from 'utils/read'
 import { FunctionParam } from 'utils/types'
@@ -27,13 +28,10 @@ export interface SdinTemplateExtraMeta {
 export async function readSdinTemplateMetaList(): Promise<SdinTemplateExtraMeta[]> {
   const templatesPath = resolve(SELF_PATH, TEMPLATE_LIST_PATH)
   const files = await readdir(templatesPath)
-  const promises: Promise<any>[] = []
-  for (let i = 0; i < files.length; i++) {
-    const templatePath = resolve(templatesPath, files[i])
-    promises.push(readSdinTemplateMeta(templatePath))
-  }
-  const originList = await Promise.all(promises)
-  return originList.filter(Boolean)
+  const originList = await asyncMap(files, file => {
+    return readSdinTemplateMeta(resolve(templatesPath, file))
+  })
+  return filterNotNil(originList)
 }
 
 /**

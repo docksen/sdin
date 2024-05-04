@@ -9,6 +9,7 @@ import { SELF_PATH } from './path'
 import { createCacher } from './cache'
 import { nanoid } from './string'
 import type { Stats } from 'fs-extra'
+import { ExitCode } from './constants'
 
 export interface DeepReadNode {
   /** 文件名 xxx.js */
@@ -89,7 +90,7 @@ export interface DeepReadOptions {
  */
 export async function deepRead({ source, handler, filter }: DeepReadOptions): Promise<void> {
   if (!(await pathExists(source))) {
-    printError(`Read file ${source} failed.`, 2812084)
+    printError(`Read file ${source} is not exist.`, ExitCode.DEEP_READED_FILE_IS_NOT_EXIST)
   }
   return __deepRead__({
     source,
@@ -115,7 +116,10 @@ async function compileTypescriptFile(
   }
   if (!source || !(await pathExists(source))) {
     if (strict) {
-      printError(source ? `File ${source} not exist.` : 'Cannot read empty path.', 5010093)
+      printError(
+        source ? `File ${source} not exist.` : 'Cannot read empty path.',
+        ExitCode.READED_EXPORTS_COMPILED_TYPESCRIPT_FILE_IS_NOT_EXIST
+      )
     } else {
       return undefined
     }
@@ -141,7 +145,7 @@ async function compileTypescriptFile(
   } catch (err) {
     if (strict) {
       printError(`Compile file ${source} failed.`)
-      printError(err, 9283002)
+      printError(err, ExitCode.READED_EXPORTS_COMPILED_TYPESCRIPT_FILE_FAILED)
     } else {
       return undefined
     }
@@ -163,7 +167,10 @@ export async function readExports(source: string, strict?: boolean): Promise<any
   let realSource: string | undefined = await compileTypescriptFile(source)
   if (!realSource || !(await pathExists(realSource))) {
     if (strict) {
-      printError(realSource ? `File ${realSource} not exist.` : 'Cannot read empty path.', 6102047)
+      printError(
+        realSource ? `File ${realSource} not exist.` : 'Cannot read empty path.',
+        ExitCode.READED_EXPORTS_FILE_IS_NOT_EXIST
+      )
     } else {
       return undefined
     }
@@ -180,7 +187,7 @@ export async function readExports(source: string, strict?: boolean): Promise<any
   } catch (err) {
     if (strict) {
       printError(`Read file ${source} failed.`)
-      printError(err, 9283002)
+      printError(err, ExitCode.READED_EXPORTS_FILE_FAILED)
     } else {
       return undefined
     }

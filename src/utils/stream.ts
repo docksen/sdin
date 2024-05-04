@@ -1,3 +1,4 @@
+import { ExitCode } from './constants'
 import { printError } from './print'
 import { OrNone } from './types'
 
@@ -25,7 +26,10 @@ export function pipeline(...sources: StreamSource[]) {
       }
     }
     if (!curr) {
-      printError('No streams, cannot concat sources to pipeline', 1703296)
+      printError(
+        'No streams, cannot concat sources to pipeline',
+        ExitCode.STREAM_PIPELINE_NO_SOURCES
+      )
     }
     if (resolve) {
       curr.on('end', resolve)

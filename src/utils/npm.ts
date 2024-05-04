@@ -5,6 +5,7 @@ import { green, printError, printLoading, red } from './print'
 import { isEmail } from './check'
 import { isPlainObject } from 'lodash'
 import { execute } from './execute'
+import { ExitCode } from './constants'
 
 export interface PackageInfo extends Record<string, any> {
   /** 包名称 */
@@ -43,16 +44,22 @@ export async function readPackageInfo(
   const data = await readExports(filePath, strict)
   if (!isPlainObject(data)) {
     if (strict) {
-      printError(`File ${filePath} exports is not package.json content.`, 4736290)
+      printError(
+        `File ${filePath} exports is not package.json content.`,
+        ExitCode.PACKAGE_JSON_CONTENT_IS_NOT_PLAIN_OBJECT
+      )
     } else {
       return undefined
     }
   }
   if (!data.name || !data.version || !data.author) {
-    printError('package.json must contain "name", "version", "author" fields', 8234916)
+    printError(
+      'package.json must contain "name", "version", "author" fields',
+      ExitCode.PACKAGE_JSON_MISSING_REQUIRED_FIELD
+    )
   }
   if (!PKG_NAME_REG.test(data.name)) {
-    printError('Please change package name to kebab-case', 1754804)
+    printError('Please change package name to kebab-case', ExitCode.PACKAGE_NAME_IS_NOT_KEBAB_CASE)
   }
   const atr = data.author
   if (typeof atr === 'object') {
@@ -69,11 +76,17 @@ export async function readPackageInfo(
       data.authorName = mtd[1]
       data.authorEmail = mtd[2]
     } else {
-      printError('Please change author to "name <xxx@xxx.xxx>" in package.json', 3625748)
+      printError(
+        'Please change author to "name <xxx@xxx.xxx>" in package.json',
+        ExitCode.PACKAGE_AUTHOR_MARK_FORMAT_ERROR
+      )
     }
   }
   if (!isEmail(data.authorEmail)) {
-    printError('Author email format error in package.json', 9261954)
+    printError(
+      'Author email format error in package.json',
+      ExitCode.PACKAGE_AUTHOR_EMAIL_FORMAT_ERROR
+    )
   }
   return data
 }
@@ -89,14 +102,14 @@ export function getDependenceVersion(pkg: PackageInfo, dep: string): string {
 
 export async function downloadModules(root: string, silence?: boolean) {
   if (!(await pathExists(root))) {
-    printError(`Folder ${root} is not exist.`, 4400981)
+    printError(`Folder ${root} is not exist.`, ExitCode.DOWNLOAD_MODULES_ROOT_IS_NOT_EXIST)
   }
   await execute(`cd ${root} && npm i`, silence)
 }
 
 export async function downloadModulesWithLoading(root: string, silence?: boolean): Promise<void> {
   return printLoading({
-    exitCode: 1212339,
+    exitCode: ExitCode.DOWNLOAD_MODULES_FAILED,
     success: `Download modules to ${green(root)} successfully.`,
     failed: `Failed to download modules to ${red(root)}.`,
     pendding: () => `Downloading modules to ${root}`,

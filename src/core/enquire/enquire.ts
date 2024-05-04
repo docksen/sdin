@@ -6,6 +6,7 @@ import { CWD_PATH } from 'utils/path'
 import { readGlobalGitInfo } from 'utils/git'
 import { readSdinTemplateMetaList } from './template'
 import { resolve } from 'path'
+import { ExitCode } from 'utils/constants'
 
 export interface EnquireSdinQuestionsOptions {
   templateName?: string
@@ -50,7 +51,7 @@ export async function enquireSdinQuestions(
   ])
   const templateMeta = templateMetas.find(i => i.name === templateName)
   if (!templateMeta) {
-    printError(`find template ${templateName} failed.`, 4988224)
+    printError(`find template ${templateName} failed.`, ExitCode.FIND_TEMPLATE_FAILED)
   }
   const git = await readGlobalGitInfo()
   const data = await prompt<EnquireSdinQuestionsResult>([
