@@ -18,7 +18,7 @@ export function execute(command: string, silence?: boolean): Promise<string> {
     })
     if (!silence) {
       childProcess.stdout?.pipe(process.stdout)
-      childProcess.stderr?.pipe(process.stderr)
     }
+    childProcess.stderr?.pipe(process.stderr)
   })
 }

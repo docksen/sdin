@@ -44,21 +44,27 @@ export function executeCode(code?: string, varibales?: Record<string, any>): any
  *
  * @param data 示例：'aaaaa<%=expression%>bbbbb'
  */
-export function replaceByLodash(data: Buffer | string, varibales?: Record<string, any>) {
-  let content = ''
-  if (typeof data === 'string') {
-    content = data
-  } else {
-    const encodeInfo = chardet.analyse(data)
-    if (encodeInfo.find(i => i.name === 'UTF-8')) {
+export function replaceByLodash(data: string, variables?: Record<string, any>): string
+export function replaceByLodash(data: Buffer, variables?: Record<string, any>): Buffer
+export function replaceByLodash(
+  data: string | Buffer,
+  varibales?: Record<string, any>
+): string | Buffer {
+  let content: string = ''
+  const isBuffer = Buffer.isBuffer(data)
+  if (isBuffer) {
+    if (chardet.analyse(data).find(i => i.name === 'UTF-8')) {
       content = data.toString('utf8')
     }
+  } else {
+    content = data
   }
   if (!content) {
     return data
   }
   const compiled = template(content, { interpolate: /<%=([\s\S]+?)%>/g })
-  return compiled(varibales)
+  const result = compiled(varibales)
+  return isBuffer ? Buffer.from(result) : result
 }
 
 /**
@@ -66,20 +72,54 @@ export function replaceByLodash(data: Buffer | string, varibales?: Record<string
  *
  * @param data 示例：'aaaaa${expression}bbbbb'
  */
-export function replaceByCode(data: Buffer | string, variables?: Record<string, any>) {
+export function replaceByCode(data: string, variables?: Record<string, any>): string
+export function replaceByCode(data: Buffer, variables?: Record<string, any>): Buffer
+export function replaceByCode(
+  data: string | Buffer,
+  variables?: Record<string, any>
+): string | Buffer {
   let content: string = ''
-  if (typeof data === 'string') {
-    content = data
-  } else {
-    const encodeInfo = chardet.analyse(data)
-    if (encodeInfo.find(i => i.name === 'UTF-8')) {
+  const isBuffer = Buffer.isBuffer(data)
+  if (isBuffer) {
+    if (chardet.analyse(data).find(i => i.name === 'UTF-8')) {
       content = data.toString('utf8')
     }
+  } else {
+    content = data
   }
   if (!content || !content.includes('${')) {
     return data
   }
-  return content.replace(/\${([^\$\{\}]+)}/g, (_i, code) => {
+  const result = content.replace(/\${([^\$\{\}]+)}/g, (_i, code) => {
     return executeCode(code, variables)
   })
+  return isBuffer ? Buffer.from(result) : result
+}
+
+/**
+ * 替换字符串（以 JavaScript 模版字符串的形式）
+ *
+ * @param data 示例：'aaaaa${expression}bbbbb'
+ */
+export function replaceByString(data: string, variables?: Record<string, any>): string
+export function replaceByString(data: Buffer, variables?: Record<string, any>): Buffer
+export function replaceByString(
+  data: string | Buffer,
+  variables?: Record<string, any>
+): string | Buffer {
+  let content: string = ''
+  const isBuffer = Buffer.isBuffer(data)
+  if (isBuffer) {
+    if (chardet.analyse(data).find(i => i.name === 'UTF-8')) {
+      content = data.toString('utf8')
+    }
+  } else {
+    content = data
+  }
+  if (!content || !variables) {
+    return data
+  }
+  const regExp = new RegExp(Object.keys(variables).join('|'), 'g')
+  const result = content.replace(regExp, code => variables[code] ?? code)
+  return isBuffer ? Buffer.from(result) : result
 }

@@ -1,4 +1,4 @@
-import { OrNil } from './types'
+import { OrNil, OrNone } from './types'
 
 export function filterNotNil<T>(list?: OrNil<T>[]): T[] {
   const newList: T[] = []
@@ -14,22 +14,28 @@ export function filterNotNil<T>(list?: OrNil<T>[]): T[] {
 
 export function asyncMap<T, R>(
   list: T[],
-  callback: (item: T, index: number) => Promise<R>
+  callback: (item: T, index: number) => OrNone<Promise<R>>
 ): Promise<Awaited<R>[]> {
   const promises: Promise<R>[] = []
   for (let i = 0; i < list.length; i++) {
-    promises.push(callback(list[i], i))
+    const result = callback(list[i], i)
+    if (result && result instanceof Promise) {
+      promises.push(result)
+    }
   }
   return Promise.all(promises)
 }
 
 export async function asyncForEach<T>(
   list: T[],
-  callback: (item: T, index: number) => Promise<any>
+  callback: (item: T, index: number) => OrNone<Promise<any>>
 ): Promise<void> {
   const promises: Promise<any>[] = []
   for (let i = 0; i < list.length; i++) {
-    promises.push(callback(list[i], i))
+    const result = callback(list[i], i)
+    if (result && result instanceof Promise) {
+      promises.push(result)
+    }
   }
   await Promise.all(promises)
 }

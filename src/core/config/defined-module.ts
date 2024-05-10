@@ -16,9 +16,9 @@ export interface SdinDefinedModuleDefinitions extends Record<string, string> {
 export interface SdinDefinedModuleParams {
   /** 模块类型 */
   type: SdinDefinedModuleType
-  /** 输入的源码位置（默认：src，相对产物根目录而言） */
+  /** 输入的源码位置（默认：src，相对项目根目录而言） */
   src?: string
-  /** 输出的模块位置（默认：由类型和目标决定，相对产物根目录而言） */
+  /** 输出的模块位置（默认：由类型和目标决定，相对项目根目录而言） */
   dist?: string
   /** 包含的文件（默认：src，相对项目根目录而言） */
   includes?: OrNil<string>[]
@@ -38,7 +38,7 @@ export class SdinDefinedModule {
   readonly params: SdinDefinedModuleParams
   /** 模块类型 */
   readonly type: SdinDefinedModuleType
-  /** 输入的源码位置（默认：src，相对产物根目录而言） */
+  /** 输入的源码位置（默认：src，相对项目根目录而言） */
   readonly src: string
   /** 输出的模块位置 */
   readonly dist: string

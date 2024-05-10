@@ -1,5 +1,5 @@
 import { resolve } from 'path'
-import { filterNotNil } from 'utils/array'
+import { asyncForEach, filterNotNil } from 'utils/array'
 import { PACKAGE_INFO, PackageInfo, readPackageInfo } from 'utils/npm'
 import { OrNil } from 'utils/types'
 import { CWD_PATH } from 'utils/path'
@@ -60,15 +60,16 @@ export class SdinConfig {
   }
 
   async initialize() {
-    const innerInit = async () => {
-      this._pkg = await readPackageInfo(this.root, true)
-    }
-    const promises: Promise<any>[] = [innerInit()]
-    for (const module of this.modules) {
+    await readPackageInfo(this.root, true)
+    await asyncForEach(this.modules, module => {
       if (module.type === 'packaged') {
-        promises.push(module.initialize())
+        return module.initialize()
       }
-    }
-    await Promise.all(promises)
+      return
+    })
+  }
+
+  getConfigPath(fileName: string) {
+    return resolve(this.pro, 'configs', fileName)
   }
 }

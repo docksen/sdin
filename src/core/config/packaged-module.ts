@@ -25,7 +25,7 @@ export interface SdinPackagedModuleParams {
   target?: SdinPackagedModuleTarget
   /** 编译的入口文件（默认：src/index.ts） */
   entry?: string
-  /** 输出的模块位置（默认：由类型和目标决定，相对产物根目录而言） */
+  /** 输出的模块位置（默认：由类型和目标决定，相对项目根目录而言） */
   dist?: string
   /** 文件名（默认：index.js） */
   fileName?: string
@@ -131,9 +131,9 @@ export class SdinPackagedModule {
     this.dist = resolve(config.root, params.dist || `dist/pkg-${this.target}`)
     this.globalName = params.globalName
     this.fileName = params.fileName || 'index.js'
-    this.minify = params.minify || config.mode === 'pro'
-    this.uglify = params.uglify || config.mode === 'pro'
-    this.sourceMap = params.sourceMap || true
+    this.minify = params.minify ?? config.mode === 'pro'
+    this.uglify = params.uglify ?? config.mode === 'pro'
+    this.sourceMap = params.sourceMap ?? (this.minify || this.uglify)
     this.externals = params.externals || {}
     this.definitions = {
       ...config.params.definitions,
