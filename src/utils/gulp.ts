@@ -18,7 +18,7 @@ export function reverseGulpFilterPattern(pattern: GulpFilterPattern): GulpFilter
   return pattern
 }
 
-export function gulpReplace(
+export function gulpReplaceVariables(
   variables: Record<string, string>,
   replacer: {
     (data: string, variables?: Record<string, any>): string

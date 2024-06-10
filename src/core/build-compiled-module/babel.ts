@@ -21,6 +21,7 @@ export function getBabelOptions(config: SdinConfig, module: SdinCompiledModule):
   ]
   const plugins: PluginItem[] = filterNotNil([
     createBabelModuleAliasPlugin(config),
+    [resolve(SELF_PATH, 'node_modules/babel-plugin-transform-define'), module.definitions],
     resolve(SELF_PATH, 'node_modules/@babel/plugin-transform-runtime')
   ])
   return { presets, plugins }
@@ -52,5 +53,13 @@ function createBabelModuleAliasPlugin(config: SdinConfig): PluginItem | undefine
       resolve(config.root, source.replace(matchedKey, aliasMap[matchedKey]))
     )
   }
-  return [resolve(SELF_PATH, 'node_modules/babel-plugin-module-resolver'), { resolvePath }]
+  return [
+    resolve(SELF_PATH, 'node_modules/babel-plugin-module-resolver'),
+    {
+      resolvePath,
+      alias: {
+        '\\.s[ac]ss$': '.css'
+      }
+    }
+  ]
 }

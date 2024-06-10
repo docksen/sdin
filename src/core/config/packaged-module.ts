@@ -21,6 +21,8 @@ export interface SdinPackagedModuleDefinitions extends Record<string, string> {
 export interface SdinPackagedModuleParams {
   /** 模块类型 */
   type: SdinPackagedModuleType
+  /** 模块名称 */
+  name: string
   /** 构建目标（默认：umd） */
   target?: SdinPackagedModuleTarget
   /** 编译的入口文件（默认：src/index.ts） */
@@ -77,6 +79,8 @@ export class SdinPackagedModule {
   readonly params: SdinPackagedModuleParams
   /** 模块类型 */
   readonly type: SdinPackagedModuleType
+  /** 模块名称 */
+  readonly name: string
   /** 构建目标 */
   readonly target: SdinPackagedModuleTarget
   /** 输出的模块位置 */
@@ -127,6 +131,7 @@ export class SdinPackagedModule {
     this.config = config
     this.params = params
     this.type = 'packaged'
+    this.name = params.name
     this.target = params.target || 'umd'
     this.dist = resolve(config.root, params.dist || `dist/pkg-${this.target}`)
     this.globalName = params.globalName

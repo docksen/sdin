@@ -16,6 +16,8 @@ export interface SdinDefinedModuleDefinitions extends Record<string, string> {
 export interface SdinDefinedModuleParams {
   /** 模块类型 */
   type: SdinDefinedModuleType
+  /** 模块名称 */
+  name: string
   /** 输入的源码位置（默认：src，相对项目根目录而言） */
   src?: string
   /** 输出的模块位置（默认：由类型和目标决定，相对项目根目录而言） */
@@ -38,6 +40,8 @@ export class SdinDefinedModule {
   readonly params: SdinDefinedModuleParams
   /** 模块类型 */
   readonly type: SdinDefinedModuleType
+  /** 模块名称 */
+  readonly name: string
   /** 输入的源码位置（默认：src，相对项目根目录而言） */
   readonly src: string
   /** 输出的模块位置 */
@@ -53,6 +57,7 @@ export class SdinDefinedModule {
     this.config = config
     this.params = params
     this.type = 'defined'
+    this.name = params.name
     this.src = resolve(config.root, params.src || 'src')
     this.dist = resolve(config.root, params.dist || 'dist/def')
     this.includes = filterNotNil(params.includes)

@@ -1,8 +1,13 @@
 import chardet from 'chardet'
-import { template } from 'lodash'
+import { template, escapeRegExp } from 'lodash'
+import { createCacher } from './cache'
 
 const NANOID_LETTER_SET = 'abcdefghijkmnprstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
 const NANOID_CHARACTER_SET = `${NANOID_LETTER_SET}1234567890`
+const REPLACE_BY_LODASH_INTERPOLATE_EXP = /<%=([\s\S]+?)%>/g
+const REPLACE_BY_CODE_SEARCH_VALUE_EXP = /\${([^\$\{\}]+)}/g
+
+const regExpCacher = createCacher<any, RegExp>()
 
 /**
  * 生成对 URL 友好的 ID（仅包含数字和字母，以字母开头）
@@ -62,7 +67,7 @@ export function replaceByLodash(
   if (!content) {
     return data
   }
-  const compiled = template(content, { interpolate: /<%=([\s\S]+?)%>/g })
+  const compiled = template(content, { interpolate: REPLACE_BY_LODASH_INTERPOLATE_EXP })
   const result = compiled(varibales)
   return isBuffer ? Buffer.from(result) : result
 }
@@ -90,16 +95,16 @@ export function replaceByCode(
   if (!content || !content.includes('${')) {
     return data
   }
-  const result = content.replace(/\${([^\$\{\}]+)}/g, (_i, code) => {
+  const result = content.replace(REPLACE_BY_CODE_SEARCH_VALUE_EXP, (_i, code) => {
     return executeCode(code, variables)
   })
   return isBuffer ? Buffer.from(result) : result
 }
 
 /**
- * 替换字符串（以 JavaScript 模版字符串的形式）
+ * 替换字符串（以普通字符串的形式）
  *
- * @param data 示例：'aaaaa${expression}bbbbb'
+ * @param data 示例：'aaaaaexpressionbbbbb'
  */
 export function replaceByString(data: string, variables?: Record<string, any>): string
 export function replaceByString(data: Buffer, variables?: Record<string, any>): Buffer
@@ -119,7 +124,12 @@ export function replaceByString(
   if (!content || !variables) {
     return data
   }
-  const regExp = new RegExp(Object.keys(variables).join('|'), 'g')
+  let regExp: RegExp | undefined = regExpCacher.get(variables)
+  if (!regExp) {
+    const escStrs = Object.keys(variables).map(i => escapeRegExp(i))
+    regExp = new RegExp(escStrs.join('|'), 'g')
+    regExpCacher.set(variables, regExp)
+  }
   const result = content.replace(regExp, code => variables[code] ?? code)
   return isBuffer ? Buffer.from(result) : result
 }

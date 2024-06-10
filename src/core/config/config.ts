@@ -8,7 +8,7 @@ import { SdinModule, SdinModuleParams, createSdinModule } from './module'
 export type SdinBuildMode = 'dev' | 'pro'
 
 /**
- * Sdin 选项
+ * Sdin 配置选项
  */
 export interface SdinConfigParams {
   /** 项目根目录（默认为当前工作目录） */

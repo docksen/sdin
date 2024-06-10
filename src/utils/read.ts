@@ -1,5 +1,6 @@
 import { pathExists, stat, readdir, readJson } from 'fs-extra'
 import { resolve, join, basename } from 'path'
+import md5 from 'md5'
 import gulp from 'gulp'
 import gulpBabel from 'gulp-babel'
 import gulpRename from 'gulp-rename'
@@ -7,7 +8,6 @@ import { pipeline } from './stream'
 import { printError } from './print'
 import { SELF_PATH } from './path'
 import { createCacher } from './cache'
-import { nanoid } from './string'
 import type { Stats } from 'fs-extra'
 import { ExitCode } from './constants'
 
@@ -126,7 +126,7 @@ async function compileTypescriptFile(
   }
   try {
     const target = resolve(SELF_PATH, '.swap/exports')
-    const fileName = nanoid(32) + '.js'
+    const fileName = md5(source) + '.js'
     await pipeline(
       gulp.src(source),
       gulpBabel({
@@ -164,7 +164,7 @@ export async function readExports(source: string, strict?: boolean): Promise<any
   if (exportsDataCacher.has(source)) {
     return exportsDataCacher.get(source)
   }
-  let realSource: string | undefined = await compileTypescriptFile(source)
+  let realSource = await compileTypescriptFile(source, strict)
   if (!realSource || !(await pathExists(realSource))) {
     if (strict) {
       printError(

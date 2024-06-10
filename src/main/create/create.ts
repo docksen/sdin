@@ -5,12 +5,19 @@ import { deepCopyWithLoading } from 'utils/write'
 import { replaceByLodash } from 'utils/string'
 
 export interface CreateSdinProjectOptions {
+  /** 模板名称 */
   templateName?: string
+  /** 存放项目的文件夹路径 */
   projectParentPath?: string
+  /** 项目名称 */
   projectName?: string
+  /** 项目版本号 */
   projectVersion?: string
+  /** 项目的描述 */
   projectDescription?: string
+  /** 作者姓名 */
   authorName?: string
+  /** 作者邮箱 */
   authorEmail?: string
 }
 

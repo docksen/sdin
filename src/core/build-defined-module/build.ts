@@ -2,7 +2,7 @@ import gulp from 'gulp'
 import gulpFilter from 'gulp-filter'
 import gulpTypescript from 'gulp-typescript'
 import { pipeline } from 'utils/stream'
-import { gulpReplace, reverseGulpFilterPattern } from 'utils/gulp'
+import { gulpReplaceVariables, reverseGulpFilterPattern } from 'utils/gulp'
 import type { SdinConfig, SdinDefinedModule } from 'core/config'
 
 export interface BuildSdinDefinedModuleOptions {
@@ -10,8 +10,8 @@ export interface BuildSdinDefinedModuleOptions {
   module: SdinDefinedModule
 }
 
-const TYPESCRIPT_EXP = /\.tsx?$/
-const TYPESCRIPT_DEFINE_EXP = /\.d\.tsx?$/
+const TSX_EXP = /\.tsx?$/
+const DTSX_EXP = /\.d\.tsx?$/
 
 export async function buildSdinDefinedModule(
   options: BuildSdinDefinedModuleOptions
@@ -23,17 +23,17 @@ function buildTypescriptDefineFiles(options: BuildSdinDefinedModuleOptions): Pro
   const { module } = options
   return pipeline(
     gulp.src('**/*', { cwd: module.src }),
-    gulpFilter(file => TYPESCRIPT_DEFINE_EXP.test(file.path)),
     module.includes.length > 0 && gulpFilter(module.includes),
     module.excludes.length > 0 && gulpFilter(reverseGulpFilterPattern(module.excludes)),
-    gulpReplace(module.definitions),
+    gulpFilter(file => DTSX_EXP.test(file.basename)),
     gulp.dest(module.dist)
   )
 }
 
 function buildTypescriptContentFiles(options: BuildSdinDefinedModuleOptions): Promise<void> {
   const { config, module } = options
-  const tsProject = gulpTypescript.createProject(config.getConfigPath('tsconfig.json'), {
+  const tsConfigPath = config.getConfigPath('tsconfig.json')
+  const tsProject = gulpTypescript.createProject(tsConfigPath, {
     declaration: true,
     removeComments: false
   })
@@ -44,10 +44,11 @@ function buildTypescriptContentFiles(options: BuildSdinDefinedModuleOptions): Pr
   })
   return pipeline(
     gulp.src('**/*', { cwd: module.src }),
-    gulpFilter(file => TYPESCRIPT_EXP.test(file.path) && !TYPESCRIPT_DEFINE_EXP.test(file.path)),
     module.includes.length > 0 && gulpFilter(module.includes),
     module.excludes.length > 0 && gulpFilter(reverseGulpFilterPattern(module.excludes)),
-    gulpReplace(module.definitions),
+    gulpFilter(file => TSX_EXP.test(file.basename) && !DTSX_EXP.test(file.basename)),
+    gulpReplaceVariables(module.definitions),
+
     tsStream,
     (ts: any) => ts.dts,
     gulp.dest(module.dist)

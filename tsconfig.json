@@ -13,7 +13,7 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "lib": ["ES2015"],
+    "lib": ["ESNext", "DOM"],
     "module": "CommonJS",
     "target": "ES5",
     "jsx": "react",

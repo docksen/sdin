@@ -1,23 +1,27 @@
-export interface Cacher {
-  has: (key: string) => boolean
-  get: (key: string) => any
-  set: (key: string, value: any, expireTime?: number | undefined) => void
+export interface Cacher<K = any, V = any> {
+  has: (key: K) => boolean
+  get: (key: K) => V | undefined
+  set: (key: K, value: V, expireTime?: number) => void
 }
 
 /**
  * 创建一个缓存器
  * @param defaultExpireTime 默认的过期时间，单位ms，默认值 200
  */
-export function createCacher(defaultExpireTime: number = 200): Cacher {
-  const cache: Record<string, any> = {}
+export function createCacher<K = any, V = any>(defaultExpireTime: number = 200): Cacher<K, V> {
+  const dataMap = new Map<K, [V, any]>()
   return {
-    has: (key: string) => key in cache,
-    get: (key: string) => cache[key],
-    set: (key: string, value: any, expireTime?: number) => {
-      cache[key] = value
-      setTimeout(() => {
-        delete cache[key]
+    has: (key: K) => dataMap.has(key),
+    get: (key: K) => dataMap.get(key)?.[0],
+    set: (key: K, value: V, expireTime?: number): void => {
+      const oldData = dataMap.get(key)
+      if (oldData) {
+        clearTimeout(oldData[1])
+      }
+      const timer = setTimeout(() => {
+        dataMap.delete(key)
       }, expireTime || defaultExpireTime)
+      dataMap.set(key, [value, timer])
     }
   }
 }

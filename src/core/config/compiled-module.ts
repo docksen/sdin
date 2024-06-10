@@ -19,6 +19,8 @@ export interface SdinCompiledModuleDefinitions extends Record<string, string> {
 export interface SdinCompiledModuleParams {
   /** 模块类型 */
   type: SdinCompiledModuleType
+  /** 模块名称 */
+  name: string
   /** 构建目标（默认：cjs） */
   target?: SdinCompiledModuleTarget
   /** 输入的源码位置（默认：src，相对项目根目录而言） */
@@ -49,6 +51,8 @@ export class SdinCompiledModule {
   readonly params: SdinCompiledModuleParams
   /** 模块类型 */
   readonly type: SdinCompiledModuleType
+  /** 模块名称 */
+  readonly name: string
   /** 构建目标 */
   readonly target: SdinCompiledModuleTarget
   /** 输入的源码位置 */
@@ -72,6 +76,7 @@ export class SdinCompiledModule {
     this.config = config
     this.params = params
     this.type = 'compiled'
+    this.name = params.name
     this.target = this.params.target || 'cjs'
     this.src = resolve(config.root, this.params.src || 'src')
     this.dist = resolve(config.root, this.params.dist || `dist/cpl-${this.target}`)
