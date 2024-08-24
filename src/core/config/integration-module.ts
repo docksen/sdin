@@ -49,13 +49,7 @@ export interface SdinIntegrationModuleParams
   audioRule?: Partial<RuleSetRule>
   /** 修改视频打包规则（仅允许修改部分值）*/
   videoRule?: Partial<RuleSetRule>
-  /** 修改 CSS 打包规则（仅允许修改部分值）*/
-  cssRule?: Partial<RuleSetRule>
-  /** 修改 SASS 打包规则（仅允许修改部分值）*/
-  sassRule?: Partial<RuleSetRule>
-  /** 修改 babel 打包规则（仅允许修改部分值）*/
-  babelRule?: Partial<RuleSetRule>
-  /** 添加打包规则（位于 video 和 css 规则之间） */
+  /** 添加打包规则（可以覆盖部分默认规则） */
   rules?: OrNil<RuleSetRule>[]
 }
 
@@ -104,12 +98,6 @@ export class SdinIntegrationModule extends SdinAbstractModule<
   readonly audioRule: Partial<RuleSetRule>
   /** 修改视频打包规则 */
   readonly videoRule: Partial<RuleSetRule>
-  /** 修改 CSS 打包规则 */
-  readonly cssRule: Partial<RuleSetRule>
-  /** 修改 SASS 打包规则 */
-  readonly sassRule: Partial<RuleSetRule>
-  /** 修改 babel 打包规则 */
-  readonly babelRule: Partial<RuleSetRule>
   /** 添加打包规则 */
   readonly rules: RuleSetRule[]
 
@@ -133,9 +121,6 @@ export class SdinIntegrationModule extends SdinAbstractModule<
     this.imageRule = params.imageRule || {}
     this.audioRule = params.audioRule || {}
     this.videoRule = params.videoRule || {}
-    this.cssRule = params.cssRule || {}
-    this.sassRule = params.sassRule || {}
-    this.babelRule = params.babelRule || {}
     this.rules = filterNotNone(params.rules)
   }
 
