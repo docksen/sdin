@@ -199,7 +199,7 @@ interface SdinProjectCreatingOptions {
   projectDescription?: string
   /** Author name (default: Git username) */
   authorName?: string
-  /** Author email (default: Git email name) */
+  /** Author email (default: Git email) */
   authorEmail?: string
 }
 ```

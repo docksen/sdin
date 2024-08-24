@@ -225,7 +225,7 @@ interface SdinProjectCreatingOptions {
   projectDescription?: string
   /** 作者姓名（默认：Git 用户名） */
   authorName?: string
-  /** 作者邮箱（默认：Git 邮箱名） */
+  /** 作者邮箱（默认：Git 邮箱） */
   authorEmail?: string
 }
 ```
