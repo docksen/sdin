@@ -1,0 +1,42 @@
+{
+  "name": "<%= projectName %>",
+  "version": "<%= projectVersion %>",
+  "description": "<%= projectDescription %>",
+  "keywords": [
+    "cli", 
+    "command", 
+    "command-line"
+  ],
+  "homepage": "https://github.com/<%= authorName %>/<%= projectName %>#readme",
+  "bugs": "https://github.com/<%= authorName %>/<%= projectName %>/issues",
+  "repository": "git+https://github.com/<%= authorName %>/<%= projectName %>.git",
+  "license": "LGPL-3.0",
+  "author": "<%= authorMark %>",
+  "main": "tar/cjs",
+  "module": "tar/esm",
+  "types": "tar/dts",
+  "bin": {
+    "<%= commandName %>": "tar/cjs/bin/index.js"
+  },
+  "files": [
+    "tar/cjs",
+    "tar/esm",
+    "tar/dts"
+  ],
+  "scripts": {
+    "build": "sdin build"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.25.0",
+    "commander": "8.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.12",
+    "sdin": "^1.0.0",
+    "typescript": "^5.5.4"
+  },
+  "engines": {
+    "node": ">=18.20.4",
+    "npm": ">=8.19.4"
+  }
+}
