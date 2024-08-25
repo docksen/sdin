@@ -1,11 +1,12 @@
+import { resolve } from 'path'
 import { padEnd } from 'lodash'
 import { prompt } from 'enquirer'
 import { blue } from 'utils/print'
 import { isEmail } from 'utils/check'
-import { getWorkPath, withWorkPath } from 'utils/path'
+import { readPackageInfo } from 'utils/npm'
+import { getRootPath, getWorkPath, withWorkPath } from 'utils/path'
 import { readGlobalGitInfo } from 'utils/git'
 import { readSdinTemplateMetaList } from './template'
-import { resolve } from 'path'
 import { SdinBusinessError } from 'utils/error'
 
 export interface SdinQuestionsEnquiringOptions {
@@ -19,6 +20,7 @@ export interface SdinQuestionsEnquiringOptions {
 }
 
 export interface SdinQuestionsEnquiringResult extends Record<string, any> {
+  sdinVersion: string
   templateName: string
   templatePath: string
   projectParentPath: string
@@ -110,7 +112,9 @@ export async function enquireSdinQuestions(
     .filter(Boolean)
     .join('_')
   const projectPath = resolve(data.projectParentPath, projectFolderName)
+  const pkg = readPackageInfo(getRootPath(), true)
   return Object.assign(data, {
+    sdinVersion: pkg.version,
     templatePath: templateMeta.root,
     templateName: templateMeta.name,
     projectPath,

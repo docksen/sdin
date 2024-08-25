@@ -2,6 +2,7 @@ import { posix, resolve } from 'path'
 import { pathExists, pathExistsSync } from 'fs-extra'
 import { createLazyer } from './cache'
 import { getPackageRootPath } from './npm'
+import { SdinUtilsError } from './error'
 
 const POS_OR_WIN_SEP_EXP = /[\/\\]+/
 const WIN_DISK_FLAG_EXP = /^([a-zA-Z0-9]+)\:$/
@@ -22,6 +23,22 @@ export function getRootPath(): string {
  */
 export function withRootPath(path: string): string {
   return resolve(rootPath.get(), path)
+}
+
+/**
+ * 获取本项目关联的 node_module 目录下的路径
+ */
+export function withModulePath(path: string): string {
+  let current: string = rootPath.get()
+  while (POS_OR_WIN_SEP_EXP.test(current)) {
+    const modulePath = resolve(current, 'node_modules', path)
+    if (pathExistsSync(modulePath)) {
+      return modulePath
+    } else {
+      current = resolve(current, '../')
+    }
+  }
+  throw new SdinUtilsError(SdinUtilsError.NOT_HAS_MODULE_PATH, 'Cannot find module path.')
 }
 
 /**
