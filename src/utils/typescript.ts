@@ -6,7 +6,7 @@ import { resolve } from 'path'
 import { createCacher } from './cache'
 import { SdinUtilsError, getErrorMessage } from './error'
 import { pathExists, remove } from 'fs-extra'
-import { withRootPath } from './path'
+import { withModulePath } from './path'
 import { pipeline } from './stream'
 
 const compiledFilePaths = createCacher({
@@ -53,9 +53,9 @@ export async function compileTypeScriptFile(
       gulp.src(source),
       gulpBabel({
         presets: [
-          withRootPath('node_modules/@babel/preset-env'),
-          withRootPath('node_modules/@babel/preset-react'),
-          withRootPath('node_modules/@babel/preset-typescript')
+          withModulePath('@babel/preset-env'),
+          withModulePath('@babel/preset-react'),
+          withModulePath('@babel/preset-typescript')
         ]
       }),
       gulpRename(fileName),

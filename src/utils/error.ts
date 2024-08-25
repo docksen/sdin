@@ -70,6 +70,8 @@ export class SdinUtilsError extends SdinError {
   static readonly DEEP_COPIED_TARGET_ALREADY_EXISTS = 990120
   /** 找不到根路径 */
   static readonly NOT_HAS_ROOT_PATH = 990121
+  /** 找不到 module 路径 */
+  static readonly NOT_HAS_MODULE_PATH = 990121
   /** Webpack 编译出错 */
   static readonly WEBPACK_COMPILE_ERROR = 990121
 }

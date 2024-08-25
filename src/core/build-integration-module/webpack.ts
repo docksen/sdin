@@ -2,7 +2,7 @@ import { resolve } from 'path'
 import { mapValues, defaultsDeep } from 'lodash'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { SdinConfig, SdinIntegrationModule } from 'core/config'
-import { withRootPath } from 'utils/path'
+import { withModulePath, withRootPath } from 'utils/path'
 import type { Configuration, RuleSetRule } from 'webpack'
 
 /**
@@ -139,10 +139,7 @@ function getCssRule(): RuleSetRule {
         options: {
           sourceMap: true,
           postcssOptions: {
-            plugins: [
-              withRootPath('node_modules/postcss-import'),
-              withRootPath('node_modules/postcss-preset-env')
-            ]
+            plugins: [withModulePath('postcss-import'), withModulePath('postcss-preset-env')]
           }
         }
       }
@@ -172,10 +169,7 @@ function getSassRule(config: SdinConfig, module: SdinIntegrationModule): RuleSet
         options: {
           sourceMap: true,
           postcssOptions: {
-            plugins: [
-              withRootPath('node_modules/postcss-import'),
-              withRootPath('node_modules/postcss-preset-env')
-            ]
+            plugins: [withModulePath('postcss-import'), withModulePath('postcss-preset-env')]
           }
         }
       },
@@ -214,15 +208,15 @@ function getBableRule(module: SdinIntegrationModule): RuleSetRule {
           cacheCompression: false,
           presets: [
             [
-              withRootPath('node_modules/@babel/preset-env'),
+              withModulePath('@babel/preset-env'),
               {
                 targets: ['>= 0.2%', 'not dead', 'node >= 16']
               }
             ],
-            withRootPath('node_modules/@babel/preset-react'),
-            withRootPath('node_modules/@babel/preset-typescript')
+            withModulePath('@babel/preset-react'),
+            withModulePath('@babel/preset-typescript')
           ],
-          plugins: [withRootPath('node_modules/@babel/plugin-transform-runtime')]
+          plugins: [withModulePath('@babel/plugin-transform-runtime')]
         }
       }
     ]

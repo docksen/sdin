@@ -1,5 +1,5 @@
 import { PluginItem } from '@babel/core'
-import { withRootPath } from 'utils/path'
+import { withModulePath } from 'utils/path'
 import { SdinFoundationModule, SdinConfig } from 'core/config'
 import { filterNotNone } from 'utils/array'
 import { moduleAliasBabelPlugin } from 'plugins/babel-plugin-module-alias'
@@ -13,21 +13,21 @@ export function getBabelOptions(config: SdinConfig, module: SdinFoundationModule
   return {
     presets: filterNotNone([
       getPresetEnvBabelPlugin(module),
-      withRootPath('node_modules/@babel/preset-react'),
-      withRootPath('node_modules/@babel/preset-typescript')
+      withModulePath('@babel/preset-react'),
+      withModulePath('@babel/preset-typescript')
     ]),
     plugins: filterNotNone([
       getModuleAliasBabelPlugin(config),
       getStyleModuleBabelPlugin(module),
       getCodeDefinitionBabelPlugin(module),
-      withRootPath('node_modules/@babel/plugin-transform-runtime')
+      withModulePath('@babel/plugin-transform-runtime')
     ])
   }
 }
 
 function getPresetEnvBabelPlugin(module: SdinFoundationModule): PluginItem | undefined {
   return [
-    withRootPath('node_modules/@babel/preset-env'),
+    withModulePath('@babel/preset-env'),
     {
       modules: module.mode === 'cjs' ? 'cjs' : false,
       targets: ['>= 0.2%', 'not dead', 'node >= 16']
