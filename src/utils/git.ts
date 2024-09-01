@@ -2,7 +2,7 @@ import { set } from 'lodash'
 import { resolve } from 'path'
 import { pathExists } from 'fs-extra'
 import { isEmail } from './check'
-import { green, red, printTask } from './print'
+import { green, red, printTask, yellow } from './print'
 import { execute } from './execute'
 import { SdinUtilsError } from './error'
 
@@ -75,13 +75,15 @@ export async function createGitRepository(root: string): Promise<void> {
       )
     },
     loading: payload => {
-      if (typeof payload === 'string') {
-        return payload
+      if (payload) {
+        if (payload.toString) {
+          return payload.toString()
+        }
+        if (typeof payload === 'string') {
+          return payload
+        }
       }
-      if (payload && payload.toString) {
-        return payload.toString()
-      }
-      return `Creating git repository to ${root}.`
+      return `Creating git repository to ${yellow(root)}.`
     },
     resolve: () => {
       return `successfully Created git repository to ${green(root)}.`

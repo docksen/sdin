@@ -1,0 +1,263 @@
+# sdin
+
+- [sdin](#sdin)
+  - [$1](#$1)
+  - [$2](#$2)
+    - [SdinConfigParams](#sdinconfigparams)
+    - [SdinDeclarationModuleParams](#sdindeclarationmoduleparams)
+    - [SdinFoundationModuleParams](#sdinfoundationmoduleparams)
+    - [SdinIntegrationModuleParams](#sdinintegrationmoduleparams)
+  - [$3](#$3)
+    - [$4](#$4)
+    - [`build` $3](#build-$3)
+    - [`create` $3](#create-$3)
+  - [$5](#$5)
+    - [readSdinConfig](#readsdinconfig)
+    - [createSdinProject](#createsdinproject)
+    - [buildSdinProject](#buildsdinproject)
+
+## $1
+
+$6
+
+```shell
+$ sdin build
+i Project hello, version 0.0.1.
+i Project files are qualified, checking took 0.003 s.
+√ Successfully built foundation cjs module camille, it took 0.32 s.
+√ Successfully built foundation esm module elise, it took 0.06 s.
+√ Successfully built declaration dts module diana, it took 1.361 s.
+√ Successfully built integration umd module urgoth, it took 12.173 s.
+i Webpack compiled information: ...
+```
+
+$7
+
+```typescript
+import { readSdinConfig, buildSdinProject } from 'sdin'
+async function main() {
+  const config = await readSdinConfig({ root: 'path/to/project' })
+  await buildSdinProject({ config })
+}
+```
+
+## $2
+
+$8 `pro/configs/project.ts`。
+
+$9
+
+```typescript
+import { SdinConfigParams } from 'sdin'
+export const sdinConfigParams: SdinConfigParams = {...}
+```
+
+### SdinConfigParams
+
+$10
+
+| $11        | $12                        | $13 | $14         | $15                                         | $16                  |
+| ----------- | --------------------------- | ---- | ------------ | -------------------------------------------- | --------------------- |
+| root        | string                      | $21   | $23 | $24                                   | -                     |
+| mode        | SdinBuildMode               | $21   | production   | $25                                     | -                     |
+| alias       | Record\<string, string\>    | $21   | -            | $26，\<$27, $28\> | {utils: "src/utils" } |
+| definitions | Record<string, string>      | $21   | -            | $29，\<$30, $31\>           | -                     |
+| modules     | OrNil\<SdinModuleParams\>[] | $21   | -            | $32                               | -                     |
+
+```typescript
+// production: $33; development: $34;
+type SdinBuildMode = 'development' | 'production'
+type OrNil<T> = T | undefined | null
+type SdinModuleParams =
+  | SdinDeclarationModuleParams
+  | SdinFoundationModuleParams
+  | SdinIntegrationModuleParams
+```
+
+$93
+
+```typescript
+declare global {
+  const SDIN_PROJECT_MODE: string // $94
+  const SDIN_PROJECT_NAME: string // $95
+  const SDIN_PROJECT_VERSION: string // $96
+  const SDIN_PROJECT_AUTHOR_NAME: string // $97
+  const SDIN_PROJECT_AUTHOR_EMAIL: string // $98
+  const SDIN_MODULE_TYPE: string // $99
+  const SDIN_MODULE_MODE: string // $100
+  const SDIN_MODULE_NAME: string // $101
+}
+```
+
+### SdinDeclarationModuleParams
+
+$35
+
+| $11        | $12                        | $13 | $14         | $15                                         | $16                  |
+| -------- | ------------------------- | ---- | ------------------ | ------------------------------------ | ---- |
+| type     | 'declaration'             | $22   | -                  | $37                             | -    |
+| mode     | SdinDeclarationModuleMode | $21   | 'dts'              | $36                         | -    |
+| name     | string                    | $22   | -                  | $38                             | -    |
+| src      | string                    | $21   | 'src'              | $39 | -    |
+| tar      | string                    | $21   | 'tar/$36' | $40 | -    |
+| includes | OrNil\<string\>[]         | $21   | -                  | $41     | -    |
+| excludes | OrNil\<string\>[]         | $21   | -                  | $42   | -    |
+
+```typescript
+// dts: $43;
+type SdinnDeclarationModuleMode = 'dts'
+type OrNil<T> = T | undefined | null
+```
+
+### SdinFoundationModuleParams
+
+$44
+
+| $11        | $12                        | $13 | $14         | $15                                         | $16                  |
+| ------------ | ------------------------ | ---- | ----------------------- | ------------------------------------ | ---- |
+| type         | 'foundation'             | $22   | -                       | $37                             | -    |
+| mode         | SdinFoundationModuleMode | $21   | 'cjs'                   | $36                         | -    |
+| name         | string                   | $22   | -                       | $38                             | -    |
+| src          | string                   | $21   | 'src'                   | $39 | -    |
+| tar          | string                   | $21   | 'tar/$36'      | $40 | -    |
+| includes     | OrNil\<string\>[]        | $21   | -                       | $41     | -    |
+| excludes     | OrNil\<string\>[]        | $21   | -                       | $42   | -    |
+| minify       | boolean                  | $21   | $45      | $46                             | -    |
+| uglify       | boolean                  | $21   | $45      | $47        | -    |
+| sassModule   | boolean                  | $21   | true                    | $48                        | -    |
+| styleImports | boolean                  | $21   | $49 | $50    | -    |
+
+```typescript
+// cjs: $51; esm: $52;
+type SdinFoundationModuleMode = 'cjs' | 'esm'
+type OrNil<T> = T | undefined | null
+```
+
+### SdinIntegrationModuleParams
+
+$53
+
+| $11        | $12                        | $13 | $14         | $15                                         | $16                  |
+| ------------- | --------------------------- | -------- | ------------------------ | ----------------------------------------------- | ------- |
+| type          | 'integration'               | $22       | -                        | $37                                        | -       |
+| mode          | SdinIntegrationModuleMode   | $21       | 'umd'                    | $36                                    | -       |
+| name          | string                      | $22       | -                        | $38                                        | -       |
+| src           | string                      | $21       | 'src/index.{jsx?\|tsx?}' | $39            | -       |
+| tar           | string                      | $21       | 'tar/$36'       | $40            | -       |
+| entryName     | string                      | $21       | 'index'                  | $54                                      | -       |
+| globalName    | string                      | $65 | -                        | $55 | "React" |
+| minify        | boolean                     | $21       | $45           | $46                                        | -       |
+| uglify        | boolean                     | $21       | $45           | $47                   | -       |
+| externals     | Record\<string, string\>    | $21       | -                        | $56                      | -       |
+| sassModule    | boolean                     | $21       | true                     | $48                                       | -       |
+| babelIncludes | OrNil\<RuleSetCondition\>[] | $21       | -                        | $57                                | -       |
+| babelExcludes | OrNil\<RuleSetCondition\>[] | $21       | -                        | $58                                | -       |
+| rawRule       | Partial\<RuleSetRule\>      | $21       | -                        | $59                                | -       |
+| fontRule      | Partial\<RuleSetRule\>      | $21       | -                        | $60                                | -       |
+| imageRule     | Partial\<RuleSetRule\>      | $21       | -                        | $61                                | -       |
+| audioRule     | Partial\<RuleSetRule\>      | $21       | -                        | $62                                | -       |
+| videoRule     | Partial\<RuleSetRule\>      | $21       | -                        | $63                                | -       |
+| rules         | OrNil\<RuleSetRule\>[]      | $21       | -                        | $64            | -       |
+
+```typescript
+// cjs: $51; glb: $66; umd: $67;
+type SdinIntegrationModuleMode = 'cjs' | 'glb' | 'umd'
+type OrNil<T> = T | undefined | null
+// $92: https://webpack.js.org/configuration/module/#rule
+type RuleSetCondition = Webpack.RuleSetCondition
+// $92: https://webpack.js.org/configuration/module/#rule
+type RuleSetRule = Webpack.RuleSetRule
+```
+
+$68
+
+$69
+
+## $3
+
+### $4
+
+| $17      | $18 | $12 | $13 | $14 | $15         | $16    |
+| --------- | ---- | ---- | ---- | ---- | ------------ | ------- |
+| --version | -v   | -    | -    | -    | $70     | sdin -v |
+| --help    | -h   | -    | -    | -    | $71 | sdin -h |
+
+### `build` $3
+
+$72
+
+| $20 | $19 | $12   | $13 | $14 | $15                                  | $16                     |
+| ---- | ---- | ------ | ---- | ------------ | ---------------------- | ------------- |
+| path | -    | string | $21   | $23 | $73 | sdin build ./ |
+
+| $17      | $18 | $12 | $13 | $14 | $15         | $16    |
+| --------- | ---- | ------ | ---- | -------- | ---------------------------------- | ------------------------- |
+| --modules | -m   | string | $21   | $74 | $75 | sdin build -m diana,elise |
+
+### `create` $3
+
+$76
+
+| $20 | $19 | $12   | $13 | $14 | $15                                  | $16                     |
+| ---- | ---- | ------ | ---- | ---- | ------------------------------------- | ----------------------- |
+| name | -    | string | $21   | -    | $77 | sdin create new-project |
+
+| $17      | $18 | $12 | $13 | $14 | $15         | $16    |
+| ---------- | ---- | ------ | ---- | ------------ | -------------------- | ----------------------------- |
+| --output   | -o   | string | $21   | $23 | $78 | sdin create -o ./             |
+| --template | -t   | string | $21   | -            | $79 | sdin create -t common-package |
+
+## $5
+
+### readSdinConfig
+
+$80
+
+```typescript
+function readSdinConfig(params: SdinConfigReadingParams): Promise<SdinConfig>
+
+interface SdinConfigReadingParams {
+  /** $24 */
+  root: string
+}
+```
+
+### createSdinProject
+
+$81
+
+```typescript
+function createSdinProject(options: SdinProjectCreatingOptions): Promise<void>
+
+interface SdinProjectCreatingOptions {
+  /** $83 */
+  templateName?: string
+  /** $84 */
+  projectParentPath?: string
+  /** $85 */
+  projectName?: string
+  /** $86 */
+  projectVersion?: string
+  /** $87 */
+  projectDescription?: string
+  /** $88 */
+  authorName?: string
+  /** $89 */
+  authorEmail?: string
+}
+```
+
+### buildSdinProject
+
+$82
+
+```typescript
+function buildSdinProject(options: SdinProjectBuildingOptions): Promise<void>
+
+interface SdinProjectBuildingOptions {
+  /** $90 */
+  config: SdinConfig
+  /** $91 */
+  moduleNames?: string[]
+}
+```

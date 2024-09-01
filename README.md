@@ -1,6 +1,7 @@
 # sdin
 
-> Sdin /s'dɪn/ means Small Dinosaur.
+> Sdin /s'dɪn/ means Small Dinosaur.  
+> 折梅逢驿使，寄与陇头人。江南无所有，聊赠一枝春。
 
 This is a JavaScript package builder, which uses Webpack and Gulp for packaging internally, and has the following features:
 
@@ -19,8 +20,46 @@ This is a JavaScript package builder, which uses Webpack and Gulp for packaging 
 
 If you want to use it, please read the user manual:
 
-- [中文](https://github.com/docksen/sdin/blob/main/pro/documents/zh.md)
-- [English](https://github.com/docksen/sdin/blob/main/pro/documents/en.md)
+<table>
+  <tbody>
+    <tr>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/en.md">English 英语 Inglés</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/zh.md">Chinese 汉语 Chino</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/hi.md">Hindi 印地语 हिंदी</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/spa.md">Spanish 西语 Español</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/fr.md">French 法语 Français</a></td>
+    </tr>
+    --
+    <tr>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/ar.md">Arabic 阿语 عربي</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/bn.md">Bengali 孟加拉语 বাঙালি</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/ru.md">Russian 俄语 Русский</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/pt.md">Portuguese 葡语 Português</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/id.md">Indonesian 印尼语 Indonesia</a></td>
+    </tr>
+    <tr>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/ur.md">Urdu 乌尔都语 اردو</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/de.md">German 德语 Deutsch</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/ja.md">Japanese 日语 日本語</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/sw.md">Swahili 斯瓦希里语 Kiswahili</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/tr.md">Turkish 土耳其语 Türkçe</a></td>
+    </tr>
+    <tr>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/ta.md">Tamil 泰米尔语 தமிழ்</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/ko.md">Korean 韩语 한국인</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/vi.md">Vietnamese 越南语 Việt Nam</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/it.md">Italian 意大利语 Italiana</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/th.md">Thai 泰语 แบบไทย</a></td>
+    </tr>
+    <tr>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/fa.md">Persian 波斯语 فارسی</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/uk.md">Ukrainian 乌克兰语 Український</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/fil.md">Filipino 菲律宾语 Pilipino</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/he.md">Hebrew 希伯来语 עִברִית</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/el.md">Greek 希腊语 ελληνικά</a></td>
+    </tr>
+  </tbody>
+</table>
 
 ## Examples
 

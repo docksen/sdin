@@ -138,6 +138,8 @@ export interface PrintableTaskProps<P> {
   loading: (payload: P) => void
 }
 
+const LOADING_ICONS = [magenta('⠙'), red('⠸'), yellow('⠴'), green('⠦'), blue('⠇'), cyan('⠋')]
+
 export async function printTask<P, R>({
   exitCode,
   loading,
@@ -153,16 +155,22 @@ export async function printTask<P, R>({
 }): Promise<R> {
   let percent: number | undefined
   let messages: string[] = []
+  let iconIndex: number = -1
+  let iconRepeat: number = -1
   const timer = setInterval(() => {
     const msg = messages.length > 1 ? messages.shift() : messages[0]
-    const msgs: string[] = filterNotNone([
+    const text = filterNotNone([
       percent === undefined ? undefined : `${percent} / ${100}`,
       msg === undefined ? undefined : ellipsis(msg, 80)
-    ])
-    if (msgs.length > 0) {
-      printCurrentLine(msgs.join(' '), magenta('~'))
+    ]).join(' ')
+    if (text) {
+      iconRepeat = (iconRepeat + 1) % 3
+      if (iconRepeat === 0) {
+        iconIndex = (iconIndex + 1) % LOADING_ICONS.length
+      }
+      printCurrentLine(text, LOADING_ICONS[iconIndex])
     }
-  }, 100)
+  }, 200)
   const clear = () => {
     clearInterval(timer)
     clearCurrentLine()

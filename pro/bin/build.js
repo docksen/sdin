@@ -8,6 +8,9 @@ const { getRootPath } = require('../scripts/utils/path')
 
 main()
 
+/**
+ * 构建本项目代码
+ */
 function main() {
   build({
     root: getRootPath(),

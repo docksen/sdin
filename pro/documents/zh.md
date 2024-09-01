@@ -9,8 +9,8 @@
     - [SdinIntegrationModuleParams](#sdinintegrationmoduleparams)
   - [命令](#命令)
     - [主命令](#主命令)
-    - [build 命令](#build-命令)
-    - [create 命令](#create-命令)
+    - [`build` 命令](#build-命令)
+    - [`create` 命令](#create-命令)
   - [接口](#接口)
     - [readSdinConfig](#readsdinconfig)
     - [createSdinProject](#createsdinproject)
@@ -56,13 +56,13 @@ export const sdinConfigParams: SdinConfigParams = {...}
 
 项目配置
 
-| 属性        | 类型                        | 必填 | 默认         | 说明                                         | 示例                  |
-| ----------- | --------------------------- | ---- | ------------ | -------------------------------------------- | --------------------- |
-| root        | string                      | 否   | 当前工作目录 | 项目根目录                                   | -                     |
-| mode        | SdinBuildMode               | 否   | production   | 构建模式                                     | -                     |
-| alias       | Record\<string, string\>    | 否   | -            | 模块别名，\<别名, 路径(相对项目根目录而言)\> | {utils: "src/utils" } |
-| definitions | Record<string, string>      | 否   | -            | 全局定义，\<原代码, 替换后的代码\>           | -                     |
-| modules     | OrNil\<SdinModuleParams\>[] | 是   | -            | 模块配置项列表                               | -                     |
+| 属性        | 类型                        | 必填 | 默认         | 说明                                           | 示例                  |
+| ----------- | --------------------------- | ---- | ------------ | ---------------------------------------------- | --------------------- |
+| root        | string                      | 否   | 当前工作目录 | 项目根目录                                     | -                     |
+| mode        | SdinBuildMode               | 否   | production   | 构建模式                                       | -                     |
+| alias       | Record\<string, string\>    | 否   | -            | 模块别名，\<别名, 路径（相对项目根目录而言）\> | {utils: "src/utils" } |
+| definitions | Record<string, string>      | 否   | -            | 全局定义，\<原代码, 替换后的代码\>             | -                     |
+| modules     | OrNil\<SdinModuleParams\>[] | 否   | -            | 模块配置项列表                                 | -                     |
 
 ```typescript
 // production: 生产模式; development: 开发环境;
@@ -72,6 +72,21 @@ type SdinModuleParams =
   | SdinDeclarationModuleParams
   | SdinFoundationModuleParams
   | SdinIntegrationModuleParams
+```
+
+程序已为项目提供了一些全局定义，可在项目中直接使用：
+
+```typescript
+declare global {
+  const SDIN_PROJECT_MODE: string // 项目的构建模式
+  const SDIN_PROJECT_NAME: string // 项目名称
+  const SDIN_PROJECT_VERSION: string // 项目版本
+  const SDIN_PROJECT_AUTHOR_NAME: string // 项目作者名称
+  const SDIN_PROJECT_AUTHOR_EMAIL: string // 项目作者邮箱
+  const SDIN_MODULE_TYPE: string // 编译时，模块的类型
+  const SDIN_MODULE_MODE: string // 编译时，模块的构建模式
+  const SDIN_MODULE_NAME: string // 编译时，模块的名称
+}
 ```
 
 ### SdinDeclarationModuleParams
@@ -98,19 +113,19 @@ type OrNil<T> = T | undefined | null
 
 基础模块配置
 
-| 属性         | 类型                     | 必填 | 默认                    | 说明                                 | 示例 |
-| ------------ | ------------------------ | ---- | ----------------------- | ------------------------------------ | ---- |
-| type         | 'foundation'             | 是   | -                       | 模块类型                             | -    |
-| mode         | SdinFoundationModuleMode | 否   | 'cjs'                   | 模块构建模式                         | -    |
-| name         | string                   | 是   | -                       | 模块名称                             | -    |
-| src          | string                   | 否   | 'src'                   | 输入的源码位置（相对项目根目录而言） | -    |
-| tar          | string                   | 否   | 'tar/模块构建模式'      | 输出的目标位置（相对项目根目录而言） | -    |
-| includes     | OrNil\<string\>[]        | 否   | -                       | 包含的文件（相对项目根目录而言）     | -    |
-| excludes     | OrNil\<string\>[]        | 否   | -                       | 不包含的文件（相对项目根目录而言）   | -    |
-| minify       | boolean                  | 否   | 生产模式下默认开启      | 压缩代码                             | -    |
-| uglify       | boolean                  | 否   | 生产模式下默认开启      | 丑化代码（minify 开启时有效）        | -    |
-| sassModule   | boolean                  | 否   | true                    | SASS 模块开关                        | -    |
-| styleImports | boolean                  | 否   | SASS 模块启用时默认开启 | 在 JS 文件中引入转换后的 CSS 文件    | -    |
+| 属性         | 类型                     | 必填 | 默认                | 说明                                 | 示例 |
+| ------------ | ------------------------ | ---- | ------------------- | ------------------------------------ | ---- |
+| type         | 'foundation'             | 是   | -                   | 模块类型                             | -    |
+| mode         | SdinFoundationModuleMode | 否   | 'cjs'               | 模块构建模式                         | -    |
+| name         | string                   | 是   | -                   | 模块名称                             | -    |
+| src          | string                   | 否   | 'src'               | 输入的源码位置（相对项目根目录而言） | -    |
+| tar          | string                   | 否   | 'tar/模块构建模式'  | 输出的目标位置（相对项目根目录而言） | -    |
+| includes     | OrNil\<string\>[]        | 否   | -                   | 包含的文件（相对项目根目录而言）     | -    |
+| excludes     | OrNil\<string\>[]        | 否   | -                   | 不包含的文件（相对项目根目录而言）   | -    |
+| minify       | boolean                  | 否   | 生产模式下开启      | 压缩代码                             | -    |
+| uglify       | boolean                  | 否   | 生产模式下开启      | 丑化代码（minify 开启时有效）        | -    |
+| sassModule   | boolean                  | 否   | true                | SASS 模块开关                        | -    |
+| styleImports | boolean                  | 否   | SASS 模块开启时开启 | 在 JS 文件中引入转换后的 CSS 文件    | -    |
 
 ```typescript
 // cjs: CommonJS 模块; esm: ESModule 模块;
@@ -134,27 +149,29 @@ type OrNil<T> = T | undefined | null
 | minify        | boolean                     | 否       | 生产模式下开启           | 压缩代码                                        | -       |
 | uglify        | boolean                     | 否       | 生产模式下开启           | 丑化代码（minify 开启时有效）                   | -       |
 | externals     | Record\<string, string\>    | 否       | -                        | 去除代码里使用到的外部模块                      | -       |
-| sassModule    | boolean                     | 否       | true                     | SASS 模块                                       | -       |
+| sassModule    | boolean                     | 否       | true                     | SASS 模块开关                                   | -       |
 | babelIncludes | OrNil\<RuleSetCondition\>[] | 否       | -                        | babel 编译包含项                                | -       |
 | babelExcludes | OrNil\<RuleSetCondition\>[] | 否       | -                        | babel 编译排除项                                | -       |
-| rawRule       | Partial\<RuleSetRule\>      | 否       | -                        | 修改文本打包规则（仅允许修改部分值）            | -       |
-| fontRule      | Partial\<RuleSetRule\>      | 否       | -                        | 修改字体打包规则（仅允许修改部分值）            | -       |
-| imageRule     | Partial\<RuleSetRule\>      | 否       | -                        | 修改图片打包规则（仅允许修改部分值）            | -       |
-| audioRule     | Partial\<RuleSetRule\>      | 否       | -                        | 修改音频打包规则（仅允许修改部分值）            | -       |
-| videoRule     | Partial\<RuleSetRule\>      | 否       | -                        | 修改视频打包规则（仅允许修改部分值）            | -       |
+| rawRule       | Partial\<RuleSetRule\>      | 否       | -                        | 修改文本打包规则                                | -       |
+| fontRule      | Partial\<RuleSetRule\>      | 否       | -                        | 修改字体打包规则                                | -       |
+| imageRule     | Partial\<RuleSetRule\>      | 否       | -                        | 修改图片打包规则                                | -       |
+| audioRule     | Partial\<RuleSetRule\>      | 否       | -                        | 修改音频打包规则                                | -       |
+| videoRule     | Partial\<RuleSetRule\>      | 否       | -                        | 修改视频打包规则                                | -       |
 | rules         | OrNil\<RuleSetRule\>[]      | 否       | -                        | 添加打包规则（可以覆盖部分默认规则）            | -       |
 
 ```typescript
 // cjs: CommonJS 模块; glb: 全局模块; umd: UMD 模块;
 type SdinIntegrationModuleMode = 'cjs' | 'glb' | 'umd'
 type OrNil<T> = T | undefined | null
-// 详情请见：https://webpack.js.org/configuration/module/#rule
+// 详情请见: https://webpack.js.org/configuration/module/#rule
 type RuleSetCondition = Webpack.RuleSetCondition
-// 详情请见：https://webpack.js.org/configuration/module/#rule
-// 若是修改打包规则，除了 `type`、`generator.filename`，其余字段均可修改。
-// 若是添加打包规则，可以覆盖文本、字体、图片、音频、视频的打包规则。
+// 详情请见: https://webpack.js.org/configuration/module/#rule
 type RuleSetRule = Webpack.RuleSetRule
 ```
+
+若是修改打包规则，除了 `type`、`generator.filename`，其余字段均可修改。
+
+若是添加打包规则，可以覆盖文本、字体、图片、音频、视频的打包规则。
 
 ## 命令
 
@@ -165,7 +182,7 @@ type RuleSetRule = Webpack.RuleSetRule
 | --version | -v   | -    | -    | -    | 查看版本     | sdin -v |
 | --help    | -h   | -    | -    | -    | 查看帮助文档 | sdin -h |
 
-### build 命令
+### `build` 命令
 
 用于构建项目
 
@@ -177,7 +194,7 @@ type RuleSetRule = Webpack.RuleSetRule
 | --------- | ---- | ------ | ---- | -------- | ---------------------------------- | ------------------------- |
 | --modules | -m   | string | 否   | 所有模块 | 指定需构建的模块名，多项以逗号分隔 | sdin build -m diana,elise |
 
-### create 命令
+### `create` 命令
 
 用于创建项目
 
@@ -240,7 +257,7 @@ function buildSdinProject(options: SdinProjectBuildingOptions): Promise<void>
 interface SdinProjectBuildingOptions {
   /** Sdin 配置 */
   config: SdinConfig
-  /** 要构建的模块名称 */
+  /** 指定要构建的模块名称 */
   moduleNames?: string[]
 }
 ```

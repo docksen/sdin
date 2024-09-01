@@ -1,0 +1,1148 @@
+{
+  "name": "langs",
+  "version": "1.0.0",
+  "languages": [
+    {
+      "code": "ach",
+      "name": "",
+      "cnName": "亚齐语",
+      "enName": ""
+    },
+    {
+      "code": "afr",
+      "name": "",
+      "cnName": "南非荷兰语",
+      "enName": ""
+    },
+    {
+      "code": "aka",
+      "name": "",
+      "cnName": "阿肯语",
+      "enName": ""
+    },
+    {
+      "code": "alb",
+      "name": "",
+      "cnName": "阿尔巴尼亚语",
+      "enName": ""
+    },
+    {
+      "code": "amh",
+      "name": "",
+      "cnName": "阿姆哈拉语",
+      "enName": ""
+    },
+    {
+      "code": "ara",
+      "name": "",
+      "cnName": "阿拉伯语",
+      "enName": ""
+    },
+    {
+      "code": "arg",
+      "name": "",
+      "cnName": "阿拉贡语",
+      "enName": ""
+    },
+    {
+      "code": "arm",
+      "name": "",
+      "cnName": "亚美尼亚语",
+      "enName": ""
+    },
+    {
+      "code": "arq",
+      "name": "",
+      "cnName": "阿尔及利亚阿拉伯语",
+      "enName": ""
+    },
+    {
+      "code": "asm",
+      "name": "",
+      "cnName": "阿萨姆语",
+      "enName": ""
+    },
+    {
+      "code": "ast",
+      "name": "",
+      "cnName": "阿斯图里亚斯语",
+      "enName": ""
+    },
+    {
+      "code": "aym",
+      "name": "",
+      "cnName": "艾马拉语",
+      "enName": ""
+    },
+    {
+      "code": "aze",
+      "name": "",
+      "cnName": "阿塞拜疆语",
+      "enName": ""
+    },
+    {
+      "code": "bak",
+      "name": "",
+      "cnName": "巴什基尔语",
+      "enName": ""
+    },
+    {
+      "code": "bal",
+      "name": "",
+      "cnName": "俾路支语",
+      "enName": ""
+    },
+    {
+      "code": "baq",
+      "name": "",
+      "cnName": "巴斯克语",
+      "enName": ""
+    },
+    {
+      "code": "bel",
+      "name": "",
+      "cnName": "白俄罗斯语",
+      "enName": ""
+    },
+    {
+      "code": "bem",
+      "name": "",
+      "cnName": "本巴语",
+      "enName": ""
+    },
+    {
+      "code": "ben",
+      "name": "",
+      "cnName": "孟加拉语",
+      "enName": ""
+    },
+    {
+      "code": "ber",
+      "name": "",
+      "cnName": "柏柏尔语",
+      "enName": ""
+    },
+    {
+      "code": "bho",
+      "name": "",
+      "cnName": "博杰普尔语",
+      "enName": ""
+    },
+    {
+      "code": "bis",
+      "name": "",
+      "cnName": "比斯拉马语",
+      "enName": ""
+    },
+    {
+      "code": "bli",
+      "name": "",
+      "cnName": "比林语",
+      "enName": ""
+    },
+    {
+      "code": "bos",
+      "name": "",
+      "cnName": "波斯尼亚语",
+      "enName": ""
+    },
+    {
+      "code": "bre",
+      "name": "",
+      "cnName": "布列塔尼语",
+      "enName": ""
+    },
+    {
+      "code": "bul",
+      "name": "",
+      "cnName": "保加利亚语",
+      "enName": ""
+    },
+    {
+      "code": "bur",
+      "name": "",
+      "cnName": "缅甸语",
+      "enName": ""
+    },
+    {
+      "code": "cat",
+      "name": "",
+      "cnName": "加泰罗尼亚语",
+      "enName": ""
+    },
+    {
+      "code": "ceb",
+      "name": "",
+      "cnName": "宿务语",
+      "enName": ""
+    },
+    {
+      "code": "chr",
+      "name": "",
+      "cnName": "切罗基语",
+      "enName": ""
+    },
+    {
+      "code": "chv",
+      "name": "",
+      "cnName": "楚瓦什语",
+      "enName": ""
+    },
+    {
+      "code": "cor",
+      "name": "",
+      "cnName": "康瓦尔语",
+      "enName": ""
+    },
+    {
+      "code": "cos",
+      "name": "",
+      "cnName": "科西嘉语",
+      "enName": ""
+    },
+    {
+      "code": "cre",
+      "name": "",
+      "cnName": "克里克语",
+      "enName": ""
+    },
+    {
+      "code": "cri",
+      "name": "",
+      "cnName": "克里米亚鞑靼语",
+      "enName": ""
+    },
+    {
+      "code": "cs",
+      "name": "",
+      "cnName": "捷克语",
+      "enName": ""
+    },
+    {
+      "code": "dan",
+      "name": "",
+      "cnName": "丹麦语",
+      "enName": ""
+    },
+    {
+      "code": "de",
+      "name": "",
+      "cnName": "德语",
+      "enName": ""
+    },
+    {
+      "code": "div",
+      "name": "",
+      "cnName": "迪维希语",
+      "enName": ""
+    },
+    {
+      "code": "el",
+      "name": "",
+      "cnName": "希腊语",
+      "enName": ""
+    },
+    {
+      "code": "en",
+      "name": "English",
+      "amount": 100000,
+      "cnName": "英语",
+      "enName": "English"
+    },
+    {
+      "code": "est",
+      "name": "",
+      "cnName": "爱沙尼亚语",
+      "enName": ""
+    },
+    {
+      "code": "fao",
+      "name": "",
+      "cnName": "法罗语",
+      "enName": ""
+    },
+    {
+      "code": "fil",
+      "name": "",
+      "cnName": "菲律宾语",
+      "enName": ""
+    },
+    {
+      "code": "fin",
+      "name": "",
+      "cnName": "芬兰语",
+      "enName": ""
+    },
+    {
+      "code": "fra",
+      "name": "Français",
+      "cnName": "法语",
+      "enName": "French"
+    },
+    {
+      "code": "fri",
+      "name": "",
+      "cnName": "弗留利语",
+      "enName": ""
+    },
+    {
+      "code": "frn",
+      "name": "",
+      "cnName": "加拿大法语",
+      "enName": ""
+    },
+    {
+      "code": "fry",
+      "name": "",
+      "cnName": "西弗里斯语",
+      "enName": ""
+    },
+    {
+      "code": "ful",
+      "name": "",
+      "cnName": "富拉尼语",
+      "enName": ""
+    },
+    {
+      "code": "geo",
+      "name": "",
+      "cnName": "格鲁吉亚语",
+      "enName": ""
+    },
+    {
+      "code": "gla",
+      "name": "",
+      "cnName": "盖尔语",
+      "enName": ""
+    },
+    {
+      "code": "gle",
+      "name": "",
+      "cnName": "爱尔兰语",
+      "enName": ""
+    },
+    {
+      "code": "glg",
+      "name": "",
+      "cnName": "加利西亚语",
+      "enName": ""
+    },
+    {
+      "code": "glv",
+      "name": "",
+      "cnName": "曼克斯语",
+      "enName": ""
+    },
+    {
+      "code": "grn",
+      "name": "",
+      "cnName": "瓜拉尼语",
+      "enName": ""
+    },
+    {
+      "code": "guj",
+      "name": "",
+      "cnName": "古吉拉特语",
+      "enName": ""
+    },
+    {
+      "code": "hak",
+      "name": "",
+      "cnName": "哈卡钦语",
+      "enName": ""
+    },
+    {
+      "code": "hau",
+      "name": "",
+      "cnName": "豪萨语",
+      "enName": ""
+    },
+    {
+      "code": "haw",
+      "name": "",
+      "cnName": "夏威夷语",
+      "enName": ""
+    },
+    {
+      "code": "heb",
+      "name": "",
+      "cnName": "希伯来语",
+      "enName": ""
+    },
+    {
+      "code": "hi",
+      "name": "हिंदी",
+      "cnName": "印地语",
+      "enName": "Hindi"
+    },
+    {
+      "code": "hil",
+      "name": "",
+      "cnName": "希利盖农语",
+      "enName": ""
+    },
+    {
+      "code": "hkm",
+      "name": "",
+      "cnName": "高棉语",
+      "enName": ""
+    },
+    {
+      "code": "hmn",
+      "name": "",
+      "cnName": "苗语",
+      "enName": ""
+    },
+    {
+      "code": "hrv",
+      "name": "",
+      "cnName": "克罗地亚语",
+      "enName": ""
+    },
+    {
+      "code": "ht",
+      "name": "",
+      "cnName": "海地语",
+      "enName": ""
+    },
+    {
+      "code": "hu",
+      "name": "",
+      "cnName": "匈牙利语",
+      "enName": ""
+    },
+    {
+      "code": "hup",
+      "name": "",
+      "cnName": "胡帕语",
+      "enName": ""
+    },
+    {
+      "code": "ibo",
+      "name": "",
+      "cnName": "伊博语",
+      "enName": ""
+    },
+    {
+      "code": "ice",
+      "name": "",
+      "cnName": "冰岛语",
+      "enName": ""
+    },
+    {
+      "code": "id",
+      "name": "",
+      "cnName": "印尼语",
+      "enName": ""
+    },
+    {
+      "code": "ido",
+      "name": "",
+      "cnName": "伊多语",
+      "enName": ""
+    },
+    {
+      "code": "iku",
+      "name": "",
+      "cnName": "伊努克提图特语",
+      "enName": ""
+    },
+    {
+      "code": "ina",
+      "name": "",
+      "cnName": "因特语",
+      "enName": ""
+    },
+    {
+      "code": "ing",
+      "name": "",
+      "cnName": "印古什语",
+      "enName": ""
+    },
+    {
+      "code": "ir",
+      "name": "",
+      "cnName": "伊朗语",
+      "enName": ""
+    },
+    {
+      "code": "it",
+      "name": "",
+      "cnName": "意大利语",
+      "enName": ""
+    },
+    {
+      "code": "jav",
+      "name": "",
+      "cnName": "爪哇语",
+      "enName": ""
+    },
+    {
+      "code": "jp",
+      "name": "",
+      "cnName": "日语",
+      "enName": ""
+    },
+    {
+      "code": "kab",
+      "name": "",
+      "cnName": "卡拜尔语",
+      "enName": ""
+    },
+    {
+      "code": "kah",
+      "name": "",
+      "cnName": "卡舒比语",
+      "enName": ""
+    },
+    {
+      "code": "kal",
+      "name": "",
+      "cnName": "格陵兰语",
+      "enName": ""
+    },
+    {
+      "code": "kan",
+      "name": "",
+      "cnName": "卡纳达语",
+      "enName": ""
+    },
+    {
+      "code": "kas",
+      "name": "",
+      "cnName": "克什米尔语",
+      "enName": ""
+    },
+    {
+      "code": "kau",
+      "name": "",
+      "cnName": "卡努里语",
+      "enName": ""
+    },
+    {
+      "code": "kin",
+      "name": "",
+      "cnName": "卢旺达语",
+      "enName": ""
+    },
+    {
+      "code": "kir",
+      "name": "",
+      "cnName": "吉尔吉斯语",
+      "enName": ""
+    },
+    {
+      "code": "kli",
+      "name": "",
+      "cnName": "克林贡语",
+      "enName": ""
+    },
+    {
+      "code": "kok",
+      "name": "",
+      "cnName": "孔卡尼语",
+      "enName": ""
+    },
+    {
+      "code": "kon",
+      "name": "",
+      "cnName": "刚果语",
+      "enName": ""
+    },
+    {
+      "code": "kor",
+      "name": "",
+      "cnName": "韩语",
+      "enName": ""
+    },
+    {
+      "code": "kur",
+      "name": "",
+      "cnName": "库尔德语",
+      "enName": ""
+    },
+    {
+      "code": "lag",
+      "name": "",
+      "cnName": "拉特加莱语",
+      "enName": ""
+    },
+    {
+      "code": "lao",
+      "name": "",
+      "cnName": "老挝语",
+      "enName": ""
+    },
+    {
+      "code": "lat",
+      "name": "",
+      "cnName": "拉丁语",
+      "enName": ""
+    },
+    {
+      "code": "lav",
+      "name": "",
+      "cnName": "拉脱维亚语",
+      "enName": ""
+    },
+    {
+      "code": "lim",
+      "name": "",
+      "cnName": "林堡语",
+      "enName": ""
+    },
+    {
+      "code": "lin",
+      "name": "",
+      "cnName": "林加拉语",
+      "enName": ""
+    },
+    {
+      "code": "lit",
+      "name": "",
+      "cnName": "立陶宛语",
+      "enName": ""
+    },
+    {
+      "code": "log",
+      "name": "",
+      "cnName": "低地德语",
+      "enName": ""
+    },
+    {
+      "code": "loj",
+      "name": "",
+      "cnName": "逻辑语",
+      "enName": ""
+    },
+    {
+      "code": "los",
+      "name": "",
+      "cnName": "下索布语",
+      "enName": ""
+    },
+    {
+      "code": "ltz",
+      "name": "",
+      "cnName": "卢森堡语",
+      "enName": ""
+    },
+    {
+      "code": "lug",
+      "name": "",
+      "cnName": "卢干达语",
+      "enName": ""
+    },
+    {
+      "code": "mac",
+      "name": "",
+      "cnName": "马其顿语",
+      "enName": ""
+    },
+    {
+      "code": "mah",
+      "name": "",
+      "cnName": "马绍尔语",
+      "enName": ""
+    },
+    {
+      "code": "mai",
+      "name": "",
+      "cnName": "迈蒂利语",
+      "enName": ""
+    },
+    {
+      "code": "mal",
+      "name": "",
+      "cnName": "马拉雅拉姆语",
+      "enName": ""
+    },
+    {
+      "code": "mao",
+      "name": "",
+      "cnName": "毛利语",
+      "enName": ""
+    },
+    {
+      "code": "mar",
+      "name": "",
+      "cnName": "马拉地语",
+      "enName": ""
+    },
+    {
+      "code": "mau",
+      "name": "",
+      "cnName": "毛里求斯克里奥尔语",
+      "enName": ""
+    },
+    {
+      "code": "may",
+      "name": "",
+      "cnName": "马来语",
+      "enName": ""
+    },
+    {
+      "code": "mg",
+      "name": "",
+      "cnName": "马拉加斯语",
+      "enName": ""
+    },
+    {
+      "code": "mlt",
+      "name": "",
+      "cnName": "马耳他语",
+      "enName": ""
+    },
+    {
+      "code": "mot",
+      "name": "",
+      "cnName": "黑山语",
+      "enName": ""
+    },
+    {
+      "code": "nbl",
+      "name": "",
+      "cnName": "南恩德贝莱语",
+      "enName": ""
+    },
+    {
+      "code": "nea",
+      "name": "",
+      "cnName": "那不勒斯语",
+      "enName": ""
+    },
+    {
+      "code": "nep",
+      "name": "",
+      "cnName": "尼泊尔语",
+      "enName": ""
+    },
+    {
+      "code": "nl",
+      "name": "",
+      "cnName": "荷兰语",
+      "enName": ""
+    },
+    {
+      "code": "nor",
+      "name": "",
+      "cnName": "挪威语",
+      "enName": ""
+    },
+    {
+      "code": "nqo",
+      "name": "",
+      "cnName": "西非书面语",
+      "enName": ""
+    },
+    {
+      "code": "nya",
+      "name": "",
+      "cnName": "齐切瓦语",
+      "enName": ""
+    },
+    {
+      "code": "oci",
+      "name": "",
+      "cnName": "奥克语",
+      "enName": ""
+    },
+    {
+      "code": "oji",
+      "name": "",
+      "cnName": "奥杰布瓦语",
+      "enName": ""
+    },
+    {
+      "code": "ori",
+      "name": "",
+      "cnName": "奥里亚语",
+      "enName": ""
+    },
+    {
+      "code": "orm",
+      "name": "",
+      "cnName": "奥罗莫语",
+      "enName": ""
+    },
+    {
+      "code": "oss",
+      "name": "",
+      "cnName": "奥塞梯语",
+      "enName": ""
+    },
+    {
+      "code": "pam",
+      "name": "",
+      "cnName": "邦板牙语",
+      "enName": ""
+    },
+    {
+      "code": "pan",
+      "name": "",
+      "cnName": "旁遮普语",
+      "enName": ""
+    },
+    {
+      "code": "pap",
+      "name": "",
+      "cnName": "帕皮阿门托语",
+      "enName": ""
+    },
+    {
+      "code": "ped",
+      "name": "",
+      "cnName": "北索托语",
+      "enName": ""
+    },
+    {
+      "code": "per",
+      "name": "",
+      "cnName": "波斯语",
+      "enName": ""
+    },
+    {
+      "code": "pl",
+      "name": "",
+      "cnName": "波兰语",
+      "enName": ""
+    },
+    {
+      "code": "pot",
+      "name": "",
+      "cnName": "巴西葡萄牙语",
+      "enName": ""
+    },
+    {
+      "code": "pt",
+      "name": "",
+      "cnName": "葡萄牙语",
+      "enName": ""
+    },
+    {
+      "code": "pus",
+      "name": "",
+      "cnName": "普什图语",
+      "enName": ""
+    },
+    {
+      "code": "que",
+      "name": "",
+      "cnName": "克丘亚语",
+      "enName": ""
+    },
+    {
+      "code": "ro",
+      "name": "",
+      "cnName": "罗姆语",
+      "enName": ""
+    },
+    {
+      "code": "roh",
+      "name": "",
+      "cnName": "罗曼什语",
+      "enName": ""
+    },
+    {
+      "code": "rom",
+      "name": "",
+      "cnName": "罗马尼亚语",
+      "enName": ""
+    },
+    {
+      "code": "ru",
+      "name": "",
+      "cnName": "俄语",
+      "enName": ""
+    },
+    {
+      "code": "ruy",
+      "name": "",
+      "cnName": "卢森尼亚语",
+      "enName": ""
+    },
+    {
+      "code": "san",
+      "name": "",
+      "cnName": "梵语",
+      "enName": ""
+    },
+    {
+      "code": "sha",
+      "name": "",
+      "cnName": "掸语",
+      "enName": ""
+    },
+    {
+      "code": "sil",
+      "name": "",
+      "cnName": "西里西亚语",
+      "enName": ""
+    },
+    {
+      "code": "sin",
+      "name": "",
+      "cnName": "僧伽罗语",
+      "enName": ""
+    },
+    {
+      "code": "sk",
+      "name": "",
+      "cnName": "斯洛伐克语",
+      "enName": ""
+    },
+    {
+      "code": "slo",
+      "name": "",
+      "cnName": "斯洛文尼亚语",
+      "enName": ""
+    },
+    {
+      "code": "sm",
+      "name": "",
+      "cnName": "萨摩亚语",
+      "enName": ""
+    },
+    {
+      "code": "sme",
+      "name": "",
+      "cnName": "北方萨米语",
+      "enName": ""
+    },
+    {
+      "code": "sna",
+      "name": "",
+      "cnName": "修纳语",
+      "enName": ""
+    },
+    {
+      "code": "snd",
+      "name": "",
+      "cnName": "信德语",
+      "enName": ""
+    },
+    {
+      "code": "sol",
+      "name": "",
+      "cnName": "桑海语",
+      "enName": ""
+    },
+    {
+      "code": "som",
+      "name": "",
+      "cnName": "索马里语",
+      "enName": ""
+    },
+    {
+      "code": "sot",
+      "name": "",
+      "cnName": "南索托语",
+      "enName": ""
+    },
+    {
+      "code": "spa",
+      "name": "Español",
+      "cnName": "西班牙语",
+      "enName": "Spanish"
+    },
+    {
+      "code": "srd",
+      "name": "",
+      "cnName": "萨丁尼亚语",
+      "enName": ""
+    },
+    {
+      "code": "srp",
+      "name": "",
+      "cnName": "塞尔维亚语",
+      "enName": ""
+    },
+    {
+      "code": "sun",
+      "name": "",
+      "cnName": "巽他语",
+      "enName": ""
+    },
+    {
+      "code": "swa",
+      "name": "",
+      "cnName": "斯瓦希里语",
+      "enName": ""
+    },
+    {
+      "code": "swe",
+      "name": "",
+      "cnName": "瑞典语",
+      "enName": ""
+    },
+    {
+      "code": "syr",
+      "name": "",
+      "cnName": "叙利亚语",
+      "enName": ""
+    },
+    {
+      "code": "tam",
+      "name": "",
+      "cnName": "泰米尔语",
+      "enName": ""
+    },
+    {
+      "code": "tat",
+      "name": "",
+      "cnName": "鞑靼语",
+      "enName": ""
+    },
+    {
+      "code": "tel",
+      "name": "",
+      "cnName": "泰卢固语",
+      "enName": ""
+    },
+    {
+      "code": "tet",
+      "name": "",
+      "cnName": "德顿语",
+      "enName": ""
+    },
+    {
+      "code": "tgk",
+      "name": "",
+      "cnName": "塔吉克语",
+      "enName": ""
+    },
+    {
+      "code": "tgl",
+      "name": "",
+      "cnName": "他加禄语",
+      "enName": ""
+    },
+    {
+      "code": "th",
+      "name": "",
+      "cnName": "泰语",
+      "enName": ""
+    },
+    {
+      "code": "tir",
+      "name": "",
+      "cnName": "提格利尼亚语",
+      "enName": ""
+    },
+    {
+      "code": "tr",
+      "name": "",
+      "cnName": "土耳其语",
+      "enName": ""
+    },
+    {
+      "code": "tso",
+      "name": "",
+      "cnName": "聪加语",
+      "enName": ""
+    },
+    {
+      "code": "tua",
+      "name": "",
+      "cnName": "突尼斯阿拉伯语",
+      "enName": ""
+    },
+    {
+      "code": "tuk",
+      "name": "",
+      "cnName": "土库曼语",
+      "enName": ""
+    },
+    {
+      "code": "twi",
+      "name": "",
+      "cnName": "契维语",
+      "enName": ""
+    },
+    {
+      "code": "ukr",
+      "name": "",
+      "cnName": "乌克兰语",
+      "enName": ""
+    },
+    {
+      "code": "ups",
+      "name": "",
+      "cnName": "高地索布语",
+      "enName": ""
+    },
+    {
+      "code": "urd",
+      "name": "",
+      "cnName": "乌尔都语",
+      "enName": ""
+    },
+    {
+      "code": "ven",
+      "name": "",
+      "cnName": "文达语",
+      "enName": ""
+    },
+    {
+      "code": "vie",
+      "name": "",
+      "cnName": "越南语",
+      "enName": ""
+    },
+    {
+      "code": "wel",
+      "name": "",
+      "cnName": "威尔士语",
+      "enName": ""
+    },
+    {
+      "code": "wln",
+      "name": "",
+      "cnName": "瓦隆语",
+      "enName": ""
+    },
+    {
+      "code": "wol",
+      "name": "",
+      "cnName": "沃洛夫语",
+      "enName": ""
+    },
+    {
+      "code": "xho",
+      "name": "",
+      "cnName": "科萨语",
+      "enName": ""
+    },
+    {
+      "code": "yid",
+      "name": "",
+      "cnName": "意第绪语",
+      "enName": ""
+    },
+    {
+      "code": "yor",
+      "name": "",
+      "cnName": "约鲁巴语",
+      "enName": ""
+    },
+    {
+      "code": "zaz",
+      "name": "",
+      "cnName": "扎扎其语",
+      "enName": ""
+    },
+    {
+      "code": "zh",
+      "name": "汉语",
+      "amount": 10000,
+      "cnName": "汉语",
+      "enName": "Chinese"
+    },
+    {
+      "code": "zul",
+      "name": "",
+      "cnName": "祖鲁语",
+      "enName": ""
+    }
+  ]
+}

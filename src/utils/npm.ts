@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import { pathExists, pathExistsSync } from 'fs-extra'
 import { readExportsSync } from './read'
-import { printTask, green, red } from './print'
+import { printTask, green, red, yellow } from './print'
 import { isEmail, isPackageName } from './check'
 import { isPlainObject } from 'lodash'
 import { execute } from './execute'
@@ -137,7 +137,7 @@ export async function downloadModules(root: string): Promise<void> {
           return payload
         }
       }
-      return `Downloading modules to ${root}.`
+      return `Downloading modules to ${yellow(root)}.`
     },
     resolve: () => {
       return `Successfully downloaded modules to ${green(root)}.`
