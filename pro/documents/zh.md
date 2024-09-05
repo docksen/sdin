@@ -236,7 +236,7 @@ interface SdinProjectCreatingOptions {
   projectParentPath?: string
   /** 项目名称 */
   projectName?: string
-  /** 项目版本号（默认：0.0.1） */
+  /** 项目版本（默认：0.0.1） */
   projectVersion?: string
   /** 项目的描述 */
   projectDescription?: string

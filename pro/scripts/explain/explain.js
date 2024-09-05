@@ -4,7 +4,7 @@ const { prompt } = require('enquirer')
 const { resolve } = require('path')
 const { readFile, writeFile } = require('fs-extra')
 const langs = require('./langs.json')
-const { printSuccess } = require('../utils/print')
+const { printSuccess, green, blue, yellow, printError } = require('../utils/print')
 const { decrypt, replaceByPhrases } = require('../utils/string')
 
 const EXPLAIN_SETTINGS = [
@@ -14,30 +14,60 @@ const EXPLAIN_SETTINGS = [
   '3b66f50df65b82f234a5132c18743f633ea830b3afaf88e36ef57b634a8db485'
 ]
 
-async function explain(languages) {
+async function explain(languageCodes) {
   const password = await enquirePassword()
   const settings = JSON.parse(decrypt(EXPLAIN_SETTINGS.join(''), password))
   const manual = await readFile(resolve(__dirname, '_manual.txt'), 'utf8')
-  const phrases1 = await readFile(resolve(__dirname, '_phrases.txt'), 'utf8')
-  for (const language of languages) {
-    let phrases2 = undefined
-    if (language === 'zh') {
-      phrases2 = phrases1.split('\n')
-    } else {
-      phrases2 = await translatePhrases(phrases1, language, settings)
-    }
-    const content = replaceByPhrases(manual, [''].concat(phrases2))
-    const target = resolve(__dirname, `../../documents/${language}.md`)
-    await writeFile(target, content)
-    await new Promise(res => setTimeout(res, 100))
-    printSuccess(`Successfully translated ${language} language.`)
+  const phrasesEn = await readFile(resolve(__dirname, '_phrases.en.txt'), 'utf8')
+  const phrasesZh = await readFile(resolve(__dirname, '_phrases.zh.txt'), 'utf8')
+  if (getStringByteSize(phrasesEn) > 5000) {
+    throw new Error('Phrases content too large.')
   }
+  const languageMap = {}
+  langs.languages.forEach(i => (languageMap[i.code] = i))
+  const failedList = []
+  for (const languageCode of languageCodes) {
+    await new Promise(res => setTimeout(res, 100))
+    const language = languageMap[languageCode]
+    if (!language) {
+      throw new Error('No language code configured.')
+    }
+    try {
+      let phrases2 = undefined
+      if (language.code === 'zh') {
+        phrases2 = phrasesZh.split('\n')
+      } else if (language.code === 'en') {
+        phrases2 = phrasesEn.split('\n')
+      } else {
+        phrases2 = await translatePhrases(phrasesEn, language, settings)
+      }
+      const content = replaceByPhrases(manual, [''].concat(phrases2))
+      const target = resolve(__dirname, `../../documents/${language.code}.md`)
+      await writeFile(target, content)
+      printSuccess(
+        `Successfully translated ${yellow(language.code)} ${green(language.cnName)} ${blue(
+          language.enName
+        )}.`
+      )
+    } catch (err) {
+      printError(err.message)
+      failedList.push(language)
+    }
+  }
+  if (failedList.length > 0) {
+    console.log(JSON.stringify(failedList.map(i => i.code)))
+  }
+}
+
+function getStringByteSize(str) {
+  const blob = new Blob([str])
+  return blob.size
 }
 
 async function enquirePassword() {
   const { password } = await prompt([
     {
-      type: 'input',
+      type: 'password',
       name: 'password',
       message: "What's password of translation platform settings?",
       required: true
@@ -53,13 +83,9 @@ async function translatePhrases(phrases, language, settings) {
   const url = new URL(appHref)
   const query = url.searchParams
   const salt = Math.round(Math.random() * 100000000)
-  const lang = langs.languages.find(i => i.code === language)
-  if (!lang) {
-    throw new Error('No language code configured.')
-  }
   query.set('q', phrases)
-  query.set('from', 'zh')
-  query.set('to', lang.code)
+  query.set('from', 'en')
+  query.set('to', language.code)
   query.set('appid', appId)
   query.set('salt', salt)
   query.set('sign', md5(appId + phrases + salt + signKey))
@@ -67,7 +93,11 @@ async function translatePhrases(phrases, language, settings) {
   const data = await response.json()
   const result = data?.trans_result || []
   if (data.error_code || result.length <= 0) {
-    throw new Error(`Failed to translated ${language} language.`)
+    throw new Error(
+      `Failed to translated ${yellow(language.code)} ${green(language.cnName)} ${blue(
+        language.enName
+      )}. ${JSON.stringify(data)}`
+    )
   }
   const source = phrases.split('\n')
   const target = []

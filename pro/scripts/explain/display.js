@@ -9,12 +9,12 @@ async function getDocsTable() {
   const list = files
     .map(i => langMap[i.split('.')[0]])
     .filter(Boolean)
-    .sort((a, b) => b.amount - a.amount)
+    .sort((a, b) => b.users - a.users)
   const matrix = []
   for (let i = 0; i < list.length; i = i + 5) {
     matrix.push(list.slice(i, i + 5))
   }
-  const cache = ['<table>', '  <tbody>']
+  const cache = ['<table style="font-size:12px">', '  <tbody>']
   matrix.forEach(array => {
     cache.push('    <tr>')
     array.forEach(item => {

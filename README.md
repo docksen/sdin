@@ -5,79 +5,87 @@
 
 This is a JavaScript package builder, which uses Webpack and Gulp for packaging internally, and has the following features:
 
-1. Supports compression and obfuscation of code.
-2. Supports global definition.
-3. Supports path aliases.
-4. Supports custom generation of multiple modules.
-5. Can be packaged into ESM, CJS, UMD modules.
-6. Can generate "multi-file" products and "single-file" products.
-7. Supports reference text, fonts, images, audio, video.
-8. Supports React, JSX, SCSS, CSS.
-9. Supports TypeScript and JavaScript.
-10. Use TypeScript as the language of the configuration file.
+<table style="font-size:12px">
+  <tbody>
+    <tr>
+      <td>🐁 Supports compression and obfuscation of code.</td>
+      <td>🐃 Supports global definition.</td>
+    </tr>
+    <tr>
+      <td>🐅 Supports path aliases.</td>
+      <td>🐇 Supports custom generation of multiple modules.</td>
+    </tr>
+    <tr>
+      <td>🐉 Can be packaged into ESM, CJS, UMD modules.</td>
+      <td>🐍 Can generate "multi-file" products and "single-file" products.</td>
+    </tr>
+    <tr>
+      <td>🐎 Supports reference text, fonts, images, audio, video.</td>
+      <td>🐐 Supports React, JSX, SCSS, CSS.</td>
+    </tr>
+    <tr>
+      <td>🐒 Supports TypeScript and JavaScript.</td>
+      <td>🐓 Use TypeScript as the language of the configuration file.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Documents
 
 If you want to use it, please read the user manual:
 
-<table>
+<table style="font-size:12px">
   <tbody>
     <tr>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/en.md">English 英语 Inglés</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/zh.md">Chinese 汉语 Chino</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/hi.md">Hindi 印地语 हिंदी</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/spa.md">Spanish 西语 Español</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/fr.md">French 法语 Français</a></td>
-    </tr>
-    --
-    <tr>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/ar.md">Arabic 阿语 عربي</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/bn.md">Bengali 孟加拉语 বাঙালি</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/ru.md">Russian 俄语 Русский</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/pt.md">Portuguese 葡语 Português</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/id.md">Indonesian 印尼语 Indonesia</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/zh.md">Chinese 汉语 漢語</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/en.md">English 英语 English</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/spa.md">Spanish 西班牙语 Español</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/ara.md">Arabic 阿拉伯语 العربية</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/pt.md">Portuguese 葡萄牙语 Português</a></td>
     </tr>
     <tr>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/ur.md">Urdu 乌尔都语 اردو</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/ru.md">Russian 俄语 русский язык</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/jp.md">Japanese 日语 日本語</a></td>
       <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/de.md">German 德语 Deutsch</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/ja.md">Japanese 日语 日本語</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/sw.md">Swahili 斯瓦希里语 Kiswahili</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/tr.md">Turkish 土耳其语 Türkçe</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/vie.md">Vietnamese 越南语 Tiếng Việt</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/kor.md">Korean 韩语 한국어</a></td>
     </tr>
     <tr>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/ta.md">Tamil 泰米尔语 தமிழ்</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/ko.md">Korean 韩语 한국인</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/vi.md">Vietnamese 越南语 Việt Nam</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/it.md">Italian 意大利语 Italiana</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/th.md">Thai 泰语 แบบไทย</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/fra.md">French 法语 Français</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/th.md">Thai 泰语 ภาษาไทย</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/it.md">Italian 意大利语 Italiano</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/pl.md">Polish 波兰语 język polski</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/rom.md">Romanian 罗马尼亚语 română</a></td>
     </tr>
     <tr>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/fa.md">Persian 波斯语 فارسی</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/uk.md">Ukrainian 乌克兰语 Український</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/fil.md">Filipino 菲律宾语 Pilipino</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/he.md">Hebrew 希伯来语 עִברִית</a></td>
-      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/el.md">Greek 希腊语 ελληνικά</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/nl.md">Dutch 荷兰语 Nederlands</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/hu.md">Hungarian 匈牙利语 magyar</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/el.md">Greek 希腊语 Ελληνικά</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/cs.md">Czech 捷克语 Čeština</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/swe.md">Swedish 瑞典语 Svenska</a></td>
+    </tr>
+    <tr>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/bul.md">Bulgarian 保加利亚语 български</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/dan.md">Danish 丹麦语 Dansk</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/fin.md">Finnish 芬兰语 suomi</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/slo.md">Slovenian 斯洛文尼亚语 Slovenščina</a></td>
+      <td><a target="_blank" href="https://github.com/docksen/sdin/blob/main/pro/documents/est.md">Estonian 爱沙尼亚语 eesti keel</a></td>
     </tr>
   </tbody>
 </table>
 
 ## Examples
 
+Create project:
+
+```shell
+sdin create
+```
+
 Build project in command line:
 
 ```shell
-$ sdin build
-i Project hello, version 0.0.1.
-i Project files are qualified, checking took 0.003 s.
-√ Successfully built foundation cjs module camille, it took 0.32 s.
-√ Successfully built foundation esm module elise, it took 0.06 s.
-√ Successfully built declaration dts module diana, it took 1.361 s.
-√ Successfully built integration umd module urgoth, it took 12.173 s.
-i Webpack compiled information:
-  asset demo.0d177d92e9.png 60 KiB [emitted] [immutable] ...
-  asset index.js 13.1 KiB [emitted] [minimized] ...
-  asset index.css 272 bytes [emitted] [minimized] ...
-  ...
+sdin build
 ```
 
 Build project in script:
@@ -85,7 +93,8 @@ Build project in script:
 ```typescript
 import { readSdinConfig, buildSdinProject } from 'sdin'
 async function main() {
-  const config = await readSdinConfig({ root: 'path/to/project' })
+  const root = process.cwd()
+  const config = await readSdinConfig({ root })
   await buildSdinProject({ config })
 }
 ```
@@ -95,3 +104,5 @@ async function main() {
 The version of the package dependent on this package has been solidified. No version will be released unless necessary to ensure the correctness of the program.
 
 This package will maintain the v1 version for a long time. The interface field name, type and its meaning will not change. Please feel free to use it.
+
+If the content of the user manual is incorrect, please help me correct it, thank you.

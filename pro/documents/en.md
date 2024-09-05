@@ -1,24 +1,24 @@
 # sdin
 
 - [sdin](#sdin)
-  - [示例](#示例)
-  - [配置](#配置)
+  - [Example](#example)
+  - [Configuration](#configuration)
     - [SdinConfigParams](#sdinconfigparams)
     - [SdinDeclarationModuleParams](#sdindeclarationmoduleparams)
     - [SdinFoundationModuleParams](#sdinfoundationmoduleparams)
     - [SdinIntegrationModuleParams](#sdinintegrationmoduleparams)
-  - [命令](#命令)
-    - [主命令](#主命令)
-    - [`build` 命令](#build-命令)
-    - [`create` 命令](#create-命令)
-  - [接口](#接口)
+  - [Command](#command)
+    - [Main command](#main-command)
+    - [`build` Command](#build-command)
+    - [`create` Command](#create-command)
+  - [Interface](#interface)
     - [readSdinConfig](#readsdinconfig)
     - [createSdinProject](#createsdinproject)
     - [buildSdinProject](#buildsdinproject)
 
-## 示例
+## Example
 
-在命令行中构建项目：
+Building project on the command line:
 
 ```shell
 $ sdin build
@@ -31,7 +31,7 @@ i Project files are qualified, checking took 0.003 s.
 i Webpack compiled information: ...
 ```
 
-在代码中构建项目：
+Building project in code:
 
 ```typescript
 import { readSdinConfig, buildSdinProject } from 'sdin'
@@ -41,11 +41,11 @@ async function main() {
 }
 ```
 
-## 配置
+## Configuration
 
-项目的配置文件路径： `pro/configs/project.ts`。
+The configuration file path for the project: `pro/configs/project.ts`。
 
-项目的配置文件内容：
+The configuration file content of the project:
 
 ```typescript
 import { SdinConfigParams } from 'sdin'
@@ -54,18 +54,18 @@ export const sdinConfigParams: SdinConfigParams = {...}
 
 ### SdinConfigParams
 
-项目配置
+Project Configuration
 
-| 属性        | 类型                        | 必填 | 默认         | 说明                                           | 示例                  |
-| ----------- | --------------------------- | ---- | ------------ | ---------------------------------------------- | --------------------- |
-| root        | string                      | 否   | 当前工作目录 | 项目根目录                                     | -                     |
-| mode        | SdinBuildMode               | 否   | production   | 构建模式                                       | -                     |
-| alias       | Record\<string, string\>    | 否   | -            | 模块别名，\<别名, 路径（相对项目根目录而言）\> | {utils: "src/utils" } |
-| definitions | Record<string, string>      | 否   | -            | 全局定义，\<原代码, 替换后的代码\>             | -                     |
-| modules     | OrNil\<SdinModuleParams\>[] | 否   | -            | 模块配置项列表                                 | -                     |
+| Attribute   | Type                        | Required | Default                   | Description                                                            | Example               |
+| ----------- | --------------------------- | -------- | ------------------------- | ---------------------------------------------------------------------- | --------------------- |
+| root        | string                      | No       | Current working directory | Project root directory                                                 | -                     |
+| mode        | SdinBuildMode               | No       | production                | Building pattern                                                       | -                     |
+| alias       | Record\<string, string\>    | No       | -                         | Module alias，\<Alias, Path (relative to the project root directory)\> | {utils: "src/utils" } |
+| definitions | Record<string, string>      | No       | -                         | Global Definition，\<Original code, Replaced code\>                    | -                     |
+| modules     | OrNil\<SdinModuleParams\>[] | No       | -                         | Module configuration item list                                         | -                     |
 
 ```typescript
-// production: 生产模式; development: 开发环境;
+// production: Production mode; development: Development environment ;
 type SdinBuildMode = 'development' | 'production'
 type OrNil<T> = T | undefined | null
 type SdinModuleParams =
@@ -74,190 +74,190 @@ type SdinModuleParams =
   | SdinIntegrationModuleParams
 ```
 
-程序已为项目提供了一些全局定义，可在项目中直接使用：
+The program has provided some global definitions for the project, which can be directly used in the project:
 
 ```typescript
 declare global {
-  const SDIN_PROJECT_MODE: string // 项目的构建模式
-  const SDIN_PROJECT_NAME: string // 项目名称
-  const SDIN_PROJECT_VERSION: string // 项目版本
-  const SDIN_PROJECT_AUTHOR_NAME: string // 项目作者名称
-  const SDIN_PROJECT_AUTHOR_EMAIL: string // 项目作者邮箱
-  const SDIN_MODULE_TYPE: string // 编译时，模块的类型
-  const SDIN_MODULE_MODE: string // 编译时，模块的构建模式
-  const SDIN_MODULE_NAME: string // 编译时，模块的名称
+  const SDIN_PROJECT_MODE: string // The construction mode of the project
+  const SDIN_PROJECT_NAME: string // Project name
+  const SDIN_PROJECT_VERSION: string // Project version
+  const SDIN_PROJECT_AUTHOR_NAME: string // Project author name
+  const SDIN_PROJECT_AUTHOR_EMAIL: string // Project author email
+  const SDIN_MODULE_TYPE: string // At compile time, the type of module
+  const SDIN_MODULE_MODE: string // The construction mode of modules during compilation
+  const SDIN_MODULE_NAME: string // Module name during compilation
 }
 ```
 
 ### SdinDeclarationModuleParams
 
-定义模块配置
+Define module configuration
 
-| 属性     | 类型                      | 必填 | 默认               | 说明                                 | 示例 |
-| -------- | ------------------------- | ---- | ------------------ | ------------------------------------ | ---- |
-| type     | 'declaration'             | 是   | -                  | 模块类型                             | -    |
-| mode     | SdinDeclarationModuleMode | 否   | 'dts'              | 模块构建模式                         | -    |
-| name     | string                    | 是   | -                  | 模块名称                             | -    |
-| src      | string                    | 否   | 'src'              | 输入的源码位置（相对项目根目录而言） | -    |
-| tar      | string                    | 否   | 'tar/模块构建模式' | 输出的目标位置（相对项目根目录而言） | -    |
-| includes | OrNil\<string\>[]         | 否   | -                  | 包含的文件（相对项目根目录而言）     | -    |
-| excludes | OrNil\<string\>[]         | 否   | -                  | 不包含的文件（相对项目根目录而言）   | -    |
+| Attribute | Type                      | Required | Default                        | Description                                                                    | Example |
+| --------- | ------------------------- | -------- | ------------------------------ | ------------------------------------------------------------------------------ | ------- |
+| type      | 'declaration'             | Yes      | -                              | Module type                                                                    | -       |
+| mode      | SdinDeclarationModuleMode | No       | 'dts'                          | Module construction mode                                                       | -       |
+| name      | string                    | Yes      | -                              | Module Name                                                                    | -       |
+| src       | string                    | No       | 'src'                          | The location of the input source code (relative to the project root directory) | -       |
+| tar       | string                    | No       | 'tar/Module construction mode' | Output target location (relative to the project root directory)                | -       |
+| includes  | OrNil\<string\>[]         | No       | -                              | Contains files (relative to the project root directory)                        | -       |
+| excludes  | OrNil\<string\>[]         | No       | -                              | Excluded files (relative to the project root directory)                        | -       |
 
 ```typescript
-// dts: TypeScript 定义模块;
+// dts: TypeScript Definition Module;
 type SdinnDeclarationModuleMode = 'dts'
 type OrNil<T> = T | undefined | null
 ```
 
 ### SdinFoundationModuleParams
 
-基础模块配置
+Basic module configuration
 
-| 属性         | 类型                     | 必填 | 默认                | 说明                                 | 示例 |
-| ------------ | ------------------------ | ---- | ------------------- | ------------------------------------ | ---- |
-| type         | 'foundation'             | 是   | -                   | 模块类型                             | -    |
-| mode         | SdinFoundationModuleMode | 否   | 'cjs'               | 模块构建模式                         | -    |
-| name         | string                   | 是   | -                   | 模块名称                             | -    |
-| src          | string                   | 否   | 'src'               | 输入的源码位置（相对项目根目录而言） | -    |
-| tar          | string                   | 否   | 'tar/模块构建模式'  | 输出的目标位置（相对项目根目录而言） | -    |
-| includes     | OrNil\<string\>[]        | 否   | -                   | 包含的文件（相对项目根目录而言）     | -    |
-| excludes     | OrNil\<string\>[]        | 否   | -                   | 不包含的文件（相对项目根目录而言）   | -    |
-| minify       | boolean                  | 否   | 生产模式下开启      | 压缩代码                             | -    |
-| uglify       | boolean                  | 否   | 生产模式下开启      | 丑化代码（minify 开启时有效）        | -    |
-| sassModule   | boolean                  | 否   | true                | SASS 模块开关                        | -    |
-| styleImports | boolean                  | 否   | SASS 模块开启时开启 | 在 JS 文件中引入转换后的 CSS 文件    | -    |
+| Attribute    | Type                     | Required | Default                            | Description                                                                    | Example |
+| ------------ | ------------------------ | -------- | ---------------------------------- | ------------------------------------------------------------------------------ | ------- |
+| type         | 'foundation'             | Yes      | -                                  | Module type                                                                    | -       |
+| mode         | SdinFoundationModuleMode | No       | 'cjs'                              | Module construction mode                                                       | -       |
+| name         | string                   | Yes      | -                                  | Module Name                                                                    | -       |
+| src          | string                   | No       | 'src'                              | The location of the input source code (relative to the project root directory) | -       |
+| tar          | string                   | No       | 'tar/Module construction mode'     | Output target location (relative to the project root directory)                | -       |
+| includes     | OrNil\<string\>[]        | No       | -                                  | Contains files (relative to the project root directory)                        | -       |
+| excludes     | OrNil\<string\>[]        | No       | -                                  | Excluded files (relative to the project root directory)                        | -       |
+| minify       | boolean                  | No       | Activate in production mode        | Compress code                                                                  | -       |
+| uglify       | boolean                  | No       | Activate in production mode        | Ugly code (valid when minify is enabled)                                       | -       |
+| sassModule   | boolean                  | No       | true                               | SASS module switch                                                             | -       |
+| styleImports | boolean                  | No       | Open when SASS module is turned on | Import converted CSS files into JS files                                       | -       |
 
 ```typescript
-// cjs: CommonJS 模块; esm: ESModule 模块;
+// cjs: CommonJS module; esm: ESModule module;
 type SdinFoundationModuleMode = 'cjs' | 'esm'
 type OrNil<T> = T | undefined | null
 ```
 
 ### SdinIntegrationModuleParams
 
-集成模块配置
+Integrated module configuration
 
-| 属性          | 类型                        | 必填     | 默认                     | 说明                                            | 示例    |
-| ------------- | --------------------------- | -------- | ------------------------ | ----------------------------------------------- | ------- |
-| type          | 'integration'               | 是       | -                        | 模块类型                                        | -       |
-| mode          | SdinIntegrationModuleMode   | 否       | 'umd'                    | 模块构建模式                                    | -       |
-| name          | string                      | 是       | -                        | 模块名称                                        | -       |
-| src           | string                      | 否       | 'src/index.{jsx?\|tsx?}' | 输入的源码位置（相对项目根目录而言）            | -       |
-| tar           | string                      | 否       | 'tar/模块构建模式'       | 输出的目标位置（相对项目根目录而言）            | -       |
-| entryName     | string                      | 否       | 'index'                  | 模块入口名                                      | -       |
-| globalName    | string                      | 有效必传 | -                        | 指定包导出对象在全局的名称（cjs、umd 模式有效） | "React" |
-| minify        | boolean                     | 否       | 生产模式下开启           | 压缩代码                                        | -       |
-| uglify        | boolean                     | 否       | 生产模式下开启           | 丑化代码（minify 开启时有效）                   | -       |
-| externals     | Record\<string, string\>    | 否       | -                        | 去除代码里使用到的外部模块                      | -       |
-| sassModule    | boolean                     | 否       | true                     | SASS 模块开关                                   | -       |
-| babelIncludes | OrNil\<RuleSetCondition\>[] | 否       | -                        | babel 编译包含项                                | -       |
-| babelExcludes | OrNil\<RuleSetCondition\>[] | 否       | -                        | babel 编译排除项                                | -       |
-| rawRule       | Partial\<RuleSetRule\>      | 否       | -                        | 修改文本打包规则                                | -       |
-| fontRule      | Partial\<RuleSetRule\>      | 否       | -                        | 修改字体打包规则                                | -       |
-| imageRule     | Partial\<RuleSetRule\>      | 否       | -                        | 修改图片打包规则                                | -       |
-| audioRule     | Partial\<RuleSetRule\>      | 否       | -                        | 修改音频打包规则                                | -       |
-| videoRule     | Partial\<RuleSetRule\>      | 否       | -                        | 修改视频打包规则                                | -       |
-| rules         | OrNil\<RuleSetRule\>[]      | 否       | -                        | 添加打包规则（可以覆盖部分默认规则）            | -       |
+| Attribute     | Type                        | Required                      | Default                        | Description                                                                       | Example |
+| ------------- | --------------------------- | ----------------------------- | ------------------------------ | --------------------------------------------------------------------------------- | ------- |
+| type          | 'integration'               | Yes                           | -                              | Module type                                                                       | -       |
+| mode          | SdinIntegrationModuleMode   | No                            | 'umd'                          | Module construction mode                                                          | -       |
+| name          | string                      | Yes                           | -                              | Module Name                                                                       | -       |
+| src           | string                      | No                            | 'src/index.{jsx?\|tsx?}'       | The location of the input source code (relative to the project root directory)    | -       |
+| tar           | string                      | No                            | 'tar/Module construction mode' | Output target location (relative to the project root directory)                   | -       |
+| entryName     | string                      | No                            | 'index'                        | Module entrance name                                                              | -       |
+| globalName    | string                      | Effective must be transmitted | -                              | Specify the global name of the package export object (valid in cjs and umd modes) | "React" |
+| minify        | boolean                     | No                            | Activate in production mode    | Compress code                                                                     | -       |
+| uglify        | boolean                     | No                            | Activate in production mode    | Ugly code (valid when minify is enabled)                                          | -       |
+| externals     | Record\<string, string\>    | No                            | -                              | Remove external modules used in the code                                          | -       |
+| sassModule    | boolean                     | No                            | true                           | SASS module switch                                                                | -       |
+| babelIncludes | OrNil\<RuleSetCondition\>[] | No                            | -                              | Babel compilation includes items                                                  | -       |
+| babelExcludes | OrNil\<RuleSetCondition\>[] | No                            | -                              | Babel compilation exclusion item                                                  | -       |
+| rawRule       | Partial\<RuleSetRule\>      | No                            | -                              | Modify text packaging rules                                                       | -       |
+| fontRule      | Partial\<RuleSetRule\>      | No                            | -                              | Modify font packaging rules                                                       | -       |
+| imageRule     | Partial\<RuleSetRule\>      | No                            | -                              | Modify the image packaging rules                                                  | -       |
+| audioRule     | Partial\<RuleSetRule\>      | No                            | -                              | Modify audio packaging rules                                                      | -       |
+| videoRule     | Partial\<RuleSetRule\>      | No                            | -                              | Modify video packaging rules                                                      | -       |
+| rules         | OrNil\<RuleSetRule\>[]      | No                            | -                              | Add packaging rules (can override some default rules)                             | -       |
 
 ```typescript
-// cjs: CommonJS 模块; glb: 全局模块; umd: UMD 模块;
+// cjs: CommonJS module; glb: Global module; umd: UMD module;
 type SdinIntegrationModuleMode = 'cjs' | 'glb' | 'umd'
 type OrNil<T> = T | undefined | null
-// 详情请见: https://webpack.js.org/configuration/module/#rule
+// For details, please refer to: https://webpack.js.org/configuration/module/#rule
 type RuleSetCondition = Webpack.RuleSetCondition
-// 详情请见: https://webpack.js.org/configuration/module/#rule
+// For details, please refer to: https://webpack.js.org/configuration/module/#rule
 type RuleSetRule = Webpack.RuleSetRule
 ```
 
-若是修改打包规则，除了 `type`、`generator.filename`，其余字段均可修改。
+If the packaging rules are modified, all fields except for 'type' and 'generator. filename' can be modified.
 
-若是添加打包规则，可以覆盖文本、字体、图片、音频、视频的打包规则。
+If you add packaging rules, you can override the packaging rules for text, fonts, images, audio, and video.
 
-## 命令
+## Command
 
-### 主命令
+### Main command
 
-| 选项      | 简写 | 类型 | 必填 | 默认 | 说明         | 示例    |
-| --------- | ---- | ---- | ---- | ---- | ------------ | ------- |
-| --version | -v   | -    | -    | -    | 查看版本     | sdin -v |
-| --help    | -h   | -    | -    | -    | 查看帮助文档 | sdin -h |
+| Option    | Abbreviation | Type | Required | Default | Description        | Example |
+| --------- | ------------ | ---- | -------- | ------- | ------------------ | ------- |
+| --version | -v           | -    | -        | -       | View version       | sdin -v |
+| --help    | -h           | -    | -        | -       | View Help Document | sdin -h |
 
-### `build` 命令
+### `build` Command
 
-用于构建项目
+Used for building projects
 
-| 参数 | 上级 | 类型   | 必填 | 默认         | 说明                   | 示例          |
-| ---- | ---- | ------ | ---- | ------------ | ---------------------- | ------------- |
-| path | -    | string | 否   | 当前工作目录 | 指定需构建的项目根目录 | sdin build ./ |
+| Parameter | Parent level | Type   | Required | Default                   | Description                                           | Example       |
+| --------- | ------------ | ------ | -------- | ------------------------- | ----------------------------------------------------- | ------------- |
+| path      | -            | string | No       | Current working directory | Specify the root directory of the project to be built | sdin build ./ |
 
-| 选项      | 简写 | 类型   | 必填 | 默认     | 说明                               | 示例                      |
-| --------- | ---- | ------ | ---- | -------- | ---------------------------------- | ------------------------- |
-| --modules | -m   | string | 否   | 所有模块 | 指定需构建的模块名，多项以逗号分隔 | sdin build -m diana,elise |
+| Option    | Abbreviation | Type   | Required | Default     | Description                                                                   | Example                   |
+| --------- | ------------ | ------ | -------- | ----------- | ----------------------------------------------------------------------------- | ------------------------- |
+| --modules | -m           | string | No       | All modules | Specify the module names to be built, with multiple items separated by commas | sdin build -m diana,elise |
 
-### `create` 命令
+### `create` Command
 
-用于创建项目
+Used for creating projects
 
-| 参数 | 上级 | 类型   | 必填 | 默认 | 说明                                  | 示例                    |
-| ---- | ---- | ------ | ---- | ---- | ------------------------------------- | ----------------------- |
-| name | -    | string | 否   | -    | 指定包名，以 “@,a-z,0-9,-,/” 符号组成 | sdin create new-project |
+| Parameter | Parent level | Type   | Required | Default | Description                                                   | Example                 |
+| --------- | ------------ | ------ | -------- | ------- | ------------------------------------------------------------- | ----------------------- |
+| name      | -            | string | No       | -       | Specify the package name using the symbols "@, a-z, 0-9, -,/" | sdin create new-project |
 
-| 选项       | 简写 | 类型   | 必填 | 默认         | 说明                 | 示例                          |
-| ---------- | ---- | ------ | ---- | ------------ | -------------------- | ----------------------------- |
-| --output   | -o   | string | 否   | 当前工作目录 | 指定新项目的父级路径 | sdin create -o ./             |
-| --template | -t   | string | 否   | -            | 指定新项目所用模板名 | sdin create -t common-package |
+| Option     | Abbreviation | Type   | Required | Default                   | Description                                   | Example                       |
+| ---------- | ------------ | ------ | -------- | ------------------------- | --------------------------------------------- | ----------------------------- |
+| --output   | -o           | string | No       | Current working directory | Specify the parent path for the new project   | sdin create -o ./             |
+| --template | -t           | string | No       | -                         | Specify the template name for the new project | sdin create -t common-package |
 
-## 接口
+## Interface
 
 ### readSdinConfig
 
-读取项目配置
+Reading project configuration
 
 ```typescript
 function readSdinConfig(params: SdinConfigReadingParams): Promise<SdinConfig>
 
 interface SdinConfigReadingParams {
-  /** 项目根目录 */
+  /** Project root directory */
   root: string
 }
 ```
 
 ### createSdinProject
 
-创建项目
+Creating Project
 
 ```typescript
 function createSdinProject(options: SdinProjectCreatingOptions): Promise<void>
 
 interface SdinProjectCreatingOptions {
-  /** 模板名称 */
+  /** Template Name */
   templateName?: string
-  /** 存放项目的文件夹路径（默认：当前工作目录） */
+  /** The folder path where the project is stored (default: current working directory) */
   projectParentPath?: string
-  /** 项目名称 */
+  /** Project name */
   projectName?: string
-  /** 项目版本号（默认：0.0.1） */
+  /** Project version (default: 0.0.1) */
   projectVersion?: string
-  /** 项目的描述 */
+  /** Project Description */
   projectDescription?: string
-  /** 作者姓名（默认：Git 用户名） */
+  /** Author name (default: Git username) */
   authorName?: string
-  /** 作者邮箱（默认：Git 邮箱） */
+  /** Author email (default: Git email) */
   authorEmail?: string
 }
 ```
 
 ### buildSdinProject
 
-构建项目
+Building project
 
 ```typescript
 function buildSdinProject(options: SdinProjectBuildingOptions): Promise<void>
 
 interface SdinProjectBuildingOptions {
-  /** Sdin 配置 */
+  /** Sdin configuration */
   config: SdinConfig
-  /** 指定要构建的模块名称 */
+  /** Specify the name of the module to be built */
   moduleNames?: string[]
 }
 ```

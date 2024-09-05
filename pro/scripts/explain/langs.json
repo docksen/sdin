@@ -3,1146 +3,1180 @@
   "version": "1.0.0",
   "languages": [
     {
-      "code": "ach",
-      "name": "",
-      "cnName": "亚齐语",
-      "enName": ""
-    },
-    {
-      "code": "afr",
-      "name": "",
-      "cnName": "南非荷兰语",
-      "enName": ""
-    },
-    {
-      "code": "aka",
-      "name": "",
-      "cnName": "阿肯语",
-      "enName": ""
-    },
-    {
-      "code": "alb",
-      "name": "",
-      "cnName": "阿尔巴尼亚语",
-      "enName": ""
-    },
-    {
-      "code": "amh",
-      "name": "",
-      "cnName": "阿姆哈拉语",
-      "enName": ""
-    },
-    {
-      "code": "ara",
-      "name": "",
-      "cnName": "阿拉伯语",
-      "enName": ""
-    },
-    {
-      "code": "arg",
-      "name": "",
-      "cnName": "阿拉贡语",
-      "enName": ""
-    },
-    {
-      "code": "arm",
-      "name": "",
-      "cnName": "亚美尼亚语",
-      "enName": ""
-    },
-    {
-      "code": "arq",
-      "name": "",
-      "cnName": "阿尔及利亚阿拉伯语",
-      "enName": ""
-    },
-    {
-      "code": "asm",
-      "name": "",
-      "cnName": "阿萨姆语",
-      "enName": ""
-    },
-    {
-      "code": "ast",
-      "name": "",
-      "cnName": "阿斯图里亚斯语",
-      "enName": ""
-    },
-    {
-      "code": "aym",
-      "name": "",
-      "cnName": "艾马拉语",
-      "enName": ""
-    },
-    {
-      "code": "aze",
-      "name": "",
-      "cnName": "阿塞拜疆语",
-      "enName": ""
-    },
-    {
-      "code": "bak",
-      "name": "",
-      "cnName": "巴什基尔语",
-      "enName": ""
-    },
-    {
-      "code": "bal",
-      "name": "",
-      "cnName": "俾路支语",
-      "enName": ""
-    },
-    {
-      "code": "baq",
-      "name": "",
-      "cnName": "巴斯克语",
-      "enName": ""
-    },
-    {
-      "code": "bel",
-      "name": "",
-      "cnName": "白俄罗斯语",
-      "enName": ""
-    },
-    {
-      "code": "bem",
-      "name": "",
-      "cnName": "本巴语",
-      "enName": ""
-    },
-    {
-      "code": "ben",
-      "name": "",
-      "cnName": "孟加拉语",
-      "enName": ""
-    },
-    {
-      "code": "ber",
-      "name": "",
-      "cnName": "柏柏尔语",
-      "enName": ""
-    },
-    {
-      "code": "bho",
-      "name": "",
-      "cnName": "博杰普尔语",
-      "enName": ""
-    },
-    {
-      "code": "bis",
-      "name": "",
-      "cnName": "比斯拉马语",
-      "enName": ""
-    },
-    {
-      "code": "bli",
-      "name": "",
-      "cnName": "比林语",
-      "enName": ""
-    },
-    {
-      "code": "bos",
-      "name": "",
-      "cnName": "波斯尼亚语",
-      "enName": ""
-    },
-    {
-      "code": "bre",
-      "name": "",
-      "cnName": "布列塔尼语",
-      "enName": ""
-    },
-    {
-      "code": "bul",
-      "name": "",
-      "cnName": "保加利亚语",
-      "enName": ""
-    },
-    {
-      "code": "bur",
-      "name": "",
-      "cnName": "缅甸语",
-      "enName": ""
-    },
-    {
-      "code": "cat",
-      "name": "",
-      "cnName": "加泰罗尼亚语",
-      "enName": ""
-    },
-    {
-      "code": "ceb",
-      "name": "",
-      "cnName": "宿务语",
-      "enName": ""
-    },
-    {
-      "code": "chr",
-      "name": "",
-      "cnName": "切罗基语",
-      "enName": ""
-    },
-    {
-      "code": "chv",
-      "name": "",
-      "cnName": "楚瓦什语",
-      "enName": ""
-    },
-    {
-      "code": "cor",
-      "name": "",
-      "cnName": "康瓦尔语",
-      "enName": ""
-    },
-    {
-      "code": "cos",
-      "name": "",
-      "cnName": "科西嘉语",
-      "enName": ""
-    },
-    {
-      "code": "cre",
-      "name": "",
-      "cnName": "克里克语",
-      "enName": ""
-    },
-    {
-      "code": "cri",
-      "name": "",
-      "cnName": "克里米亚鞑靼语",
-      "enName": ""
-    },
-    {
-      "code": "cs",
-      "name": "",
-      "cnName": "捷克语",
-      "enName": ""
-    },
-    {
-      "code": "dan",
-      "name": "",
-      "cnName": "丹麦语",
-      "enName": ""
-    },
-    {
-      "code": "de",
-      "name": "",
-      "cnName": "德语",
-      "enName": ""
-    },
-    {
-      "code": "div",
-      "name": "",
-      "cnName": "迪维希语",
-      "enName": ""
-    },
-    {
-      "code": "el",
-      "name": "",
-      "cnName": "希腊语",
-      "enName": ""
+      "code": "zh",
+      "name": "漢語",
+      "cnName": "汉语",
+      "enName": "Chinese",
+      "users": 139000
     },
     {
       "code": "en",
       "name": "English",
-      "amount": 100000,
       "cnName": "英语",
-      "enName": "English"
-    },
-    {
-      "code": "est",
-      "name": "",
-      "cnName": "爱沙尼亚语",
-      "enName": ""
-    },
-    {
-      "code": "fao",
-      "name": "",
-      "cnName": "法罗语",
-      "enName": ""
-    },
-    {
-      "code": "fil",
-      "name": "",
-      "cnName": "菲律宾语",
-      "enName": ""
-    },
-    {
-      "code": "fin",
-      "name": "",
-      "cnName": "芬兰语",
-      "enName": ""
-    },
-    {
-      "code": "fra",
-      "name": "Français",
-      "cnName": "法语",
-      "enName": "French"
-    },
-    {
-      "code": "fri",
-      "name": "",
-      "cnName": "弗留利语",
-      "enName": ""
-    },
-    {
-      "code": "frn",
-      "name": "",
-      "cnName": "加拿大法语",
-      "enName": ""
-    },
-    {
-      "code": "fry",
-      "name": "",
-      "cnName": "西弗里斯语",
-      "enName": ""
-    },
-    {
-      "code": "ful",
-      "name": "",
-      "cnName": "富拉尼语",
-      "enName": ""
-    },
-    {
-      "code": "geo",
-      "name": "",
-      "cnName": "格鲁吉亚语",
-      "enName": ""
-    },
-    {
-      "code": "gla",
-      "name": "",
-      "cnName": "盖尔语",
-      "enName": ""
-    },
-    {
-      "code": "gle",
-      "name": "",
-      "cnName": "爱尔兰语",
-      "enName": ""
-    },
-    {
-      "code": "glg",
-      "name": "",
-      "cnName": "加利西亚语",
-      "enName": ""
-    },
-    {
-      "code": "glv",
-      "name": "",
-      "cnName": "曼克斯语",
-      "enName": ""
-    },
-    {
-      "code": "grn",
-      "name": "",
-      "cnName": "瓜拉尼语",
-      "enName": ""
-    },
-    {
-      "code": "guj",
-      "name": "",
-      "cnName": "古吉拉特语",
-      "enName": ""
-    },
-    {
-      "code": "hak",
-      "name": "",
-      "cnName": "哈卡钦语",
-      "enName": ""
-    },
-    {
-      "code": "hau",
-      "name": "",
-      "cnName": "豪萨语",
-      "enName": ""
-    },
-    {
-      "code": "haw",
-      "name": "",
-      "cnName": "夏威夷语",
-      "enName": ""
-    },
-    {
-      "code": "heb",
-      "name": "",
-      "cnName": "希伯来语",
-      "enName": ""
-    },
-    {
-      "code": "hi",
-      "name": "हिंदी",
-      "cnName": "印地语",
-      "enName": "Hindi"
-    },
-    {
-      "code": "hil",
-      "name": "",
-      "cnName": "希利盖农语",
-      "enName": ""
-    },
-    {
-      "code": "hkm",
-      "name": "",
-      "cnName": "高棉语",
-      "enName": ""
-    },
-    {
-      "code": "hmn",
-      "name": "",
-      "cnName": "苗语",
-      "enName": ""
-    },
-    {
-      "code": "hrv",
-      "name": "",
-      "cnName": "克罗地亚语",
-      "enName": ""
-    },
-    {
-      "code": "ht",
-      "name": "",
-      "cnName": "海地语",
-      "enName": ""
-    },
-    {
-      "code": "hu",
-      "name": "",
-      "cnName": "匈牙利语",
-      "enName": ""
-    },
-    {
-      "code": "hup",
-      "name": "",
-      "cnName": "胡帕语",
-      "enName": ""
-    },
-    {
-      "code": "ibo",
-      "name": "",
-      "cnName": "伊博语",
-      "enName": ""
-    },
-    {
-      "code": "ice",
-      "name": "",
-      "cnName": "冰岛语",
-      "enName": ""
-    },
-    {
-      "code": "id",
-      "name": "",
-      "cnName": "印尼语",
-      "enName": ""
-    },
-    {
-      "code": "ido",
-      "name": "",
-      "cnName": "伊多语",
-      "enName": ""
-    },
-    {
-      "code": "iku",
-      "name": "",
-      "cnName": "伊努克提图特语",
-      "enName": ""
-    },
-    {
-      "code": "ina",
-      "name": "",
-      "cnName": "因特语",
-      "enName": ""
-    },
-    {
-      "code": "ing",
-      "name": "",
-      "cnName": "印古什语",
-      "enName": ""
-    },
-    {
-      "code": "ir",
-      "name": "",
-      "cnName": "伊朗语",
-      "enName": ""
-    },
-    {
-      "code": "it",
-      "name": "",
-      "cnName": "意大利语",
-      "enName": ""
-    },
-    {
-      "code": "jav",
-      "name": "",
-      "cnName": "爪哇语",
-      "enName": ""
-    },
-    {
-      "code": "jp",
-      "name": "",
-      "cnName": "日语",
-      "enName": ""
-    },
-    {
-      "code": "kab",
-      "name": "",
-      "cnName": "卡拜尔语",
-      "enName": ""
-    },
-    {
-      "code": "kah",
-      "name": "",
-      "cnName": "卡舒比语",
-      "enName": ""
-    },
-    {
-      "code": "kal",
-      "name": "",
-      "cnName": "格陵兰语",
-      "enName": ""
-    },
-    {
-      "code": "kan",
-      "name": "",
-      "cnName": "卡纳达语",
-      "enName": ""
-    },
-    {
-      "code": "kas",
-      "name": "",
-      "cnName": "克什米尔语",
-      "enName": ""
-    },
-    {
-      "code": "kau",
-      "name": "",
-      "cnName": "卡努里语",
-      "enName": ""
-    },
-    {
-      "code": "kin",
-      "name": "",
-      "cnName": "卢旺达语",
-      "enName": ""
-    },
-    {
-      "code": "kir",
-      "name": "",
-      "cnName": "吉尔吉斯语",
-      "enName": ""
-    },
-    {
-      "code": "kli",
-      "name": "",
-      "cnName": "克林贡语",
-      "enName": ""
-    },
-    {
-      "code": "kok",
-      "name": "",
-      "cnName": "孔卡尼语",
-      "enName": ""
-    },
-    {
-      "code": "kon",
-      "name": "",
-      "cnName": "刚果语",
-      "enName": ""
-    },
-    {
-      "code": "kor",
-      "name": "",
-      "cnName": "韩语",
-      "enName": ""
-    },
-    {
-      "code": "kur",
-      "name": "",
-      "cnName": "库尔德语",
-      "enName": ""
-    },
-    {
-      "code": "lag",
-      "name": "",
-      "cnName": "拉特加莱语",
-      "enName": ""
-    },
-    {
-      "code": "lao",
-      "name": "",
-      "cnName": "老挝语",
-      "enName": ""
-    },
-    {
-      "code": "lat",
-      "name": "",
-      "cnName": "拉丁语",
-      "enName": ""
-    },
-    {
-      "code": "lav",
-      "name": "",
-      "cnName": "拉脱维亚语",
-      "enName": ""
-    },
-    {
-      "code": "lim",
-      "name": "",
-      "cnName": "林堡语",
-      "enName": ""
-    },
-    {
-      "code": "lin",
-      "name": "",
-      "cnName": "林加拉语",
-      "enName": ""
-    },
-    {
-      "code": "lit",
-      "name": "",
-      "cnName": "立陶宛语",
-      "enName": ""
-    },
-    {
-      "code": "log",
-      "name": "",
-      "cnName": "低地德语",
-      "enName": ""
-    },
-    {
-      "code": "loj",
-      "name": "",
-      "cnName": "逻辑语",
-      "enName": ""
-    },
-    {
-      "code": "los",
-      "name": "",
-      "cnName": "下索布语",
-      "enName": ""
-    },
-    {
-      "code": "ltz",
-      "name": "",
-      "cnName": "卢森堡语",
-      "enName": ""
-    },
-    {
-      "code": "lug",
-      "name": "",
-      "cnName": "卢干达语",
-      "enName": ""
-    },
-    {
-      "code": "mac",
-      "name": "",
-      "cnName": "马其顿语",
-      "enName": ""
-    },
-    {
-      "code": "mah",
-      "name": "",
-      "cnName": "马绍尔语",
-      "enName": ""
-    },
-    {
-      "code": "mai",
-      "name": "",
-      "cnName": "迈蒂利语",
-      "enName": ""
-    },
-    {
-      "code": "mal",
-      "name": "",
-      "cnName": "马拉雅拉姆语",
-      "enName": ""
-    },
-    {
-      "code": "mao",
-      "name": "",
-      "cnName": "毛利语",
-      "enName": ""
-    },
-    {
-      "code": "mar",
-      "name": "",
-      "cnName": "马拉地语",
-      "enName": ""
-    },
-    {
-      "code": "mau",
-      "name": "",
-      "cnName": "毛里求斯克里奥尔语",
-      "enName": ""
-    },
-    {
-      "code": "may",
-      "name": "",
-      "cnName": "马来语",
-      "enName": ""
-    },
-    {
-      "code": "mg",
-      "name": "",
-      "cnName": "马拉加斯语",
-      "enName": ""
-    },
-    {
-      "code": "mlt",
-      "name": "",
-      "cnName": "马耳他语",
-      "enName": ""
-    },
-    {
-      "code": "mot",
-      "name": "",
-      "cnName": "黑山语",
-      "enName": ""
-    },
-    {
-      "code": "nbl",
-      "name": "",
-      "cnName": "南恩德贝莱语",
-      "enName": ""
-    },
-    {
-      "code": "nea",
-      "name": "",
-      "cnName": "那不勒斯语",
-      "enName": ""
-    },
-    {
-      "code": "nep",
-      "name": "",
-      "cnName": "尼泊尔语",
-      "enName": ""
-    },
-    {
-      "code": "nl",
-      "name": "",
-      "cnName": "荷兰语",
-      "enName": ""
-    },
-    {
-      "code": "nor",
-      "name": "",
-      "cnName": "挪威语",
-      "enName": ""
-    },
-    {
-      "code": "nqo",
-      "name": "",
-      "cnName": "西非书面语",
-      "enName": ""
-    },
-    {
-      "code": "nya",
-      "name": "",
-      "cnName": "齐切瓦语",
-      "enName": ""
-    },
-    {
-      "code": "oci",
-      "name": "",
-      "cnName": "奥克语",
-      "enName": ""
-    },
-    {
-      "code": "oji",
-      "name": "",
-      "cnName": "奥杰布瓦语",
-      "enName": ""
-    },
-    {
-      "code": "ori",
-      "name": "",
-      "cnName": "奥里亚语",
-      "enName": ""
-    },
-    {
-      "code": "orm",
-      "name": "",
-      "cnName": "奥罗莫语",
-      "enName": ""
-    },
-    {
-      "code": "oss",
-      "name": "",
-      "cnName": "奥塞梯语",
-      "enName": ""
-    },
-    {
-      "code": "pam",
-      "name": "",
-      "cnName": "邦板牙语",
-      "enName": ""
-    },
-    {
-      "code": "pan",
-      "name": "",
-      "cnName": "旁遮普语",
-      "enName": ""
-    },
-    {
-      "code": "pap",
-      "name": "",
-      "cnName": "帕皮阿门托语",
-      "enName": ""
-    },
-    {
-      "code": "ped",
-      "name": "",
-      "cnName": "北索托语",
-      "enName": ""
-    },
-    {
-      "code": "per",
-      "name": "",
-      "cnName": "波斯语",
-      "enName": ""
-    },
-    {
-      "code": "pl",
-      "name": "",
-      "cnName": "波兰语",
-      "enName": ""
-    },
-    {
-      "code": "pot",
-      "name": "",
-      "cnName": "巴西葡萄牙语",
-      "enName": ""
-    },
-    {
-      "code": "pt",
-      "name": "",
-      "cnName": "葡萄牙语",
-      "enName": ""
-    },
-    {
-      "code": "pus",
-      "name": "",
-      "cnName": "普什图语",
-      "enName": ""
-    },
-    {
-      "code": "que",
-      "name": "",
-      "cnName": "克丘亚语",
-      "enName": ""
-    },
-    {
-      "code": "ro",
-      "name": "",
-      "cnName": "罗姆语",
-      "enName": ""
-    },
-    {
-      "code": "roh",
-      "name": "",
-      "cnName": "罗曼什语",
-      "enName": ""
-    },
-    {
-      "code": "rom",
-      "name": "",
-      "cnName": "罗马尼亚语",
-      "enName": ""
-    },
-    {
-      "code": "ru",
-      "name": "",
-      "cnName": "俄语",
-      "enName": ""
-    },
-    {
-      "code": "ruy",
-      "name": "",
-      "cnName": "卢森尼亚语",
-      "enName": ""
-    },
-    {
-      "code": "san",
-      "name": "",
-      "cnName": "梵语",
-      "enName": ""
-    },
-    {
-      "code": "sha",
-      "name": "",
-      "cnName": "掸语",
-      "enName": ""
-    },
-    {
-      "code": "sil",
-      "name": "",
-      "cnName": "西里西亚语",
-      "enName": ""
-    },
-    {
-      "code": "sin",
-      "name": "",
-      "cnName": "僧伽罗语",
-      "enName": ""
-    },
-    {
-      "code": "sk",
-      "name": "",
-      "cnName": "斯洛伐克语",
-      "enName": ""
-    },
-    {
-      "code": "slo",
-      "name": "",
-      "cnName": "斯洛文尼亚语",
-      "enName": ""
-    },
-    {
-      "code": "sm",
-      "name": "",
-      "cnName": "萨摩亚语",
-      "enName": ""
-    },
-    {
-      "code": "sme",
-      "name": "",
-      "cnName": "北方萨米语",
-      "enName": ""
-    },
-    {
-      "code": "sna",
-      "name": "",
-      "cnName": "修纳语",
-      "enName": ""
-    },
-    {
-      "code": "snd",
-      "name": "",
-      "cnName": "信德语",
-      "enName": ""
-    },
-    {
-      "code": "sol",
-      "name": "",
-      "cnName": "桑海语",
-      "enName": ""
-    },
-    {
-      "code": "som",
-      "name": "",
-      "cnName": "索马里语",
-      "enName": ""
-    },
-    {
-      "code": "sot",
-      "name": "",
-      "cnName": "南索托语",
-      "enName": ""
+      "enName": "English",
+      "users": 100000
     },
     {
       "code": "spa",
       "name": "Español",
       "cnName": "西班牙语",
-      "enName": "Spanish"
+      "enName": "Spanish",
+      "users": 59500
     },
     {
-      "code": "srd",
-      "name": "",
-      "cnName": "萨丁尼亚语",
-      "enName": ""
+      "code": "hi",
+      "name": "हिन्दी",
+      "cnName": "印地语",
+      "enName": "Hindi",
+      "users": 52800
     },
     {
-      "code": "srp",
-      "name": "",
-      "cnName": "塞尔维亚语",
-      "enName": ""
+      "code": "ara",
+      "name": "العربية",
+      "cnName": "阿拉伯语",
+      "enName": "Arabic",
+      "users": 36000
     },
     {
-      "code": "sun",
-      "name": "",
-      "cnName": "巽他语",
-      "enName": ""
+      "code": "pt",
+      "name": "Português",
+      "cnName": "葡萄牙语",
+      "enName": "Portuguese",
+      "users": 21800
     },
     {
-      "code": "swa",
-      "name": "",
-      "cnName": "斯瓦希里语",
-      "enName": ""
+      "code": "ben",
+      "name": "বাংলা",
+      "cnName": "孟加拉语",
+      "enName": "Bengali",
+      "users": 20700
     },
     {
-      "code": "swe",
-      "name": "",
-      "cnName": "瑞典语",
-      "enName": ""
+      "code": "ru",
+      "name": "русский язык",
+      "cnName": "俄语",
+      "enName": "Russian",
+      "users": 15400
     },
     {
-      "code": "syr",
-      "name": "",
-      "cnName": "叙利亚语",
-      "enName": ""
+      "code": "jp",
+      "name": "日本語",
+      "cnName": "日语",
+      "enName": "Japanese",
+      "users": 12500
     },
     {
-      "code": "tam",
-      "name": "",
-      "cnName": "泰米尔语",
-      "enName": ""
+      "code": "pan",
+      "name": "ਪੰਜਾਬੀ",
+      "cnName": "旁遮普语",
+      "enName": "Punjabi",
+      "users": 10400
     },
     {
-      "code": "tat",
-      "name": "",
-      "cnName": "鞑靼语",
-      "enName": ""
-    },
-    {
-      "code": "tel",
-      "name": "",
-      "cnName": "泰卢固语",
-      "enName": ""
-    },
-    {
-      "code": "tet",
-      "name": "",
-      "cnName": "德顿语",
-      "enName": ""
-    },
-    {
-      "code": "tgk",
-      "name": "",
-      "cnName": "塔吉克语",
-      "enName": ""
-    },
-    {
-      "code": "tgl",
-      "name": "",
-      "cnName": "他加禄语",
-      "enName": ""
-    },
-    {
-      "code": "th",
-      "name": "",
-      "cnName": "泰语",
-      "enName": ""
-    },
-    {
-      "code": "tir",
-      "name": "",
-      "cnName": "提格利尼亚语",
-      "enName": ""
-    },
-    {
-      "code": "tr",
-      "name": "",
-      "cnName": "土耳其语",
-      "enName": ""
-    },
-    {
-      "code": "tso",
-      "name": "",
-      "cnName": "聪加语",
-      "enName": ""
-    },
-    {
-      "code": "tua",
-      "name": "",
-      "cnName": "突尼斯阿拉伯语",
-      "enName": ""
-    },
-    {
-      "code": "tuk",
-      "name": "",
-      "cnName": "土库曼语",
-      "enName": ""
-    },
-    {
-      "code": "twi",
-      "name": "",
-      "cnName": "契维语",
-      "enName": ""
-    },
-    {
-      "code": "ukr",
-      "name": "",
-      "cnName": "乌克兰语",
-      "enName": ""
-    },
-    {
-      "code": "ups",
-      "name": "",
-      "cnName": "高地索布语",
-      "enName": ""
-    },
-    {
-      "code": "urd",
-      "name": "",
-      "cnName": "乌尔都语",
-      "enName": ""
-    },
-    {
-      "code": "ven",
-      "name": "",
-      "cnName": "文达语",
-      "enName": ""
+      "code": "de",
+      "name": "Deutsch",
+      "cnName": "德语",
+      "enName": "German",
+      "users": 9500
     },
     {
       "code": "vie",
-      "name": "",
+      "name": "Tiếng Việt",
       "cnName": "越南语",
-      "enName": ""
+      "enName": "Vietnamese",
+      "users": 9300
     },
     {
-      "code": "wel",
-      "name": "",
-      "cnName": "威尔士语",
-      "enName": ""
+      "code": "jav",
+      "name": "Jawa",
+      "cnName": "爪哇语",
+      "enName": "Javanese",
+      "users": 8240
     },
     {
-      "code": "wln",
-      "name": "",
-      "cnName": "瓦隆语",
-      "enName": ""
+      "code": "swa",
+      "name": "Kiswahili",
+      "cnName": "斯瓦希里语",
+      "enName": "Swahili",
+      "users": 8000
     },
     {
-      "code": "wol",
-      "name": "",
-      "cnName": "沃洛夫语",
-      "enName": ""
+      "code": "kor",
+      "name": "한국어",
+      "cnName": "韩语",
+      "enName": "Korean",
+      "users": 7800
     },
     {
-      "code": "xho",
-      "name": "",
-      "cnName": "科萨语",
-      "enName": ""
+      "code": "bel",
+      "name": "беларуская",
+      "cnName": "白俄罗斯语",
+      "enName": "Belarusian",
+      "users": 7500
     },
     {
-      "code": "yid",
-      "name": "",
-      "cnName": "意第绪语",
-      "enName": ""
+      "code": "fra",
+      "name": "Français",
+      "cnName": "法语",
+      "enName": "French",
+      "users": 7500
+    },
+    {
+      "code": "tam",
+      "name": "தமிழ்",
+      "cnName": "泰米尔语",
+      "enName": "Tamil",
+      "users": 7400
+    },
+    {
+      "code": "tel",
+      "name": "తెలుగు",
+      "cnName": "泰卢固语",
+      "enName": "Telugu",
+      "users": 7400
+    },
+    {
+      "code": "mar",
+      "name": "मराठी",
+      "cnName": "马拉地语",
+      "enName": "Marathi",
+      "users": 7000
+    },
+    {
+      "code": "per",
+      "name": "فارسی",
+      "cnName": "波斯语",
+      "enName": "Persian",
+      "users": 7000
+    },
+    {
+      "code": "th",
+      "name": "ภาษาไทย",
+      "cnName": "泰语",
+      "enName": "Thai",
+      "users": 7000
+    },
+    {
+      "code": "it",
+      "name": "Italiano",
+      "cnName": "意大利语",
+      "enName": "Italian",
+      "users": 6500
+    },
+    {
+      "code": "tr",
+      "name": "Türkçe",
+      "cnName": "土耳其语",
+      "enName": "Turkish",
+      "users": 6300
+    },
+    {
+      "code": "urd",
+      "name": "اردو",
+      "cnName": "乌尔都语",
+      "enName": "Urdu",
+      "users": 6100
+    },
+    {
+      "code": "kan",
+      "name": "ಕನ್ನಡ",
+      "cnName": "卡纳达语",
+      "enName": "Kannada",
+      "users": 6000
+    },
+    {
+      "code": "pus",
+      "name": "پښتو",
+      "cnName": "普什图语",
+      "enName": "Pashto",
+      "users": 5000
+    },
+    {
+      "code": "ukr",
+      "name": "українська мова",
+      "cnName": "乌克兰语",
+      "enName": "Ukrainian",
+      "users": 4700
+    },
+    {
+      "code": "guj",
+      "name": "ગુજરાતી",
+      "cnName": "古吉拉特语",
+      "enName": "Gujarati",
+      "users": 4610
+    },
+    {
+      "code": "orm",
+      "name": "Afaan Oromoo",
+      "cnName": "奥罗莫语",
+      "enName": "Oromo",
+      "users": 4550
     },
     {
       "code": "yor",
-      "name": "",
+      "name": "Èdè Yorùbá",
       "cnName": "约鲁巴语",
-      "enName": ""
+      "enName": "Yoruba",
+      "users": 4500
     },
     {
-      "code": "zaz",
-      "name": "",
-      "cnName": "扎扎其语",
-      "enName": ""
+      "code": "id",
+      "name": "Bahasa Indonesia",
+      "cnName": "印尼语",
+      "enName": "Indonesian",
+      "users": 4280
     },
     {
-      "code": "zh",
-      "name": "汉语",
-      "amount": 10000,
-      "cnName": "汉语",
-      "enName": "Chinese"
+      "code": "pl",
+      "name": "język polski",
+      "cnName": "波兰语",
+      "enName": "Polish",
+      "users": 4200
+    },
+    {
+      "code": "tgk",
+      "name": "тоҷикӣ",
+      "cnName": "塔吉克语",
+      "enName": "Tajik",
+      "users": 4038
+    },
+    {
+      "code": "bem",
+      "name": "Chibemba",
+      "cnName": "本巴语",
+      "enName": "Bemba",
+      "users": 3600
+    },
+    {
+      "code": "mal",
+      "name": "മലയാളം",
+      "cnName": "马拉雅拉姆语",
+      "enName": "Malayalam",
+      "users": 3570
+    },
+    {
+      "code": "amh",
+      "name": "አማርኛ",
+      "cnName": "阿姆哈拉语",
+      "enName": "Amharic",
+      "users": 3500
+    },
+    {
+      "code": "hau",
+      "name": "هَوُسَ",
+      "cnName": "豪萨语",
+      "enName": "Hausa",
+      "users": 3400
+    },
+    {
+      "code": "bur",
+      "name": "မြန်မာဘာသာ",
+      "cnName": "缅甸语",
+      "enName": "Burmese",
+      "users": 3320
+    },
+    {
+      "code": "snd",
+      "name": "سنڌي",
+      "cnName": "信德语",
+      "enName": "Sindhi",
+      "users": 3200
+    },
+    {
+      "code": "ori",
+      "name": "ଓଡ଼ିଆ oṛiā",
+      "cnName": "奥里亚语",
+      "enName": "Oriya",
+      "users": 3100
+    },
+    {
+      "code": "kur",
+      "name": "کوردی",
+      "cnName": "库尔德语",
+      "enName": "Kurdish",
+      "users": 3000
+    },
+    {
+      "code": "sun",
+      "name": "Basa Sunda",
+      "cnName": "巽他语",
+      "enName": "Sundanese",
+      "users": 2700
+    },
+    {
+      "code": "bho",
+      "name": "भोजपुरी",
+      "cnName": "博杰普尔语",
+      "enName": "Bhojpuri",
+      "users": 2600
+    },
+    {
+      "code": "rom",
+      "name": "română",
+      "cnName": "罗马尼亚语",
+      "enName": "Romanian",
+      "users": 2500
+    },
+    {
+      "code": "ful",
+      "name": "Fula",
+      "cnName": "富拉语",
+      "enName": "Fulani",
+      "users": 2400
+    },
+    {
+      "code": "aze",
+      "name": "Azərbaycan",
+      "cnName": "阿塞拜疆语",
+      "enName": "Azerbaijani",
+      "users": 2300
+    },
+    {
+      "code": "nl",
+      "name": "Nederlands",
+      "cnName": "荷兰语",
+      "enName": "Dutch",
+      "users": 2200
+    },
+    {
+      "code": "tgl",
+      "name": "Tagalog",
+      "cnName": "他加禄语",
+      "enName": "Tagalog",
+      "users": 2200
+    },
+    {
+      "code": "asm",
+      "name": "অসমীয়া",
+      "cnName": "阿萨姆语",
+      "enName": "Assamese",
+      "users": 2000
+    },
+    {
+      "code": "ceb",
+      "name": "Sinugboanon",
+      "cnName": "宿务语",
+      "enName": "Cebuano",
+      "users": 2000
+    },
+    {
+      "code": "ibo",
+      "name": "Asụsụ Igbo",
+      "cnName": "伊博语",
+      "enName": "Igbo",
+      "users": 2000
+    },
+    {
+      "code": "mg",
+      "name": "malagasy",
+      "cnName": "马达加斯加语",
+      "enName": "Malagasi",
+      "users": 2000
+    },
+    {
+      "code": "sin",
+      "name": "සිංහල",
+      "cnName": "僧伽罗语",
+      "enName": "Sinhala",
+      "users": 1900
+    },
+    {
+      "code": "som",
+      "name": "Af-Soomaali",
+      "cnName": "索马里语",
+      "enName": "Somali",
+      "users": 1860
+    },
+    {
+      "code": "hkm",
+      "name": "ភាសាខ្មែរ",
+      "cnName": "高棉语",
+      "enName": "Khmer",
+      "users": 1600
+    },
+    {
+      "code": "nep",
+      "name": "नेपाली",
+      "cnName": "尼泊尔语",
+      "enName": "Nepali",
+      "users": 1600
+    },
+    {
+      "code": "kau",
+      "name": "Kanuri",
+      "cnName": "卡努里语",
+      "enName": "Kanuri",
+      "users": 1551
+    },
+    {
+      "code": "kin",
+      "name": "Ikinyarwanda",
+      "cnName": "卢旺达语",
+      "enName": "Kinyarwanda",
+      "users": 1500
+    },
+    {
+      "code": "que",
+      "name": "Qhichwa",
+      "cnName": "克丘亚语",
+      "enName": "Quechua",
+      "users": 1400
+    },
+    {
+      "code": "may",
+      "name": "Bahasa Melayu",
+      "cnName": "马来语",
+      "enName": "Malay",
+      "users": 1300
+    },
+    {
+      "code": "hu",
+      "name": "magyar",
+      "cnName": "匈牙利语",
+      "enName": "Hungarian",
+      "users": 1260
+    },
+    {
+      "code": "ber",
+      "name": "ⵜⴰⵎⴰⵣⵉⵗⵜ",
+      "cnName": "柏柏尔语",
+      "enName": "Berber",
+      "users": 1200
+    },
+    {
+      "code": "el",
+      "name": "Ελληνικά",
+      "cnName": "希腊语",
+      "enName": "Greek",
+      "users": 1200
+    },
+    {
+      "code": "ht",
+      "name": "Kreyòl Ayisyen",
+      "cnName": "海地语",
+      "enName": "Haitian",
+      "users": 1200
+    },
+    {
+      "code": "mai",
+      "name": "मैथिली",
+      "cnName": "迈蒂利语",
+      "enName": "Maithili",
+      "users": 1200
+    },
+    {
+      "code": "srp",
+      "name": "Српски",
+      "cnName": "塞尔维亚语",
+      "enName": "Serbian",
+      "users": 1200
+    },
+    {
+      "code": "tso",
+      "name": "Xitsonga",
+      "cnName": "聪加语",
+      "enName": "Tsonga",
+      "users": 1200
+    },
+    {
+      "code": "aka",
+      "name": "Ákán",
+      "cnName": "阿肯语",
+      "enName": "Akan",
+      "users": 1100
+    },
+    {
+      "code": "nya",
+      "name": "Chicheŵa",
+      "cnName": "齐切瓦语",
+      "enName": "Chichewa",
+      "users": 1050
+    },
+    {
+      "code": "cs",
+      "name": "Čeština",
+      "cnName": "捷克语",
+      "enName": "Czech",
+      "users": 1000
+    },
+    {
+      "code": "lug",
+      "name": "Oluganda",
+      "cnName": "卢干达语",
+      "enName": "Luganda",
+      "users": 1000
+    },
+    {
+      "code": "swe",
+      "name": "Svenska",
+      "cnName": "瑞典语",
+      "enName": "Swedish",
+      "users": 1000
+    },
+    {
+      "code": "hil",
+      "name": "Ilonggo",
+      "cnName": "希利盖农语",
+      "enName": "Hiligaynon",
+      "users": 930
+    },
+    {
+      "code": "heb",
+      "name": "עברית",
+      "cnName": "希伯来语",
+      "enName": "Hebrew",
+      "users": 900
     },
     {
       "code": "zul",
-      "name": "",
+      "name": "IsiZulu",
       "cnName": "祖鲁语",
-      "enName": ""
+      "enName": "Zulu",
+      "users": 900
+    },
+    {
+      "code": "sna",
+      "name": "ChiShona",
+      "cnName": "绍纳语",
+      "enName": "Shona",
+      "users": 830
+    },
+    {
+      "code": "twi",
+      "name": "Twi",
+      "cnName": "契维语",
+      "enName": "Twi",
+      "users": 830
+    },
+    {
+      "code": "xho",
+      "name": "isiXhosa",
+      "cnName": "科萨语",
+      "enName": "Xhosa",
+      "users": 820
+    },
+    {
+      "code": "bul",
+      "name": "български",
+      "cnName": "保加利亚语",
+      "enName": "Bulgarian",
+      "users": 780
+    },
+    {
+      "code": "bal",
+      "name": "بلۏچی",
+      "cnName": "俾路支语",
+      "enName": "Balochi",
+      "users": 750
+    },
+    {
+      "code": "nea",
+      "name": "Napulitano",
+      "cnName": "那不勒斯语",
+      "enName": "Neapolitan",
+      "users": 750
+    },
+    {
+      "code": "tuk",
+      "name": "Türkmençe",
+      "cnName": "土库曼语",
+      "enName": "Turkmen",
+      "users": 750
+    },
+    {
+      "code": "kas",
+      "name": "کٲشُر",
+      "cnName": "克什米尔语",
+      "enName": "Kashmiri",
+      "users": 710
+    },
+    {
+      "code": "kon",
+      "name": "Kikongo",
+      "cnName": "刚果语",
+      "enName": "Kongo",
+      "users": 700
+    },
+    {
+      "code": "tir",
+      "name": "ትግሪኛ",
+      "cnName": "提格利尼亚语",
+      "enName": "Tigrinya",
+      "users": 670
+    },
+    {
+      "code": "grn",
+      "name": "avañe'ẽ",
+      "cnName": "瓜拉尼语",
+      "enName": "Guarani",
+      "users": 650
+    },
+    {
+      "code": "hrv",
+      "name": "Hrvatski jezik",
+      "cnName": "克罗地亚语",
+      "enName": "Croatian",
+      "users": 621
+    },
+    {
+      "code": "afr",
+      "name": "Afrikaans",
+      "cnName": "阿非利卡语",
+      "enName": "Afrikaans",
+      "users": 600
+    },
+    {
+      "code": "arm",
+      "name": "Հայերեն",
+      "cnName": "亚美尼亚语",
+      "enName": "Armenian",
+      "users": 600
+    },
+    {
+      "code": "dan",
+      "name": "Dansk",
+      "cnName": "丹麦语",
+      "enName": "Danish",
+      "users": 600
+    },
+    {
+      "code": "sk",
+      "name": "Slovenčina",
+      "cnName": "斯洛伐克语",
+      "enName": "Slovak",
+      "users": 600
+    },
+    {
+      "code": "sot",
+      "name": "Sesotho",
+      "cnName": "南索托语",
+      "enName": "Southern Sotho",
+      "users": 560
+    },
+    {
+      "code": "alb",
+      "name": "shqip",
+      "cnName": "阿尔巴尼亚语",
+      "enName": "Albanian",
+      "users": 537
+    },
+    {
+      "code": "nor",
+      "name": "Norsk",
+      "cnName": "挪威语",
+      "enName": "Norwegian",
+      "users": 532
+    },
+    {
+      "code": "tat",
+      "name": "татар теле",
+      "cnName": "鞑靼语",
+      "enName": "Tatar",
+      "users": 520
+    },
+    {
+      "code": "fin",
+      "name": "suomi",
+      "cnName": "芬兰语",
+      "enName": "Finnish",
+      "users": 500
+    },
+    {
+      "code": "kir",
+      "name": "кыргыз тили",
+      "cnName": "柯尔克孜语",
+      "enName": "Kyrgyz",
+      "users": 500
+    },
+    {
+      "code": "cat",
+      "name": "Català",
+      "cnName": "加泰罗尼亚语",
+      "enName": "Catalan",
+      "users": 414
+    },
+    {
+      "code": "ped",
+      "name": "Sesotho sa Leboa",
+      "cnName": "北索托语",
+      "enName": "Northern Sotho",
+      "users": 410
+    },
+    {
+      "code": "geo",
+      "name": "ქართული",
+      "cnName": "格鲁吉亚语",
+      "enName": "Georgian",
+      "users": 376
+    },
+    {
+      "code": "ach",
+      "name": "بهسا اچيه",
+      "cnName": "亚齐语",
+      "enName": "Acehnese",
+      "users": 350
+    },
+    {
+      "code": "glg",
+      "name": "Galego",
+      "cnName": "加利西亚语",
+      "enName": "Galician",
+      "users": 350
+    },
+    {
+      "code": "lao",
+      "name": "ພາສາລາວ",
+      "cnName": "老挝语",
+      "enName": "Lao",
+      "users": 343
+    },
+    {
+      "code": "sha",
+      "name": "ရှမ်းဘာသာ",
+      "cnName": "掸语",
+      "enName": "Shan",
+      "users": 330
+    },
+    {
+      "code": "wol",
+      "name": "Wolof",
+      "cnName": "沃洛夫语",
+      "enName": "Wolof",
+      "users": 320
+    },
+    {
+      "code": "kab",
+      "name": "Taqbaylit",
+      "cnName": "卡拜尔语",
+      "enName": "Kabyle",
+      "users": 312.6
+    },
+    {
+      "code": "bos",
+      "name": "bosanski",
+      "cnName": "波斯尼亚语",
+      "enName": "Bosnian",
+      "users": 300
+    },
+    {
+      "code": "lit",
+      "name": "lietuvių kalba",
+      "cnName": "立陶宛语",
+      "enName": "Lithuanian",
+      "users": 300
+    },
+    {
+      "code": "pam",
+      "name": "Kapampangan",
+      "cnName": "邦板牙语",
+      "enName": "Pampanga",
+      "users": 290
+    },
+    {
+      "code": "zaz",
+      "name": "Idioma Zhazhaqi",
+      "cnName": "扎扎其语",
+      "enName": "Zazaki",
+      "users": 250
+    },
+    {
+      "code": "slo",
+      "name": "Slovenščina",
+      "cnName": "斯洛文尼亚语",
+      "enName": "Slovenian",
+      "users": 240
+    },
+    {
+      "code": "kok",
+      "name": "कोंकणी",
+      "cnName": "孔卡尼语",
+      "enName": "Konkani",
+      "users": 230
+    },
+    {
+      "code": "aym",
+      "name": "Aymar aru",
+      "cnName": "艾马拉语",
+      "enName": "Aymara",
+      "users": 222.7
+    },
+    {
+      "code": "chv",
+      "name": "Чӑвашла",
+      "cnName": "楚瓦什语",
+      "enName": "Chuvash",
+      "users": 200
+    },
+    {
+      "code": "lin",
+      "name": "Lingála",
+      "cnName": "林加拉语",
+      "enName": "Lingala",
+      "users": 200
+    },
+    {
+      "code": "mac",
+      "name": "македонски",
+      "cnName": "马其顿语",
+      "enName": "Macedonian",
+      "users": 200
+    },
+    {
+      "code": "yid",
+      "name": "ייַדיש שפּראַך",
+      "cnName": "意第绪语",
+      "enName": "Yiddish",
+      "users": 180
+    },
+    {
+      "code": "lav",
+      "name": "Latviešu valoda",
+      "cnName": "拉脱维亚语",
+      "enName": "Latvian",
+      "users": 175
+    },
+    {
+      "code": "lim",
+      "name": "Limburgs",
+      "cnName": "林堡语",
+      "enName": "Limburgish",
+      "users": 160
+    },
+    {
+      "code": "ro",
+      "name": "Romanes",
+      "cnName": "罗姆语",
+      "enName": "Romani",
+      "users": 150
+    },
+    {
+      "code": "sil",
+      "name": "Ślůnsko godka",
+      "cnName": "西里西亚语",
+      "enName": "Cilesian",
+      "users": 125
+    },
+    {
+      "code": "est",
+      "name": "eesti keel",
+      "cnName": "爱沙尼亚语",
+      "enName": "Estonian",
+      "users": 120
+    },
+    {
+      "code": "mau",
+      "name": "Kreol morisien",
+      "cnName": "毛里求斯克里奥尔语",
+      "enName": "Mauritian Creole",
+      "users": 120
+    },
+    {
+      "code": "nbl",
+      "name": "isiNdebele seSewula",
+      "cnName": "南恩德贝莱语",
+      "enName": "Southern Ndebele",
+      "users": 110
+    },
+    {
+      "code": "bak",
+      "name": "башҡорт теле",
+      "cnName": "巴什基尔语",
+      "enName": "Bashkir",
+      "users": 104.7
+    },
+    {
+      "code": "srd",
+      "name": "sardu",
+      "cnName": "撒丁语",
+      "enName": "Sardinian",
+      "users": 100
+    },
+    {
+      "code": "ven",
+      "name": "Tshivenḓa",
+      "cnName": "文达语",
+      "enName": "Venda",
+      "users": 87
+    },
+    {
+      "code": "oci",
+      "name": "Lenga d'òc",
+      "cnName": "奥克语",
+      "enName": "Occitan",
+      "users": 80
+    },
+    {
+      "code": "tet",
+      "name": "Tetun",
+      "cnName": "德顿语",
+      "enName": "Tetum",
+      "users": 80
+    },
+    {
+      "code": "baq",
+      "name": "Euskara",
+      "cnName": "巴斯克语",
+      "enName": "Basque",
+      "users": 71
+    },
+    {
+      "code": "wel",
+      "name": "Cymraeg",
+      "cnName": "威尔士语",
+      "enName": "Welsh",
+      "users": 70
+    },
+    {
+      "code": "fri",
+      "name": "Furlan",
+      "cnName": "弗留利语",
+      "enName": "Friulian",
+      "users": 60
+    },
+    {
+      "code": "wln",
+      "name": "Walon",
+      "cnName": "瓦隆语",
+      "enName": "Walloon",
+      "users": 60
+    },
+    {
+      "code": "mlt",
+      "name": "Malti",
+      "cnName": "马耳他语",
+      "enName": "Maltese",
+      "users": 52
+    },
+    {
+      "code": "sm",
+      "name": "Gagana Sāmoa",
+      "cnName": "萨摩亚语",
+      "enName": "Samoan",
+      "users": 51
+    },
+    {
+      "code": "oss",
+      "name": "Ирон ӕвзаг",
+      "cnName": "奥塞梯语",
+      "enName": "Ossetian",
+      "users": 50
+    },
+    {
+      "code": "fry",
+      "name": "Frysk",
+      "cnName": "西弗里斯语",
+      "enName": "Western Frisian",
+      "users": 47
+    },
+    {
+      "code": "div",
+      "name": "ދިވެހި",
+      "cnName": "迪维希语",
+      "enName": "Dhivehi",
+      "users": 40
+    },
+    {
+      "code": "ing",
+      "name": "Гӏалгӏай мотт",
+      "cnName": "印古什语",
+      "enName": "Ingush",
+      "users": 40
+    },
+    {
+      "code": "ice",
+      "name": "íslenska",
+      "cnName": "冰岛语",
+      "enName": "Icelandic",
+      "users": 33
+    },
+    {
+      "code": "pap",
+      "name": "Papiamentu",
+      "cnName": "帕皮阿门托语",
+      "enName": "Papiamento",
+      "users": 32.9
+    },
+    {
+      "code": "bre",
+      "name": "Brezhoneg",
+      "cnName": "布列塔尼语",
+      "enName": "Breton",
+      "users": 30
+    },
+    {
+      "code": "ltz",
+      "name": "Lëtzebuergesch",
+      "cnName": "卢森堡语",
+      "enName": "Luxembourgish",
+      "users": 28.5
+    },
+    {
+      "code": "gle",
+      "name": "Gaeilge",
+      "cnName": "爱尔兰语",
+      "enName": "Irish",
+      "users": 17
+    },
+    {
+      "code": "mao",
+      "name": "reo Māori",
+      "cnName": "毛利语",
+      "enName": "Maori",
+      "users": 16
+    },
+    {
+      "code": "cos",
+      "name": "corsu",
+      "cnName": "科西嘉语",
+      "enName": "Corsican",
+      "users": 15
+    },
+    {
+      "code": "mot",
+      "name": "crnogorski jezik",
+      "cnName": "黑山语",
+      "enName": "Montenegrin",
+      "users": 14.4
+    },
+    {
+      "code": "ast",
+      "name": "Asturianu",
+      "cnName": "阿斯图里亚斯语",
+      "enName": "Asturian",
+      "users": 11
+    },
+    {
+      "code": "bli",
+      "name": "ብሊና",
+      "cnName": "比林语",
+      "enName": "Bilin",
+      "users": 7
+    },
+    {
+      "code": "fao",
+      "name": "føroyskt",
+      "cnName": "法罗语",
+      "enName": "Faroese",
+      "users": 7
+    },
+    {
+      "code": "roh",
+      "name": "Rumantsch",
+      "cnName": "罗曼什语",
+      "enName": "Romansh",
+      "users": 7
+    },
+    {
+      "code": "ruy",
+      "name": "русиньский язык",
+      "cnName": "卢森尼亚语",
+      "enName": "Rusyn",
+      "users": 6.2
+    },
+    {
+      "code": "kal",
+      "name": "kalaallisut",
+      "cnName": "格陵兰语",
+      "enName": "Greenlandic",
+      "users": 5.7
+    },
+    {
+      "code": "oji",
+      "name": "Anishinaabemowin",
+      "cnName": "奥杰布瓦语",
+      "enName": "Ojibwa",
+      "users": 5.6
+    },
+    {
+      "code": "ups",
+      "name": "hornjoserbšćina",
+      "cnName": "上索布语",
+      "enName": "Upper Sorbian",
+      "users": 5.5
+    },
+    {
+      "code": "kah",
+      "name": "kaszëbsczi jãzëk",
+      "cnName": "卡舒比语",
+      "enName": "Kashubian",
+      "users": 5
+    },
+    {
+      "code": "mah",
+      "name": "Kajin M̧ajeļ",
+      "cnName": "马绍尔语",
+      "enName": "Marshallese",
+      "users": 4.3
+    },
+    {
+      "code": "iku",
+      "name": "ᐃᓄᒃᑎᑐᑦ",
+      "cnName": "伊努克提图特语",
+      "enName": "Inuktitut",
+      "users": 4
+    },
+    {
+      "code": "sme",
+      "name": "davvisámegiella",
+      "cnName": "北萨米语",
+      "enName": "Northern Sami",
+      "users": 2.5
+    },
+    {
+      "code": "haw",
+      "name": "ʻŌlelo Hawaiʻi",
+      "cnName": "夏威夷语",
+      "enName": "Hawaiian",
+      "users": 2.4
+    },
+    {
+      "code": "san",
+      "name": "संस्कृतम्",
+      "cnName": "梵语",
+      "enName": "Sanskrit",
+      "users": 1.4
+    },
+    {
+      "code": "arg",
+      "name": "aragonés",
+      "cnName": "阿拉贡语",
+      "enName": "Aragonese",
+      "users": 1
+    },
+    {
+      "code": "los",
+      "name": "dolnoserbšćina",
+      "cnName": "下索布语",
+      "enName": "Lower Sorbian",
+      "users": 0.7
+    },
+    {
+      "code": "bis",
+      "name": "Bichelamar",
+      "cnName": "比斯拉马语",
+      "enName": "Bislama",
+      "users": 0.6
+    },
+    {
+      "code": "cre",
+      "name": "Mvskoke",
+      "cnName": "克里克语",
+      "enName": "Creek",
+      "users": 0.6
+    },
+    {
+      "code": "cor",
+      "name": "Kernowek",
+      "cnName": "康瓦尔语",
+      "enName": "Cornish",
+      "users": 0.35
+    },
+    {
+      "code": "chr",
+      "name": "ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ",
+      "cnName": "切罗基语",
+      "enName": "Cherokee",
+      "users": 0.2
     }
   ]
 }
