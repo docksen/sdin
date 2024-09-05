@@ -20,5 +20,9 @@
   "gitlens.defaultDateShortFormat": "YY-MM-DD",
   "gitlens.defaultTimeFormat": "HH:mm",
   "prettier.configPath": "./pro/configs/.prettierrc",
-  "prettier.ignorePath": "./pro/configs/.prettierignore"
+  "prettier.ignorePath": "./pro/configs/.prettierignore",
+  "markdownlint.config": {
+    "default": true,
+    "MD033": false
+  }
 }

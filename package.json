@@ -1,6 +1,6 @@
 {
   "name": "sdin",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "JavaScript package builder.",
   "keywords": [
     "esm",
@@ -30,7 +30,8 @@
   ],
   "scripts": {
     "build": "node ./pro/bin/build.js",
-    "depend": "node ./pro/bin/depend.js"
+    "depend": "node ./pro/bin/depend.js",
+    "explain": "node ./pro/bin/explain.js"
   },
   "dependencies": {
     "@babel/core": "7.24.9",

@@ -9,6 +9,9 @@ const { withRootPath } = require('../scripts/utils/path')
 
 main()
 
+/**
+ * 锁定本项目依赖包版本
+ */
 function main() {
   const pkgPath = withRootPath('package.json')
   const pkgLockPath = withRootPath('package-lock.json')
