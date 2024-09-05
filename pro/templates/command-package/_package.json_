@@ -9,7 +9,10 @@
   ],
   "homepage": "https://github.com/<%= authorName %>/<%= projectName %>#readme",
   "bugs": "https://github.com/<%= authorName %>/<%= projectName %>/issues",
-  "repository": "git+https://github.com/<%= authorName %>/<%= projectName %>.git",
+  "repository": {
+    "type": "git",
+    "url":  "git+https://github.com/<%= authorName %>/<%= projectName %>.git"
+  },
   "license": "LGPL-3.0",
   "author": "<%= authorMark %>",
   "main": "tar/cjs",

@@ -13,7 +13,10 @@
   ],
   "homepage": "https://github.com/docksen/sdin#readme",
   "bugs": "https://github.com/docksen/sdin/issues",
-  "repository": "git+https://github.com/docksen/sdin.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/docksen/sdin.git"
+  },
   "license": "LGPL-3.0",
   "author": "docksen.yang <docksen@hotmail.com>",
   "main": "tar/cjs",
