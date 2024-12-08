@@ -160,8 +160,8 @@ Integrated module configuration
 | rules         | OrNil\<RuleSetRule\>[]      | No                            | -                              | Add packaging rules (can override some default rules)                             | -       |
 
 ```typescript
-// cjs: CommonJS module; glb: Global module; umd: UMD module;
-type SdinIntegrationModuleMode = 'cjs' | 'glb' | 'umd'
+// cjs: CommonJS module; glb: Global module; umd: UMD module; jsp: jsonp module;
+type SdinIntegrationModuleMode = 'cjs' | 'glb' | 'umd' | 'jsp'
 type OrNil<T> = T | undefined | null
 // For details, please refer to: https://webpack.js.org/configuration/module/#rule
 type RuleSetCondition = Webpack.RuleSetCondition

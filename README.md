@@ -6,7 +6,7 @@ Sdin is a JavaScript package builder, which uses Webpack and Gulp for packaging 
 
 1. 🐁 Path alias.
 2. 🐃 Global definition.
-3. 🐉 ESM, CJS, UMD modules.
+3. 🐉 ESM, CJS, UMD, JSONP modules.
 4. 🐐 React, JSX, SCSS, CSS syntax.
 5. 🐎 Text, font, image, audio, video assets.
 6. 🐇 Customize multiple modules.

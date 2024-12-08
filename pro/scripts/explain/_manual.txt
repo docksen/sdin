@@ -160,8 +160,8 @@ $53
 | rules         | OrNil\<RuleSetRule\>[]      | $21       | -                        | $64            | -       |
 
 ```typescript
-// cjs: $51; glb: $66; umd: $67;
-type SdinIntegrationModuleMode = 'cjs' | 'glb' | 'umd'
+// cjs: $51; glb: $66; umd: $67; jsp: jsonp;
+type SdinIntegrationModuleMode = 'cjs' | 'glb' | 'umd' | 'jsp'
 type OrNil<T> = T | undefined | null
 // $92: https://webpack.js.org/configuration/module/#rule
 type RuleSetCondition = Webpack.RuleSetCondition

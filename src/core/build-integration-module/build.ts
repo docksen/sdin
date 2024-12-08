@@ -9,7 +9,12 @@ import { cyan, green, magenta, printSuccess, yellow } from 'utils/print'
 import { ms2s } from 'utils/unit'
 import { filterNotNone } from 'utils/array'
 import type { Compiler } from 'webpack'
-import type { SdinConfig, SdinIntegrationModule } from 'core/config'
+import {
+  GLOBAL_MODE_LIST,
+  type SdinConfig,
+  type SdinIntegrationModule,
+  type SdinIntegrationModuleMode
+} from 'core/config'
 
 export interface SdinIntegrationModuleBuildingOptions {
   config: SdinConfig
@@ -36,8 +41,33 @@ export async function buildSdinIntegrationModule(
   })
 }
 
+interface ModeConfig {
+  libraryType: string
+  globalObject?: string
+}
+
+const MODE_TO_CONFIG: Record<SdinIntegrationModuleMode, ModeConfig> = {
+  cjs: {
+    libraryType: 'commonjs2'
+  },
+  umd: {
+    libraryType: 'umd2',
+    globalObject: 'typeof self !== "undefined" ? self : this'
+  },
+  jsp: {
+    libraryType: 'jsonp',
+    globalObject: 'typeof self !== "undefined" ? self : this'
+  },
+  glb: {
+    libraryType: 'global',
+    globalObject: 'typeof self !== "undefined" ? self : this'
+  }
+}
+
 function createCompiler(options: SdinIntegrationModuleBuildingOptions): Compiler {
   const { config, module } = options
+  const globalMode = GLOBAL_MODE_LIST.includes(module.mode)
+  const modeConfig = MODE_TO_CONFIG[module.mode]
   return Webpack({
     mode: 'production',
     target: 'node',
@@ -47,13 +77,14 @@ function createCompiler(options: SdinIntegrationModuleBuildingOptions): Compiler
       [module.entryName]: {
         import: module.src,
         library: {
-          name: module.mode === 'cjs' ? undefined : module.globalName,
-          type: module.mode === 'cjs' ? 'commonjs2' : module.mode === 'glb' ? 'global' : 'umd2'
+          name: globalMode ? module.globalName : undefined,
+          type: modeConfig.libraryType
         }
       }
     },
     output: {
       path: module.tar,
+      globalObject: globalMode ? module.globalObject || modeConfig.globalObject : undefined,
       hashDigestLength: 10,
       filename: '[name].js',
       sourceMapFilename: '[name][ext].map'

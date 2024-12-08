@@ -10,7 +10,9 @@ import { stat } from 'fs-extra'
 
 export type SdinIntegrationModuleType = 'integration'
 
-export type SdinIntegrationModuleMode = 'cjs' | 'glb' | 'umd'
+export type SdinIntegrationModuleMode = 'cjs' | 'umd' | 'jsp' | 'glb'
+
+export const GLOBAL_MODE_LIST: SdinIntegrationModuleMode[] = ['umd', 'jsp', 'glb']
 
 /**
  * Sdin 集成模块配置选项
@@ -25,8 +27,10 @@ export interface SdinIntegrationModuleParams
   tar?: string
   /** 模块入口名（默认：index） */
   entryName?: string
-  /** 全局对象名（用于指定包的导出对象，在全局的名称，cjs、umd 模式有效） */
+  /** 全局名（用于指定包的导出对象，在全局的名称，cjs、umd 模式有效） */
   globalName?: string
+  /** 全局对象（指定要挂载的环境中的全局对象变量名） */
+  globalObject?: string
   /** 压缩代码（生产模式下开启） */
   minify?: boolean
   /** 丑化代码（生产模式下开启，minify 开启时有效） */
@@ -72,8 +76,10 @@ export class SdinIntegrationModule extends SdinAbstractModule<
   readonly tar: string
   /** 模块入口名 */
   readonly entryName: string
-  /** 全局对象名 */
+  /** 全局名 */
   readonly globalName: string
+  /** 全局对象 */
+  readonly globalObject: string
   /** 压缩代码 */
   readonly minify: boolean
   /** 丑化代码 */
@@ -109,6 +115,7 @@ export class SdinIntegrationModule extends SdinAbstractModule<
     this.tar = resolve(config.root, params.tar || `tar/${this.mode}s`)
     this.entryName = params.entryName || 'index'
     this.globalName = params.globalName || ''
+    this.globalObject = params.globalObject || ''
     this.minify = params.minify ?? config.mode === 'production'
     this.uglify = params.uglify ?? config.mode === 'production'
     this.sourceMap = this.minify
@@ -133,7 +140,7 @@ export class SdinIntegrationModule extends SdinAbstractModule<
         `Module source ${this.src} is not file.`
       )
     }
-    if (['cjs', 'umd'].includes(this.mode) && !this.globalName) {
+    if (GLOBAL_MODE_LIST.includes(this.mode) && !this.globalName) {
       throw new SdinBusinessError(
         SdinBusinessError.ABSENT_GLOBAL_NAME,
         `Module global name is not defined.`

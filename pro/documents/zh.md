@@ -160,8 +160,8 @@ type OrNil<T> = T | undefined | null
 | rules         | OrNil\<RuleSetRule\>[]      | 否       | -                        | 添加打包规则（可以覆盖部分默认规则）            | -       |
 
 ```typescript
-// cjs: CommonJS 模块; glb: 全局模块; umd: UMD 模块;
-type SdinIntegrationModuleMode = 'cjs' | 'glb' | 'umd'
+// cjs: CommonJS 模块; glb: 全局模块; umd: UMD 模块; jsp: jsonp 模块;
+type SdinIntegrationModuleMode = 'cjs' | 'glb' | 'umd' | 'jsp'
 type OrNil<T> = T | undefined | null
 // 详情请见: https://webpack.js.org/configuration/module/#rule
 type RuleSetCondition = Webpack.RuleSetCondition
