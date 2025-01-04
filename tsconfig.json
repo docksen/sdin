@@ -21,7 +21,7 @@
     "allowSyntheticDefaultImports": true,
     "lib": ["ESNext", "DOM"],
     "module": "CommonJS",
-    "target": "ES5",
+    "target": "ES2015",
     "jsx": "react",
     "outDir": "tar",
     "esModuleInterop": true,

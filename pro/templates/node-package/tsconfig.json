@@ -20,7 +20,7 @@
     "jsx": "react",
     "lib": ["ESNext", "DOM"],
     "module": "CommonJS",
-    "target": "ES5",
+    "target": "ES2015",
     "outDir": "tar",
     "esModuleInterop": true,
     "resolveJsonModule": true,
