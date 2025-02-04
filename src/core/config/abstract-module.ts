@@ -93,14 +93,14 @@ export abstract class SdinAbstractModule<
   }
 
   /**
-   * 获取项目根目录下的路径
+   * 获取模块源码目录下的路径
    */
   withSrcPath(pathSegment: string) {
     return resolve(this.src, pathSegment)
   }
 
   /**
-   * 获得项目公共目录下的路径
+   * 获得模块目标目录下的路径
    */
   withTarPath(pathSegment: string) {
     return resolve(this.tar, pathSegment)

@@ -11,26 +11,45 @@ export interface Cacher<K = any, V = any> {
  */
 export function createCacher<K = any, V = any>({
   defaultExpireTime = 1000,
-  onDelete
+  onDelete,
+  onDestory
 }: {
   defaultExpireTime?: number
   onDelete?: (key: K, value: V | undefined) => void
+  onDestory?: (list: [K, V, any][], code: number) => void
 } = {}): Cacher<K, V> {
   const dataMap = new Map<K, [V, any]>()
   const has = (key: K) => dataMap.has(key)
   const get = (key: K) => dataMap.get(key)?.[0]
   const set = (key: K, value: V, expireTime?: number): void => {
     const oldData = dataMap.get(key)
-    if (oldData) {
+    if (oldData && oldData[1]) {
       clearTimeout(oldData[1])
     }
-    const timer = setTimeout(() => {
-      if (onDelete) {
-        onDelete(key, get(key))
+    const delay = expireTime ?? defaultExpireTime
+    if (delay >= 1) {
+      const timer = setTimeout(() => {
+        if (onDelete) {
+          onDelete(key, get(key))
+        }
+        dataMap.delete(key)
+      }, delay)
+      dataMap.set(key, [value, timer])
+    } else {
+      dataMap.set(key, [value, undefined])
+    }
+  }
+  if (onDestory) {
+    process.on('exit', code => {
+      const list: [K, V, any][] = []
+      for (const key of dataMap.keys()) {
+        const item = dataMap.get(key)
+        if (item) {
+          list.push([key, item[0], item[1]])
+        }
       }
-      dataMap.delete(key)
-    }, expireTime || defaultExpireTime)
-    dataMap.set(key, [value, timer])
+      onDestory(list, code)
+    })
   }
   return { has, get, set }
 }

@@ -11,3 +11,6 @@ export type {
   SdinIntegrationModule,
   SdinIntegrationModuleMode
 } from './integration-module'
+export type { SdinSuiteParams, SdinSuite } from './suite'
+export type { SdinUnitSuiteParams, SdinUnitSuite, SdinJestConfig } from './unit-suite'
+export type { SdinWebsiteSuiteParams, SdinWebsiteSuite } from './website-suite'

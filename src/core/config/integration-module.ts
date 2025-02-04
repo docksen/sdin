@@ -1,12 +1,11 @@
 import { resolve } from 'path'
 import { RuleSetCondition, RuleSetRule } from 'webpack'
 import { filterNotNone } from 'utils/array'
-import { resolveExtensionsSync } from 'utils/path'
+import { fileExistOrThrow, resolveExtensionsSync } from 'utils/path'
 import { OrNil } from 'utils/declaration'
 import { SdinConfig } from './config'
 import { SdinAbstractModule, SdinAbstractModuleParams } from './abstract-module'
 import { SdinBusinessError } from 'utils/error'
-import { stat } from 'fs-extra'
 
 export type SdinIntegrationModuleType = 'integration'
 
@@ -133,13 +132,7 @@ export class SdinIntegrationModule extends SdinAbstractModule<
 
   async validate(): Promise<void> {
     await super.validate()
-    const srcStat = await stat(this.src)
-    if (!srcStat.isFile()) {
-      throw new SdinBusinessError(
-        SdinBusinessError.SRC_IS_NOT_FILE,
-        `Module source ${this.src} is not file.`
-      )
-    }
+    await fileExistOrThrow(this.src)
     if (GLOBAL_MODE_LIST.includes(this.mode) && !this.globalName) {
       throw new SdinBusinessError(
         SdinBusinessError.ABSENT_GLOBAL_NAME,

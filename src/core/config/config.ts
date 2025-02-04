@@ -3,7 +3,10 @@ import { asyncForEach, filterNotNone } from 'utils/array'
 import { PackageInfo, getPackageRootPath, readPackageInfo } from 'utils/npm'
 import { OrNil } from 'utils/declaration'
 import { getWorkPath, joinPosix } from 'utils/path'
-import { SdinModule, SdinModuleParams, createSdinModule } from './module'
+import { createSdinModule } from './module'
+import { createSdinSuite } from './suite'
+import type { SdinModule, SdinModuleParams } from './module'
+import type { SdinSuite, SdinSuiteParams } from './suite'
 
 export type SdinBuildMode = 'development' | 'production'
 
@@ -21,6 +24,8 @@ export interface SdinConfigParams {
   definitions?: Record<string, string>
   /** 模块配置项列表 */
   modules: OrNil<SdinModuleParams>[]
+  /** 用例集配置项列表 */
+  suites: OrNil<SdinSuiteParams>[]
 }
 
 /**
@@ -45,6 +50,8 @@ export class SdinConfig {
   readonly alias: Record<string, string>
   /** 模块列表 */
   readonly modules: SdinModule[]
+  /** 用例集列表 */
+  readonly suites: SdinSuite[]
 
   constructor(params: SdinConfigParams) {
     this.params = params
@@ -56,12 +63,17 @@ export class SdinConfig {
     this.mode = params.mode || 'production'
     this.alias = params.alias || {}
     this.modules = filterNotNone(params.modules).map(item => createSdinModule(this, item))
+    this.suites = filterNotNone(params.suites).map(item => createSdinSuite(this, item))
   }
 
   async initialize() {
     await asyncForEach(this.modules, async module => {
       await module.initialize()
       await module.validate()
+    })
+    await asyncForEach(this.suites, async suite => {
+      await suite.initialize()
+      await suite.validate()
     })
   }
 

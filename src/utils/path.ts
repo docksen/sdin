@@ -1,8 +1,8 @@
 import { posix, resolve } from 'path'
-import { pathExists, pathExistsSync } from 'fs-extra'
+import { exists, pathExists, pathExistsSync, stat } from 'fs-extra'
 import { createLazyer } from './cache'
 import { getPackageRootPath } from './npm'
-import { SdinUtilsError } from './error'
+import { SdinBusinessError, SdinUtilsError } from './error'
 
 const POS_OR_WIN_SEP_EXP = /[\/\\]+/
 const WIN_DISK_FLAG_EXP = /^([a-zA-Z0-9]+)\:$/
@@ -60,6 +60,28 @@ export function getWorkPath(): string {
  */
 export function withWorkPath(path: string): string {
   return resolve(workPath.get(), path)
+}
+
+export async function dirExistOrThrow(path: string): Promise<void> {
+  try {
+    const srcStat = await stat(path)
+    if (!srcStat.isDirectory()) {
+      throw new SdinUtilsError(SdinUtilsError.DIR_IS_NOT_EXIST, `Path ${path} is not directory.`)
+    }
+  } catch (_err: any) {
+    throw new SdinUtilsError(SdinUtilsError.DIR_IS_NOT_EXIST, `Path ${path} is not exist.`)
+  }
+}
+
+export async function fileExistOrThrow(path: string): Promise<void> {
+  try {
+    const srcStat = await stat(path)
+    if (!srcStat.isFile()) {
+      throw new SdinUtilsError(SdinUtilsError.FILE_IS_NOT_EXIST, `Path ${path} is not file.`)
+    }
+  } catch (_err: any) {
+    throw new SdinUtilsError(SdinUtilsError.FILE_IS_NOT_EXIST, `Path ${path} is not exist.`)
+  }
 }
 
 /**

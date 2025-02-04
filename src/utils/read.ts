@@ -113,12 +113,17 @@ const exportsDatas = createCacher()
  *
  * @param source 指定要读取的路径
  * @param strict 启用严格模式（严格模式：如果获取不到就报错退出）
+ * @param expireTime 指定缓存过期时间（设为 0，则长期有效）
  */
-export async function readExports(source: string, strict?: boolean): Promise<any> {
+export async function readExports(
+  source: string,
+  strict?: boolean,
+  expireTime?: number
+): Promise<any> {
   if (exportsDatas.has(source)) {
     return exportsDatas.get(source)
   }
-  let realSource = await compileTypeScriptFile(source, strict)
+  let realSource = await compileTypeScriptFile(source, strict, expireTime)
   if (!realSource || !(await pathExists(realSource))) {
     if (strict) {
       throw new SdinUtilsError(

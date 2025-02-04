@@ -51,29 +51,33 @@ export class SdinUtilsError extends SdinError {
   /** NPM 包模块的根目录不存在 */
   static readonly DOWNLOAD_MODULES_ROOT_IS_NOT_EXIST = 990110
   /** NPM 包模块下载失败 */
-  static readonly DOWNLOAD_MODULES_FAILED = 990112
+  static readonly DOWNLOAD_MODULES_FAILED = 990111
   /** 深度读取文件时，入口不存在 */
-  static readonly DEEP_READED_FILE_IS_NOT_EXIST = 990113
+  static readonly DEEP_READED_FILE_IS_NOT_EXIST = 990112
   /** 编译要导出的 TS 文件时，文件不存在 */
-  static readonly READED_EXPORTS_COMPILED_TYPESCRIPT_FILE_IS_NOT_EXIST = 990114
+  static readonly READED_EXPORTS_COMPILED_TYPESCRIPT_FILE_IS_NOT_EXIST = 990113
   /** 编译要导出的 TS 文件时，编译失败 */
-  static readonly READED_EXPORTS_COMPILED_TYPESCRIPT_FILE_FAILED = 990115
+  static readonly READED_EXPORTS_COMPILED_TYPESCRIPT_FILE_FAILED = 990114
   /** 读取要导出的文件时，文件不存在 */
-  static readonly READED_EXPORTS_FILE_IS_NOT_EXIST = 990116
+  static readonly READED_EXPORTS_FILE_IS_NOT_EXIST = 990115
   /** 读取要导出的文件时，读取失败 */
-  static readonly READED_EXPORTS_FILE_FAILED = 990117
+  static readonly READED_EXPORTS_FILE_FAILED = 990116
   /** 没有流可用于管道运输 */
-  static readonly STREAM_PIPELINE_NO_SOURCES = 990118
+  static readonly STREAM_PIPELINE_NO_SOURCES = 990117
   /** 深度复制失败 */
-  static readonly DEEP_COPY_FAILED = 990119
+  static readonly DEEP_COPY_FAILED = 990118
   /** 深度复制文件时，目标文件已存在 */
-  static readonly DEEP_COPIED_TARGET_ALREADY_EXISTS = 990120
+  static readonly DEEP_COPIED_TARGET_ALREADY_EXISTS = 990119
   /** 找不到根路径 */
-  static readonly NOT_HAS_ROOT_PATH = 990121
+  static readonly NOT_HAS_ROOT_PATH = 990120
   /** 找不到 module 路径 */
   static readonly NOT_HAS_MODULE_PATH = 990121
   /** Webpack 编译出错 */
-  static readonly WEBPACK_COMPILE_ERROR = 990121
+  static readonly WEBPACK_COMPILE_ERROR = 990122
+  /** 文件夹不存在 */
+  static readonly DIR_IS_NOT_EXIST = 990123
+  /** 文件不存在 */
+  static readonly FILE_IS_NOT_EXIST = 990124
 }
 
 export class SdinBusinessError extends SdinError {
@@ -81,16 +85,18 @@ export class SdinBusinessError extends SdinError {
   static readonly FIND_TEMPLATE_FAILED = 990201
   /** 读取配置文件失败 */
   static readonly READ_CONFIG_FILE_FAILED = 990202
-  /** 输入的源码位置不是文件夹 */
-  static readonly SRC_IS_NOT_DIRECTORY = 990203
-  /** 输入的源码位置不是文件 */
-  static readonly SRC_IS_NOT_FILE = 990203
   /** 包依赖错误 */
-  static readonly PACKAGE_DEPENDENCE_ABSENT = 990204
+  static readonly PACKAGE_DEPENDENCE_ABSENT = 990203
   /** 文件名格式不正确 */
-  static readonly FILE_NAME_FORMAT_ILLEGAL = 990205
+  static readonly FILE_NAME_FORMAT_ILLEGAL = 990204
   /** 缺少全局对象名 */
-  static readonly ABSENT_GLOBAL_NAME = 990206
+  static readonly ABSENT_GLOBAL_NAME = 990205
   /** 模块名格式不正确 */
-  static readonly MODULE_NAME_FORMAT_ILLEGAL = 990207
+  static readonly MODULE_NAME_FORMAT_ILLEGAL = 990206
+  /** 用例集名格式不正确 */
+  static readonly SUITE_NAME_FORMAT_ILLEGAL = 990207
+  /** 模块类型不正确 */
+  static readonly MODULE_TYPE_ILLEGAL = 990208
+  /** 用例集类型不正确 */
+  static readonly SUITE_TYPE_ILLEGAL = 990209
 }

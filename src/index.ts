@@ -13,8 +13,16 @@ export type {
   SdinIntegrationModule,
   SdinDeclarationModuleParams,
   SdinDeclarationModule,
-  SdinConfigReadingParams
+  SdinSuiteParams,
+  SdinSuite,
+  SdinUnitSuiteParams,
+  SdinUnitSuite,
+  SdinWebsiteSuiteParams,
+  SdinWebsiteSuite,
+  SdinConfigReadingParams,
+  SdinJestConfig
 } from 'core/config'
 export type { SdinTemplateMeta } from 'core/enquire'
 export type { SdinProjectCreatingOptions } from 'main/create'
 export type { SdinProjectBuildingOptions } from 'main/build'
+export type { SdinProjectTestingOptions } from 'main/test'

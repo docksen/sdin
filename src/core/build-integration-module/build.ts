@@ -8,13 +8,9 @@ import { emptyDir } from 'fs-extra'
 import { cyan, green, magenta, printSuccess, yellow } from 'utils/print'
 import { ms2s } from 'utils/unit'
 import { filterNotNone } from 'utils/array'
+import { GLOBAL_MODE_LIST } from 'core/config'
 import type { Compiler } from 'webpack'
-import {
-  GLOBAL_MODE_LIST,
-  type SdinConfig,
-  type SdinIntegrationModule,
-  type SdinIntegrationModuleMode
-} from 'core/config'
+import type { SdinConfig, SdinIntegrationModule, SdinIntegrationModuleMode } from 'core/config'
 
 export interface SdinIntegrationModuleBuildingOptions {
   config: SdinConfig

@@ -2,6 +2,7 @@ import { SdinConfig } from './config'
 import { SdinFoundationModule, SdinFoundationModuleParams } from './foundation-module'
 import { SdinDeclarationModule, SdinDeclarationModuleParams } from './declaration-module'
 import { SdinIntegrationModule, SdinIntegrationModuleParams } from './integration-module'
+import { SdinBusinessError } from 'utils/error'
 
 /**
  * Sdin 模块参数
@@ -24,6 +25,9 @@ export function createSdinModule(config: SdinConfig, params: SdinModuleParams): 
   } else if (params.type === 'declaration') {
     return new SdinDeclarationModule(config, params)
   } else {
-    throw new Error('模块类型不存在')
+    throw new SdinBusinessError(
+      SdinBusinessError.MODULE_TYPE_ILLEGAL,
+      `Module type ${(params as any).type} is illegal.`
+    )
   }
 }

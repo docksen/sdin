@@ -69,7 +69,7 @@ export function replaceByLodash(
   let content: string = ''
   const isBuffer = Buffer.isBuffer(data)
   if (isBuffer) {
-    if (chardet.analyse(data).find(i => i.name === 'UTF-8')) {
+    if (chardet.analyse(data as any).find(i => i.name === 'UTF-8')) {
       content = data.toString('utf8')
     }
   } else {
@@ -97,7 +97,7 @@ export function replaceByCode(
   let content: string = ''
   const isBuffer = Buffer.isBuffer(data)
   if (isBuffer) {
-    if (chardet.analyse(data).find(i => i.name === 'UTF-8')) {
+    if (chardet.analyse(data as any).find(i => i.name === 'UTF-8')) {
       content = data.toString('utf8')
     }
   } else {
@@ -126,7 +126,7 @@ export function replaceByString(
   let content: string = ''
   const isBuffer = Buffer.isBuffer(data)
   if (isBuffer) {
-    if (chardet.analyse(data).find(i => i.name === 'UTF-8')) {
+    if (chardet.analyse(data as any).find(i => i.name === 'UTF-8')) {
       content = data.toString('utf8')
     }
   } else {

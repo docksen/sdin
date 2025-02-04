@@ -1,10 +1,9 @@
-import { stat } from 'fs-extra'
 import { resolve } from 'path'
 import { filterNotNone } from 'utils/array'
 import { OrNil } from 'utils/declaration'
 import { SdinConfig } from './config'
 import { SdinAbstractModule, SdinAbstractModuleParams } from './abstract-module'
-import { SdinBusinessError } from 'utils/error'
+import { dirExistOrThrow } from 'utils/path'
 
 export type SdinFoundationModuleType = 'foundation'
 
@@ -77,12 +76,6 @@ export class SdinFoundationModule extends SdinAbstractModule<
 
   async validate(): Promise<void> {
     await super.validate()
-    const srcStat = await stat(this.src)
-    if (!srcStat.isDirectory()) {
-      throw new SdinBusinessError(
-        SdinBusinessError.SRC_IS_NOT_DIRECTORY,
-        `Module source ${this.src} is not directory.`
-      )
-    }
+    await dirExistOrThrow(this.src)
   }
 }
