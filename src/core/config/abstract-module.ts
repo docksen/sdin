@@ -1,7 +1,8 @@
 import { resolve } from 'path'
-import { SdinConfig } from './config'
+import { SdinConfig, SdinConfigDefinitions } from './config'
 import { SdinBusinessError } from 'utils/error'
 import { isCodeModuleName } from 'utils/check'
+import { SdinAbstractConfig } from './abstract-config'
 
 /**
  * Sdin 抽象模块选项
@@ -18,12 +19,7 @@ export interface SdinAbstractModuleParams<TType extends string, TMode extends st
 /**
  * Sdin 模块全局定义
  */
-export interface SdinModuleDefinitions extends Record<string, string> {
-  SDIN_PROJECT_MODE: string
-  SDIN_PROJECT_NAME: string
-  SDIN_PROJECT_VERSION: string
-  SDIN_PROJECT_AUTHOR_NAME: string
-  SDIN_PROJECT_AUTHOR_EMAIL: string
+export interface SdinModuleDefinitions extends SdinConfigDefinitions {
   SDIN_MODULE_TYPE: string
   SDIN_MODULE_MODE: string
   SDIN_MODULE_NAME: string
@@ -36,11 +32,7 @@ export abstract class SdinAbstractModule<
   TType extends string,
   TMode extends string,
   TParam extends SdinAbstractModuleParams<TType, TMode>
-> {
-  /** Sdin 配置对象 */
-  readonly config: SdinConfig
-  /** 模块原始配置 */
-  readonly params: TParam
+> extends SdinAbstractConfig<SdinConfig, SdinConfig, TParam> {
   /** 模块类型 */
   readonly type: TType
   /** 模块构建模式 */
@@ -51,22 +43,16 @@ export abstract class SdinAbstractModule<
   abstract src: string
   /** 输出的目标位置 */
   abstract tar: string
-  /** 全局定义 */
+  /** 模块全局定义 */
   readonly definitions: SdinModuleDefinitions
 
   constructor(config: SdinConfig, params: TParam, mode: TMode) {
-    this.config = config
-    this.params = params
+    super(config, config, params)
     this.type = params.type
     this.mode = params.mode || mode
     this.name = params.name
     this.definitions = {
-      ...this.config.params.definitions,
-      SDIN_PROJECT_MODE: JSON.stringify(config.mode),
-      SDIN_PROJECT_NAME: JSON.stringify(config.pkg.name),
-      SDIN_PROJECT_VERSION: JSON.stringify(config.pkg.version),
-      SDIN_PROJECT_AUTHOR_NAME: JSON.stringify(config.pkg.authorName),
-      SDIN_PROJECT_AUTHOR_EMAIL: JSON.stringify(config.pkg.authorEmail),
+      ...config.definitions,
       SDIN_MODULE_TYPE: JSON.stringify(this.type),
       SDIN_MODULE_MODE: JSON.stringify(this.mode),
       SDIN_MODULE_NAME: JSON.stringify(this.name)

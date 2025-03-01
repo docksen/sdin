@@ -1,4 +1,3 @@
-import { resolve } from 'path'
 import { filterNotNone } from 'utils/array'
 import { OrNil } from 'utils/declaration'
 import { SdinConfig } from './config'
@@ -63,10 +62,10 @@ export class SdinFoundationModule extends SdinAbstractModule<
 
   constructor(config: SdinConfig, params: SdinFoundationModuleParams) {
     super(config, params, 'cjs')
-    this.src = resolve(config.root, this.params.src || 'src')
-    this.tar = resolve(config.root, this.params.tar || `tar/${this.mode}`)
-    this.includes = filterNotNone(this.params.includes)
-    this.excludes = filterNotNone(this.params.excludes)
+    this.src = config.withRootPath(params.src || 'src')
+    this.tar = config.withRootPath(params.tar || `tar/${this.mode}`)
+    this.includes = filterNotNone(params.includes)
+    this.excludes = filterNotNone(params.excludes)
     this.minify = params.minify ?? config.mode === 'production'
     this.uglify = params.uglify ?? config.mode === 'production'
     this.sourceMap = this.minify

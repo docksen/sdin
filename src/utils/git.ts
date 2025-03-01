@@ -76,17 +76,17 @@ export async function createGitRepository(root: string): Promise<void> {
     },
     loading: payload => {
       if (payload) {
-        if (payload.toString) {
-          return payload.toString()
-        }
         if (typeof payload === 'string') {
           return payload
+        }
+        if (payload.toString) {
+          return payload.toString()
         }
       }
       return `Creating git repository to ${yellow(root)}.`
     },
     resolve: () => {
-      return `successfully Created git repository to ${green(root)}.`
+      return `Successfully created git repository to ${green(root)}.`
     },
     reject: () => {
       return `Failed to create git repository to ${red(root)}.`

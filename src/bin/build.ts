@@ -26,5 +26,5 @@ async function action(path?: string) {
   const root = withWorkPath(path || '')
   const config = await readSdinConfig({ root })
   const moduleNames = options.modules ? options.modules.split(',') : undefined
-  await buildSdinProject({ moduleNames, config })
+  await buildSdinProject({ config, moduleNames })
 }

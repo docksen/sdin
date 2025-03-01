@@ -3,10 +3,10 @@ import { asyncForEach, filterNotNone } from 'utils/array'
 import { PackageInfo, getPackageRootPath, readPackageInfo } from 'utils/npm'
 import { OrNil } from 'utils/declaration'
 import { getWorkPath, joinPosix } from 'utils/path'
-import { createSdinModule } from './module'
-import { createSdinSuite } from './suite'
-import type { SdinModule, SdinModuleParams } from './module'
-import type { SdinSuite, SdinSuiteParams } from './suite'
+import { createSdinModule } from './common-tools'
+import { SdinAbstractConfig } from './abstract-config'
+import type { SdinModule, SdinModuleParams } from './common-declarations'
+import { SdinTesting, SdinTestingParams } from './testing'
 
 export type SdinBuildMode = 'development' | 'production'
 
@@ -22,22 +22,31 @@ export interface SdinConfigParams {
   alias?: Record<string, string>
   /** 全局定义（key 是原代码，value 是替换后的代码） */
   definitions?: Record<string, string>
+  /** 测试配置 */
+  testing?: SdinTestingParams
   /** 模块配置项列表 */
   modules: OrNil<SdinModuleParams>[]
-  /** 用例集配置项列表 */
-  suites: OrNil<SdinSuiteParams>[]
+}
+
+/**
+ * Sdin 模块全局定义
+ */
+export interface SdinConfigDefinitions extends Record<string, string> {
+  SDIN_PROJECT_MODE: string
+  SDIN_PROJECT_NAME: string
+  SDIN_PROJECT_VERSION: string
+  SDIN_PROJECT_AUTHOR_NAME: string
+  SDIN_PROJECT_AUTHOR_EMAIL: string
 }
 
 /**
  * Sdin 配置
  */
-export class SdinConfig {
-  /** 原始配置信息 */
-  readonly params: SdinConfigParams
+export class SdinConfig extends SdinAbstractConfig<null, null, SdinConfigParams> {
   /** 项目根目录 */
   readonly root: string
-  /** 项目缓存目录 */
-  readonly swp: string
+  /** 项目临时目录 */
+  readonly tmp: string
   /** 项目公共目录 */
   readonly pro: string
   /** 项目配置目录 */
@@ -48,33 +57,42 @@ export class SdinConfig {
   readonly mode: SdinBuildMode
   /** 模块别名 */
   readonly alias: Record<string, string>
+  /** 测试配置 */
+  readonly testing: SdinTesting
   /** 模块列表 */
   readonly modules: SdinModule[]
-  /** 用例集列表 */
-  readonly suites: SdinSuite[]
+  /** 项目全局定义（key 是原代码，value 是替换后的代码） */
+  readonly definitions: SdinConfigDefinitions
 
   constructor(params: SdinConfigParams) {
-    this.params = params
+    super(null, null, params)
     this.root = resolve(getPackageRootPath(params.root || getWorkPath()))
-    this.swp = resolve(this.root, '.swap')
-    this.pro = resolve(this.root, 'pro')
-    this.cfg = resolve(this.root, 'pro/configs')
+    this.tmp = this.withRootPath('.tmp')
+    this.pro = this.withRootPath('pro')
+    this.cfg = this.withRootPath('pro/configs')
     this.pkg = readPackageInfo(this.root, true)
     this.mode = params.mode || 'production'
     this.alias = params.alias || {}
+    this.testing = new SdinTesting(this, params.testing || {})
     this.modules = filterNotNone(params.modules).map(item => createSdinModule(this, item))
-    this.suites = filterNotNone(params.suites).map(item => createSdinSuite(this, item))
+    this.definitions = {
+      ...params.definitions,
+      SDIN_PROJECT_MODE: JSON.stringify(this.mode),
+      SDIN_PROJECT_NAME: JSON.stringify(this.pkg.name),
+      SDIN_PROJECT_VERSION: JSON.stringify(this.pkg.version),
+      SDIN_PROJECT_AUTHOR_NAME: JSON.stringify(this.pkg.authorName),
+      SDIN_PROJECT_AUTHOR_EMAIL: JSON.stringify(this.pkg.authorEmail)
+    }
   }
 
   async initialize() {
-    await asyncForEach(this.modules, async module => {
-      await module.initialize()
-      await module.validate()
-    })
-    await asyncForEach(this.suites, async suite => {
-      await suite.initialize()
-      await suite.validate()
-    })
+    await this.testing.initialize()
+    await asyncForEach(this.modules, module => module.initialize())
+  }
+
+  async validate(): Promise<void> {
+    await this.testing.validate()
+    await asyncForEach(this.modules, module => module.validate())
   }
 
   /**
@@ -92,17 +110,17 @@ export class SdinConfig {
   }
 
   /**
+   * 获得项目临时目录下的路径
+   */
+  withTmpPath(pathSegment: string) {
+    return resolve(this.tmp, pathSegment)
+  }
+
+  /**
    * 获得项目公共目录下的路径
    */
   withProPath(pathSegment: string) {
     return resolve(this.pro, pathSegment)
-  }
-
-  /**
-   * 获得项目缓存目录下的路径
-   */
-  withSwpPath(pathSegment: string) {
-    return resolve(this.swp, pathSegment)
   }
 
   /**

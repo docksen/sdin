@@ -11,8 +11,8 @@ import { getBabelOptions } from './babel'
 import { pipeline } from 'utils/stream'
 import { gulpExtraFilter } from 'utils/gulp'
 import { relativePosix } from 'utils/path'
-import type { SdinConfig, SdinFoundationModule } from 'core/config'
 import { filterNotNone } from 'utils/array'
+import type { SdinConfig, SdinFoundationModule } from 'core/config'
 
 const gulpSass = gulpSassFactory(sass)
 

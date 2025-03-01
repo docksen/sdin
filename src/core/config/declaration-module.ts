@@ -1,4 +1,3 @@
-import { resolve } from 'path'
 import { OrNil } from 'utils/declaration'
 import { filterNotNone } from 'utils/array'
 import { SdinConfig } from './config'
@@ -45,8 +44,8 @@ export class SdinDeclarationModule extends SdinAbstractModule<
 
   constructor(config: SdinConfig, params: SdinDeclarationModuleParams) {
     super(config, params, 'dts')
-    this.src = resolve(config.root, params.src || 'src')
-    this.tar = resolve(config.root, params.tar || 'tar/dts')
+    this.src = config.withRootPath(params.src || 'src')
+    this.tar = config.withRootPath(params.tar || 'tar/dts')
     this.includes = filterNotNone(params.includes)
     this.excludes = filterNotNone(params.excludes)
   }

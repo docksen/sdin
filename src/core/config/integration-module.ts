@@ -108,9 +108,9 @@ export class SdinIntegrationModule extends SdinAbstractModule<
 
   constructor(config: SdinConfig, params: SdinIntegrationModuleParams) {
     super(config, params, 'umd')
-    this.src = this.params.src
-      ? resolve(this.config.root, this.params.src)
-      : resolveExtensionsSync(resolve(this.config.root, 'src'), 'index', TJSX_FILE_EXTENSIONS)
+    this.src = params.src
+      ? config.withRootPath(params.src)
+      : resolveExtensionsSync(config.withRootPath('src'), 'index', TJSX_FILE_EXTENSIONS)
     this.tar = resolve(config.root, params.tar || `tar/${this.mode}s`)
     this.entryName = params.entryName || 'index'
     this.globalName = params.globalName || ''

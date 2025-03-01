@@ -93,10 +93,8 @@ export class SdinBusinessError extends SdinError {
   static readonly ABSENT_GLOBAL_NAME = 990205
   /** 模块名格式不正确 */
   static readonly MODULE_NAME_FORMAT_ILLEGAL = 990206
-  /** 用例集名格式不正确 */
-  static readonly SUITE_NAME_FORMAT_ILLEGAL = 990207
   /** 模块类型不正确 */
-  static readonly MODULE_TYPE_ILLEGAL = 990208
-  /** 用例集类型不正确 */
-  static readonly SUITE_TYPE_ILLEGAL = 990209
+  static readonly MODULE_TYPE_ILLEGAL = 990207
+  /** 启动模式不正确 */
+  static readonly STARTING_MODE_ILLEGAL = 990208
 }
