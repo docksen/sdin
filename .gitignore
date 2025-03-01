@@ -1,7 +1,7 @@
 # project
 /tar/
-/doc/tar/
-**/*.swp.js
+/.tmp/
+**/*.tmp.js
 
 # tools
 .git/

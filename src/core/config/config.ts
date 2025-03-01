@@ -73,8 +73,6 @@ export class SdinConfig extends SdinAbstractConfig<null, null, SdinConfigParams>
     this.pkg = readPackageInfo(this.root, true)
     this.mode = params.mode || 'production'
     this.alias = params.alias || {}
-    this.testing = new SdinTesting(this, params.testing || {})
-    this.modules = filterNotNone(params.modules).map(item => createSdinModule(this, item))
     this.definitions = {
       ...params.definitions,
       SDIN_PROJECT_MODE: JSON.stringify(this.mode),
@@ -83,6 +81,8 @@ export class SdinConfig extends SdinAbstractConfig<null, null, SdinConfigParams>
       SDIN_PROJECT_AUTHOR_NAME: JSON.stringify(this.pkg.authorName),
       SDIN_PROJECT_AUTHOR_EMAIL: JSON.stringify(this.pkg.authorEmail)
     }
+    this.testing = new SdinTesting(this, params.testing || {})
+    this.modules = filterNotNone(params.modules).map(item => createSdinModule(this, item))
   }
 
   async initialize() {

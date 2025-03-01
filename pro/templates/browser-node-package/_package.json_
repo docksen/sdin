@@ -21,7 +21,8 @@
     "tar/umds"
   ],
   "scripts": {
-    "build": "sdin build"
+    "build": "sdin build",
+    "test": "sdin start -m testing"
   },
   "dependencies": {
     "@babel/runtime": "^7.25.0"

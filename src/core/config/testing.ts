@@ -43,7 +43,7 @@ export class SdinTesting extends SdinAbstractConfig<SdinConfig, SdinConfig, Sdin
     this.tar = params.tar ? config.withRootPath(params.tar) : config.withTmpPath('testing')
     this.entry = params.entry || 'index.js'
     this.alias = params.alias || {}
-    this.definitions = this.config.definitions
+    this.definitions = config.definitions
   }
 
   async validate(): Promise<void> {

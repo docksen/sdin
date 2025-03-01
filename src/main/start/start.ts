@@ -23,7 +23,7 @@ export async function startSdinProject(options: SdinProjectStartingOptions): Pro
   } else {
     throw new SdinBusinessError(
       SdinBusinessError.STARTING_MODE_ILLEGAL,
-      `Starting mode ${mode} is illegal.`
+      mode ? `Starting mode ${mode} is illegal.` : 'Starting mode is missing.'
     )
   }
 }

@@ -5,6 +5,11 @@ export const sdinConfigParams: SdinConfigParams = {
     main: 'src/main',
     utils: 'src/utils'
   },
+  testing: {
+    alias: {
+      <%= projectName %>: 'tar/cjs'
+    }
+  },
   modules: [
     {
       type: 'foundation',

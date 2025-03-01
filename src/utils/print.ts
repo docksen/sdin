@@ -1,6 +1,7 @@
 import { isNil } from 'lodash'
 import { ellipsis } from './string'
 import { filterNotNone } from './array'
+import { SdinBusinessError, SdinError } from './error'
 
 export function red(msg: any): string {
   return isNil(msg) ? '' : '\x1B[31m' + msg + '\x1B[0m'
@@ -113,14 +114,18 @@ export function printError(arg1: any, arg2: any, arg3?: number) {
     msg = arg1
     exitCode = arg2
   }
-  if (msg) {
-    print(msg, red('x'))
-  }
-  if (error) {
-    console.error(error)
-  }
-  if (exitCode !== undefined) {
-    print(undefined, undefined, exitCode)
+  if (error instanceof SdinError) {
+    print(error.message, red('x'), error.code)
+  } else {
+    if (msg) {
+      print(msg, red('x'))
+    }
+    if (error) {
+      console.error(error)
+    }
+    if (exitCode !== undefined) {
+      print(undefined, undefined, exitCode)
+    }
   }
 }
 

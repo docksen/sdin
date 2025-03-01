@@ -62,7 +62,7 @@ export async function compileTypeScriptFile(
   }
   try {
     const target = resolve(source, '..')
-    const fileName = '.' + getCacheKeyByFilePath(source) + '.swp.js'
+    const fileName = '.' + getCacheKeyByFilePath(source) + '.tmp.js'
     await pipeline(
       gulp.src(source),
       gulpBabel({

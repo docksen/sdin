@@ -2,6 +2,11 @@ import type { SdinConfigParams } from 'sdin'
 
 export const sdinConfigParams: SdinConfigParams = {
   alias: {},
+  testing: {
+    alias: {
+      <%= projectName %>: 'tar/cjs'
+    }
+  },
   modules: [
     {
       type: 'foundation',

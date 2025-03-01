@@ -19,10 +19,11 @@ export async function startSdinTesting(options: SdinTestingStartingOptions): Pro
     `Successfully built ${green('testing')} files, it took ${cyan(ms2s(Date.now() - startTime))} s.`
   )
   try {
-    execute(testing.withTarPath(testing.entry))
+    const command = `node ${testing.withTarPath(testing.entry)}`
+    await execute(command, console.log)
   } catch (error: unknown) {
     console.error(error)
   } finally {
-    emptyDir(testing.tar)
+    await emptyDir(testing.tar)
   }
 }
