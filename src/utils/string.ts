@@ -3,7 +3,8 @@ import { createCacher } from './cache'
 import { template, escapeRegExp } from 'lodash'
 
 const NANOID_LETTER_SET = 'abcdefghijkmnprstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
-const NANOID_CHARACTER_SET = `${NANOID_LETTER_SET}1234567890`
+const NANOID_CHARACTER_SET = NANOID_LETTER_SET + '1234567890'
+const SEPARATOR_EXP = /[\s,\.;\\\|\/，、。；]+/g
 const REPLACE_BY_LODASH_INTERPOLATE_EXP = /<%=([\s\S]+?)%>/g
 const REPLACE_BY_CODE_SEARCH_VALUE_EXP = /\${([^\$\{\}]+)}/g
 
@@ -15,22 +16,35 @@ const regExps = createCacher<any, RegExp>()
  * @param length 生成 ID 的长度（默认：8）
  */
 export function nanoid(length: number = 8): string {
-  let id = NANOID_LETTER_SET[Math.floor(Math.random() * NANOID_LETTER_SET.length)]
-  while (id.length < length) {
-    id += NANOID_CHARACTER_SET[Math.floor(Math.random() * NANOID_CHARACTER_SET.length)]
+  const ids: string[] = [NANOID_LETTER_SET[Math.floor(Math.random() * NANOID_LETTER_SET.length)]]
+  for (let i = 1; i < length; i++) {
+    ids.push(NANOID_CHARACTER_SET[Math.floor(Math.random() * NANOID_CHARACTER_SET.length)])
   }
-  return id
+  return ids.join('')
 }
 
 /**
  * 超出长度后，显示省略符
  */
-export function ellipsis(data: string, length: number): string {
+export function ellipsis(data: string | undefined, length: number): string {
+  if (!data) {
+    return ''
+  }
   const firstLine = data.includes('\n') ? data.split('\n')[0] : data
   if (firstLine.length < length) {
     return firstLine
   }
   return firstLine.slice(0, length - 3) + '...'
+}
+
+/**
+ * 按照分隔符进行切割，并移除结果中的空白字符串
+ */
+export function splitBySeparator(data?: string): string[] {
+  if (!data) {
+    return []
+  }
+  return data.split(SEPARATOR_EXP).filter(Boolean)
 }
 
 /**
@@ -69,7 +83,7 @@ export function replaceByLodash(
   let content: string = ''
   const isBuffer = Buffer.isBuffer(data)
   if (isBuffer) {
-    if (chardet.analyse(data).find(i => i.name === 'UTF-8')) {
+    if (chardet.analyse(data as any).find(i => i.name === 'UTF-8')) {
       content = data.toString('utf8')
     }
   } else {
@@ -97,7 +111,7 @@ export function replaceByCode(
   let content: string = ''
   const isBuffer = Buffer.isBuffer(data)
   if (isBuffer) {
-    if (chardet.analyse(data).find(i => i.name === 'UTF-8')) {
+    if (chardet.analyse(data as any).find(i => i.name === 'UTF-8')) {
       content = data.toString('utf8')
     }
   } else {
@@ -126,7 +140,7 @@ export function replaceByString(
   let content: string = ''
   const isBuffer = Buffer.isBuffer(data)
   if (isBuffer) {
-    if (chardet.analyse(data).find(i => i.name === 'UTF-8')) {
+    if (chardet.analyse(data as any).find(i => i.name === 'UTF-8')) {
       content = data.toString('utf8')
     }
   } else {

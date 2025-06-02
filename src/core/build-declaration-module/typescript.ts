@@ -1,10 +1,10 @@
 import TypeScript from 'typescript'
 import { Settings } from 'gulp-typescript'
-import { SdinConfig, SdinDeclarationModule } from 'core/config'
 import { createStyleModuleTypescriptTransformer } from 'plugins/typescript-transformer-style-module'
 import { createModuleAliasTypescriptTransformer } from 'plugins/typescript-transformer-module-alias'
+import { SdinDeclarationModule } from 'configs/declaration-module'
 
-export function getTypeScriptSettings(config: SdinConfig, module: SdinDeclarationModule): Settings {
+export function getTypeScriptSettings(module: SdinDeclarationModule): Settings {
   return {
     typescript: TypeScript,
     outDir: module.tar,
@@ -27,12 +27,12 @@ export function getTypeScriptSettings(config: SdinConfig, module: SdinDeclaratio
     target: 'ES2015',
     module: 'ESNext',
     moduleResolution: 'node',
-    baseUrl: config.root,
-    paths: config.getTsConfigPaths(),
+    baseUrl: module.root,
+    paths: module.getTsConfigPaths(),
     getCustomTransformers: () => ({
       afterDeclarations: [
         createStyleModuleTypescriptTransformer(),
-        createModuleAliasTypescriptTransformer({ root: config.root, alias: config.alias })
+        createModuleAliasTypescriptTransformer({ root: module.root, alias: module.alias })
       ]
     })
   }

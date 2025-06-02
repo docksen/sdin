@@ -1,7 +1,7 @@
 import { readFile, outputFile, pathExists } from 'fs-extra'
 import { resolve } from 'path'
 import { deepRead } from './read'
-import { SdinUtilsError } from './error'
+import { WritingError } from './errors'
 import { green, magenta, printTask, red } from './print'
 import type { DeepReadingNode } from './read'
 
@@ -84,13 +84,13 @@ export async function deepCopy({
 
 export async function deepCopyWithLoading(options: DeepCopyingOptions): Promise<void> {
   if (await pathExists(options.target)) {
-    throw new SdinUtilsError(
-      SdinUtilsError.DEEP_COPIED_TARGET_ALREADY_EXISTS,
+    throw new WritingError(
+      WritingError.DEEP_COPIED_TARGET_ALREADY_EXISTS,
       `Copied target ${options.target} already exists.`
     )
   }
   return printTask<string, void>({
-    exitCode: SdinUtilsError.DEEP_COPY_FAILED,
+    exitCode: WritingError.DEEP_COPY_FAILED,
     task: async ({ loading }) => {
       return deepCopy({
         ...options,

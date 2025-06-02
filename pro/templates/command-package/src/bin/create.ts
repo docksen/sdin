@@ -1,9 +1,14 @@
 #!/usr/bin/env node
 
-import 'utils/entry'
+import 'tools/entry'
 import { Command } from 'commander'
-import { create } from 'main/create'
-import { magenta } from 'utils/print'
+import { withWorkPath } from 'utils/path'
+import { createProject } from 'main/create'
+
+interface CreatingCommandOptions {
+  output: string
+  template: string
+}
 
 const cmd = new Command('<%= commandName %> create')
 
@@ -15,17 +20,14 @@ cmd
   .action(action)
   .parse(process.argv)
 
-interface <%= commandName %>CreatingCommandOptions {
-  output: string
-  template: string
-}
-
 async function action(name?: string) {
-  const options: <%= commandName %>CreatingCommandOptions = {
+  const options: CreatingCommandOptions = {
     output: cmd.getOptionValue('output') || '',
     template: cmd.getOptionValue('template') || ''
   }
-  console.log('The project name is ' + magenta(name || 'unknown'))
-  console.log('The project config options is ' + JSON.stringify(options))
-  await create(name || 'unknown')
+  await createProject({
+    templateName: options.template,
+    projectName: name,
+    projectParentPath: withWorkPath(options.output)
+  })
 }

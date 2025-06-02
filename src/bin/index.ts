@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import 'utils/entry'
+import 'tools/entry'
 import { resolve } from 'path'
 import { Command } from 'commander'
 import { getRootPath } from 'utils/path'
@@ -25,8 +25,17 @@ cmd
   .command('create', 'Create project.', {
     executableFile: resolve(__dirname, './create.js')
   })
+  .command('start', 'Start project.', {
+    executableFile: resolve(__dirname, './start.js')
+  })
   .command('build', 'Build project.', {
     executableFile: resolve(__dirname, './build.js')
+  })
+  .command('test', 'Test project.', {
+    executableFile: resolve(__dirname, './test.js')
+  })
+  .command('play', 'Play project.', {
+    executableFile: resolve(__dirname, './play.js')
   })
   .name(Object.keys(pkg.bin)[0])
   .version(VERSION_INFO, '-v, --version')

@@ -1,4 +1,4 @@
-import { SdinUtilsError } from './error'
+import { SteamError } from './errors'
 import { OrNone } from './declaration'
 
 export type StreamOrNull = OrNone<NodeJS.ReadWriteStream>
@@ -25,8 +25,8 @@ export function pipeline(...sources: StreamSource[]) {
       }
     }
     if (!curr) {
-      throw new SdinUtilsError(
-        SdinUtilsError.STREAM_PIPELINE_NO_SOURCES,
+      throw new SteamError(
+        SteamError.STREAM_PIPELINE_NO_SOURCES,
         'No streams, cannot concat sources to pipeline'
       )
     }

@@ -1,9 +1,9 @@
 import { pathExists, stat, readdir, readJson, readJsonSync, pathExistsSync } from 'fs-extra'
 import { resolve, join, basename } from 'path'
 import { createCacher } from './cache'
+import { ReadingError, getErrorMessage } from './errors'
+import { compileTypeScriptFile } from '../tools/typescript'
 import type { Stats } from 'fs-extra'
-import { SdinUtilsError, getErrorMessage } from './error'
-import { compileTypeScriptFile } from './typescript'
 
 export interface DeepReadingNode {
   /** 文件名 xxx.js */
@@ -91,8 +91,8 @@ export interface DeepReadingOptions {
  */
 export async function deepRead({ source, handler, filter }: DeepReadingOptions): Promise<void> {
   if (!(await pathExists(source))) {
-    throw new SdinUtilsError(
-      SdinUtilsError.DEEP_READED_FILE_IS_NOT_EXIST,
+    throw new ReadingError(
+      ReadingError.DEEP_READED_FILE_IS_NOT_EXIST,
       `Read file ${source} is not exist.`
     )
   }
@@ -113,16 +113,21 @@ const exportsDatas = createCacher()
  *
  * @param source 指定要读取的路径
  * @param strict 启用严格模式（严格模式：如果获取不到就报错退出）
+ * @param expireTime 指定缓存过期时间（设为 0，则长期有效）
  */
-export async function readExports(source: string, strict?: boolean): Promise<any> {
+export async function readExports(
+  source: string,
+  strict?: boolean,
+  expireTime?: number
+): Promise<any> {
   if (exportsDatas.has(source)) {
     return exportsDatas.get(source)
   }
-  let realSource = await compileTypeScriptFile(source, strict)
+  let realSource = await compileTypeScriptFile(source, strict, expireTime)
   if (!realSource || !(await pathExists(realSource))) {
     if (strict) {
-      throw new SdinUtilsError(
-        SdinUtilsError.READED_EXPORTS_FILE_IS_NOT_EXIST,
+      throw new ReadingError(
+        ReadingError.READED_EXPORTS_FILE_IS_NOT_EXIST,
         realSource ? `File ${realSource} not exist.` : 'Cannot read empty path.'
       )
     } else {
@@ -140,9 +145,9 @@ export async function readExports(source: string, strict?: boolean): Promise<any
     return data
   } catch (err) {
     if (strict) {
-      throw new SdinUtilsError(
-        SdinUtilsError.READED_EXPORTS_FILE_FAILED,
-        `Read file ${source} failed. ${getErrorMessage(err)}`
+      throw new ReadingError(
+        ReadingError.READED_EXPORTS_FILE_FAILED,
+        `Read file ${source} failed.\n${getErrorMessage(err)}`
       )
     } else {
       return undefined
@@ -162,8 +167,8 @@ export function readExportsSync(source: string, strict?: boolean): any {
   }
   if (!source || !pathExistsSync(source)) {
     if (strict) {
-      throw new SdinUtilsError(
-        SdinUtilsError.READED_EXPORTS_FILE_IS_NOT_EXIST,
+      throw new ReadingError(
+        ReadingError.READED_EXPORTS_FILE_IS_NOT_EXIST,
         source ? `File ${source} not exist.` : 'Cannot read empty path.'
       )
     } else {
@@ -181,9 +186,9 @@ export function readExportsSync(source: string, strict?: boolean): any {
     return data
   } catch (err) {
     if (strict) {
-      throw new SdinUtilsError(
-        SdinUtilsError.READED_EXPORTS_FILE_FAILED,
-        `Read file ${source} failed. ${getErrorMessage(err)}`
+      throw new ReadingError(
+        ReadingError.READED_EXPORTS_FILE_FAILED,
+        `Read file ${source} failed.\n${getErrorMessage(err)}`
       )
     } else {
       return undefined

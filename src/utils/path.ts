@@ -1,11 +1,16 @@
 import { posix, resolve } from 'path'
-import { pathExists, pathExistsSync } from 'fs-extra'
+import { pathExists, pathExistsSync, stat } from 'fs-extra'
 import { createLazyer } from './cache'
-import { getPackageRootPath } from './npm'
-import { SdinUtilsError } from './error'
+import { getDependenceName, getPackageRootPath } from './npm'
+import { PathError } from './errors'
+import { trim } from 'lodash'
 
 const POS_OR_WIN_SEP_EXP = /[\/\\]+/
 const WIN_DISK_FLAG_EXP = /^([a-zA-Z0-9]+)\:$/
+
+export const TJSX_FILE_EXTENSIONS = ['.tsx', '.ts', '.jsx', '.js']
+
+export const TJSXS_FILE_EXTENSIONS = ['.tsx', '.ts', '.jsx', '.js', '.json']
 
 const rootPath = createLazyer<string>(() => {
   return getPackageRootPath(__dirname)
@@ -22,23 +27,25 @@ export function getRootPath(): string {
  * 获取本项目的根目录下的路径
  */
 export function withRootPath(path: string): string {
-  return resolve(rootPath.get(), path)
+  const prefix = rootPath.get()
+  return path.startsWith(prefix) ? path : resolve(prefix, path)
 }
 
 /**
  * 获取本项目关联的 node_module 目录下的路径
  */
-export function withModulePath(path: string): string {
+export function withModulePath(importedPath: string): string {
+  const moduleName = getDependenceName(importedPath)
+  const rootSegments = getPosixPathSegments(rootPath.get())
   let current: string = rootPath.get()
-  while (POS_OR_WIN_SEP_EXP.test(current)) {
-    const modulePath = resolve(current, 'node_modules', path)
-    if (pathExistsSync(modulePath)) {
-      return modulePath
+  for (let i = 0; i < rootSegments.length; i++) {
+    if (pathExistsSync(resolve(current, 'node_modules', moduleName))) {
+      return resolve(current, 'node_modules', importedPath)
     } else {
       current = resolve(current, '../')
     }
   }
-  throw new SdinUtilsError(SdinUtilsError.NOT_HAS_MODULE_PATH, 'Cannot find module path.')
+  throw new PathError(PathError.NOT_HAS_MODULE_PATH, `Cannot find module ${moduleName}.`)
 }
 
 /**
@@ -59,16 +66,48 @@ export function getWorkPath(): string {
  * 获取当前命令行工作目录下的路径
  */
 export function withWorkPath(path: string): string {
-  return resolve(workPath.get(), path)
+  const prefix = workPath.get()
+  return path.startsWith(prefix) ? path : resolve(prefix, path)
+}
+
+export async function isNonEmptyDir(path: string): Promise<boolean> {
+  try {
+    const srcStat = await stat(path)
+    return srcStat.isDirectory() && srcStat.size > 0
+  } catch (_err: any) {
+    return false
+  }
+}
+
+export async function dirExistOrThrow(path: string): Promise<void> {
+  try {
+    const srcStat = await stat(path)
+    if (!srcStat.isDirectory()) {
+      throw new PathError(PathError.DIR_IS_NOT_EXIST, `Folder ${path} is not directory.`)
+    }
+  } catch (_err: any) {
+    throw new PathError(PathError.DIR_IS_NOT_EXIST, `Folder ${path} is not exist.`)
+  }
+}
+
+export async function fileExistOrThrow(path: string): Promise<void> {
+  try {
+    const srcStat = await stat(path)
+    if (!srcStat.isFile()) {
+      throw new PathError(PathError.FILE_IS_NOT_EXIST, `File ${path} is not file.`)
+    }
+  } catch (_err: any) {
+    throw new PathError(PathError.FILE_IS_NOT_EXIST, `File ${path} is not exist.`)
+  }
 }
 
 /**
  * 查询路径下对应的文件是否存在，存在则返回路径，否则返回空字符串
  * resolveExtends('/path/to', 'index', ['.tsx', '.ts', '.jsx', '.js'])
  */
-export function resolveExtensionsSync(path: string, filename: string, exts: string[]): string {
-  for (let i = 0; i < exts.length; i++) {
-    const p = resolve(path, filename + exts[i])
+export function resolveExtensionSync(path: string, filename: string, extensions: string[]): string {
+  for (let i = 0; i < extensions.length; i++) {
+    const p = resolve(path, filename + extensions[i])
     if (pathExistsSync(p)) {
       return p
     }
@@ -80,13 +119,13 @@ export function resolveExtensionsSync(path: string, filename: string, exts: stri
  * 查询路径下对应的文件是否存在，存在则返回路径，否则返回空字符串
  * resolveExtends('/path/to', 'index', ['.tsx', '.ts', '.jsx', '.js'])
  */
-export async function resolveExtensions(
+export async function resolveExtension(
   path: string,
   filename: string,
-  exts: string[]
+  extensions: string[]
 ): Promise<string> {
-  for (let i = 0; i < exts.length; i++) {
-    const p = resolve(path, filename + exts[i])
+  for (let i = 0; i < extensions.length; i++) {
+    const p = resolve(path, filename + extensions[i])
     if (await pathExists(p)) {
       return p
     }
@@ -95,12 +134,32 @@ export async function resolveExtensions(
 }
 
 /**
+ * 移除路径前后的空格和斜杠，并根据需要，添加斜杠
+ */
+export function resolvePosixSlash(path: string, startSlash?: boolean, endSlash?: boolean) {
+  let target = trim(path, '/ ')
+  if (target) {
+    if (startSlash) {
+      target = '/' + target
+    }
+    if (endSlash) {
+      target = target + '/'
+    }
+  } else {
+    if (startSlash || endSlash) {
+      target = '/'
+    }
+  }
+  return target
+}
+
+/**
  * 转成 posix 路径碎片
  */
 export function getPosixPathSegments(path: string): string[] {
   const pathSegments = path.trim().split(POS_OR_WIN_SEP_EXP)
   if (pathSegments.length > 0) {
-    const firstSegment = pathSegments[0] || ''
+    const firstSegment = pathSegments[0]
     if (firstSegment) {
       const matched = firstSegment.match(WIN_DISK_FLAG_EXP)
       if (matched && matched[1]) {

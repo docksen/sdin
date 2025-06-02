@@ -4,7 +4,7 @@ import { pathExists } from 'fs-extra'
 import { isEmail } from './check'
 import { green, red, printTask, yellow } from './print'
 import { execute } from './execute'
-import { SdinUtilsError } from './error'
+import { GitError } from './errors'
 
 export interface GitInfo extends Record<string, any> {
   /** 用户名称 */
@@ -24,10 +24,7 @@ export async function readGlobalGitInfo(strict?: boolean): Promise<GitInfo | und
     configStr = await execute('git config --global --list')
   } catch (err) {
     if (strict) {
-      throw new SdinUtilsError(
-        SdinUtilsError.READ_GIT_GLOBAL_CONFIG_FAILED,
-        'Cannot read git global config.'
-      )
+      throw new GitError(GitError.READ_GIT_GLOBAL_CONFIG_FAILED, 'Cannot read git global config.')
     } else {
       return undefined
     }
@@ -42,17 +39,14 @@ export async function readGlobalGitInfo(strict?: boolean): Promise<GitInfo | und
     }
   })
   if (!config.user || !config.user.name || !config.user.email) {
-    throw new SdinUtilsError(
-      SdinUtilsError.NO_GIT_USER_CONFIG,
-      'Please config git global user name and email.'
-    )
+    throw new GitError(GitError.NO_GIT_USER_CONFIG, 'Please config git global user name and email.')
   } else {
     config.userName = config.user.name
     config.userEmail = config.user.email
   }
   if (!isEmail(config.userEmail)) {
-    throw new SdinUtilsError(
-      SdinUtilsError.GIT_USER_EMAIL_FORMAT_ERROR,
+    throw new GitError(
+      GitError.GIT_USER_EMAIL_FORMAT_ERROR,
       'Git global user email config format error.'
     )
   }
@@ -64,7 +58,7 @@ export async function readGlobalGitInfo(strict?: boolean): Promise<GitInfo | und
  */
 export async function createGitRepository(root: string): Promise<void> {
   return printTask<any, void>({
-    exitCode: SdinUtilsError.CREATE_GIT_REPOSITORY_FAILED,
+    exitCode: GitError.CREATE_GIT_REPOSITORY_FAILED,
     task: async ({ loading }) => {
       if (await pathExists(resolve(root, '.git'))) {
         return
@@ -76,17 +70,17 @@ export async function createGitRepository(root: string): Promise<void> {
     },
     loading: payload => {
       if (payload) {
-        if (payload.toString) {
-          return payload.toString()
-        }
         if (typeof payload === 'string') {
           return payload
+        }
+        if (payload.toString) {
+          return payload.toString()
         }
       }
       return `Creating git repository to ${yellow(root)}.`
     },
     resolve: () => {
-      return `successfully Created git repository to ${green(root)}.`
+      return `Successfully created git repository to ${green(root)}.`
     },
     reject: () => {
       return `Failed to create git repository to ${red(root)}.`

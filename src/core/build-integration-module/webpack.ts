@@ -1,33 +1,39 @@
-import { resolve } from 'path'
 import { mapValues, defaultsDeep } from 'lodash'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import { SdinConfig, SdinIntegrationModule } from 'core/config'
-import { withModulePath, withRootPath } from 'utils/path'
-import type { Configuration, RuleSetRule } from 'webpack'
+import { TJSXS_FILE_EXTENSIONS, withModulePath, withRootPath } from 'utils/path'
+import { Configuration, RuleSetRule } from 'webpack'
+import { SdinIntegrationModule } from 'configs/integration-module'
 
 /**
  * webpack.config.resolve
  */
-export function getWebpackResolve(config: SdinConfig): Configuration['resolve'] {
+export function getWebpackResolve(module: SdinIntegrationModule): Configuration['resolve'] {
   return {
-    extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
-    alias: mapValues(config.alias, value => resolve(config.root, value))
+    extensions: TJSXS_FILE_EXTENSIONS,
+    alias: {
+      // 指定 react 和 react-dom 的绝对路径，防止出现 react 版本不一致的问题
+      react: module.withRoot('node_modules/react'),
+      'react-dom': module.withRoot('node_modules/react-dom'),
+      ...mapValues(module.alias, value => module.withRoot(value))
+    }
   }
 }
 
 /**
  * webpack.config.resolveLoader
  */
-export function getWebpackResolveLoader(config: SdinConfig): Configuration['resolveLoader'] {
+export function getWebpackResolveLoader(
+  module: SdinIntegrationModule
+): Configuration['resolveLoader'] {
   return {
-    modules: [config.withRootPath('node_modules'), withRootPath('node_modules')]
+    modules: [module.withRoot('node_modules'), withRootPath('node_modules')]
   }
 }
 
 /**
  * 获取webpack的loader配置
  */
-export function getWebpackRules(config: SdinConfig, module: SdinIntegrationModule): RuleSetRule[] {
+export function getWebpackRules(module: SdinIntegrationModule): RuleSetRule[] {
   return [
     getRowRule(module),
     getFontRule(module),
@@ -36,7 +42,7 @@ export function getWebpackRules(config: SdinConfig, module: SdinIntegrationModul
     getVideoRule(module),
     ...module.rules,
     getCssRule(),
-    getSassRule(config, module),
+    getSassRule(module),
     getBableRule(module)
   ]
 }
@@ -44,14 +50,19 @@ export function getWebpackRules(config: SdinConfig, module: SdinIntegrationModul
 function getRowRule(module: SdinIntegrationModule) {
   return defaultsDeep(
     {
-      type: 'asset/source',
+      type: 'asset',
       generator: {
         filename: '[name].[contenthash][ext]'
       }
     },
     module.rawRule,
     {
-      test: /\.txt$/i
+      test: /\.txt$/i,
+      parser: {
+        dataUrlCondition: {
+          maxSize: 10 * 1024
+        }
+      }
     }
   )
 }
@@ -66,7 +77,12 @@ function getFontRule(module: SdinIntegrationModule) {
     },
     module.fontRule,
     {
-      test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/
+      test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+      parser: {
+        dataUrlCondition: {
+          maxSize: 10 * 1024
+        }
+      }
     }
   )
 }
@@ -84,7 +100,7 @@ function getImageRule(module: SdinIntegrationModule) {
       test: /\.(png|jpg|jpeg|svg|webp|gif|bmp|tif)(\?.*)?$/,
       parser: {
         dataUrlCondition: {
-          maxSize: 10240
+          maxSize: 10 * 1024
         }
       }
     }
@@ -101,7 +117,12 @@ function getAudioRule(module: SdinIntegrationModule) {
     },
     module.audioRule,
     {
-      test: /\.(mp3|wma|wav|aac|amr|ogg)(\?.*)?$/
+      test: /\.(mp3|wma|wav|aac|amr|ogg)(\?.*)?$/,
+      parser: {
+        dataUrlCondition: {
+          maxSize: 20 * 1024
+        }
+      }
     }
   )
 }
@@ -116,7 +137,12 @@ function getVideoRule(module: SdinIntegrationModule) {
     },
     module.videoRule,
     {
-      test: /\.(mp4|3gp|webm|mpg|avi|wmv|flv)(\?.*)?$/
+      test: /\.(mp4|3gp|webm|mpg|avi|wmv|flv)(\?.*)?$/,
+      parser: {
+        dataUrlCondition: {
+          maxSize: 20 * 1024
+        }
+      }
     }
   )
 }
@@ -147,7 +173,7 @@ function getCssRule(): RuleSetRule {
   }
 }
 
-function getSassRule(config: SdinConfig, module: SdinIntegrationModule): RuleSetRule {
+function getSassRule(module: SdinIntegrationModule): RuleSetRule {
   return {
     test: /\.(sass|scss)$/,
     use: [
@@ -158,7 +184,7 @@ function getSassRule(config: SdinConfig, module: SdinIntegrationModule): RuleSet
           sourceMap: true,
           importLoaders: 2,
           modules: module.sassModule && {
-            localIdentName: config.isProduction() ? '[hash:base64:10]' : '[local]_[hash:base64:6]',
+            localIdentName: module.mixinClass ? '[hash:base64:10]' : '[local]_[hash:base64:7]',
             localIdentContext: module.src,
             exportLocalsConvention: 'camelCaseOnly'
           }

@@ -1,3 +1,1 @@
-export function Main(message: string) {
-  console.log(message)
-}
+export { createProject } from 'main/create'

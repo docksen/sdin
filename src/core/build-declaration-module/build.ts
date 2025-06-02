@@ -1,27 +1,22 @@
 import { emptyDir } from 'fs-extra'
 import { buildTypeScriptSrcDeclarationFiles, buildTypeScriptContentFiles } from './tasks'
-import { ms2s } from 'utils/unit'
-import { cyan, green, magenta, printSuccess, yellow } from 'utils/print'
-import type { SdinConfig, SdinDeclarationModule } from 'core/config'
+import { SdinDeclarationModule } from 'configs/declaration-module'
+import { printBuildingSuccess } from 'tools/print'
 
 export interface SdinDeclarationModuleBuildingOptions {
-  config: SdinConfig
   module: SdinDeclarationModule
 }
 
 export async function buildSdinDeclarationModule(
   options: SdinDeclarationModuleBuildingOptions
 ): Promise<void> {
-  const { config, module } = options
+  const { module } = options
   const startTime = Date.now()
+  module.setEnv('pro')
   await emptyDir(module.tar)
   await Promise.all([
     buildTypeScriptSrcDeclarationFiles(module),
-    buildTypeScriptContentFiles(config, module)
+    buildTypeScriptContentFiles(module)
   ])
-  printSuccess(
-    `Successfully built ${green(module.type)} ${magenta(module.mode)} module ${yellow(
-      module.name
-    )}, it took ${cyan(ms2s(Date.now() - startTime))} s.`
-  )
+  printBuildingSuccess(module, startTime)
 }
