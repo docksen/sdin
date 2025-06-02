@@ -3,11 +3,11 @@
   "version": "<%= projectVersion %>",
   "description": "<%= projectDescription %>",
   "keywords": [],
-  "homepage": "https://github.com/<%= authorName %>/<%= projectName %>#readme",
-  "bugs": "https://github.com/<%= authorName %>/<%= projectName %>/issues",
+  "homepage": "https://github.com/<%= authorName %>/<%= projectFolderName %>#readme",
+  "bugs": "https://github.com/<%= authorName %>/<%= projectFolderName %>/issues",
   "repository": {
     "type": "git",
-    "url":  "git+https://github.com/<%= authorName %>/<%= projectName %>.git"
+    "url":  "git+https://github.com/<%= authorName %>/<%= projectFolderName %>.git"
   },
   "license": "LGPL-3.0",
   "author": "<%= authorMark %>",
@@ -21,13 +21,22 @@
     "tar/umds"
   ],
   "scripts": {
-    "build": "sdin build"
+    "build": "sdin build",
+    "play": "sdin play",
+    "test": "sdin test"
   },
   "dependencies": {
     "@babel/runtime": "^7.25.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.0",
     "@types/node": "^20.14.12",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.3",
+    "classnames": "^2.3.0",
+    "lodash": "^4.14.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "sdin": "^<%= sdinVersion %>",
     "typescript": "^5.5.4"
   },

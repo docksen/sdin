@@ -17,9 +17,11 @@ function main() {
     mode: 'production',
     alias: {
       bin: 'src/bin',
+      configs: 'src/configs',
       core: 'src/core',
       main: 'src/main',
       plugins: 'src/plugins',
+      tools: 'src/tools',
       utils: 'src/utils'
     },
     modules: [

@@ -1,0 +1,37 @@
+{
+  "name": "<%= projectName %>",
+  "version": "<%= projectVersion %>",
+  "description": "<%= projectDescription %>",
+  "keywords": [],
+  "homepage": "https://github.com/<%= authorName %>/<%= projectFolderName %>#readme",
+  "bugs": "https://github.com/<%= authorName %>/<%= projectFolderName %>/issues",
+  "repository": {
+    "type": "git",
+    "url":  "git+https://github.com/<%= authorName %>/<%= projectFolderName %>.git"
+  },
+  "license": "LGPL-3.0",
+  "author": "<%= authorMark %>",
+  "files": ["tar/csr"],
+  "scripts": {
+    "build": "sdin build",
+    "start": "sdin start"
+  },
+  "dependencies": {
+    "classnames": "^2.3.0",
+    "lodash": "^4.14.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.25.0",
+    "@types/lodash": "^4.14.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.3",
+    "sdin": "^<%= sdinVersion %>",
+    "typescript": "^5.5.4"
+  },
+  "engines": {
+    "node": ">=18.20.4",
+    "npm": ">=8.19.4"
+  }
+}

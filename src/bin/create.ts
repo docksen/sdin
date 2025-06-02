@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import 'utils/entry'
+import 'tools/entry'
 import { Command } from 'commander'
 import { withWorkPath } from 'utils/path'
 import { createSdinProject } from 'main/create'

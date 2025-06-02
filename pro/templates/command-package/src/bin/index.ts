@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 
-import 'utils/entry'
-import pkg from '../../../package.json'
+import 'tools/entry'
 import { resolve } from 'path'
 import { Command } from 'commander'
+import { getRootPath } from 'utils/path'
 import { magenta, green } from 'utils/print'
+import { readPackageInfo } from 'utils/npm'
 
 const cmd = new Command()
+const pkg = readPackageInfo(getRootPath(), true)
 
 const VERSION_INFO = `${magenta(pkg.name)} ${green(pkg.version)}`
 

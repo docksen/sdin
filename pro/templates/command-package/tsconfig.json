@@ -1,5 +1,5 @@
 {
-  "include": ["src", "pro/declarations"],
+  "include": ["src", "pro"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "checkJs": false,
@@ -29,7 +29,9 @@
     "declarationMap": false,
     "baseUrl": ".",
     "paths": {
+      "<%= projectName %>": ["src"],
       "main/*": ["src/main/*"],
+      "tools/*": ["src/tools/*"],
       "utils/*": ["src/utils/*"]
     }
   }

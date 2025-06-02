@@ -1,15 +1,15 @@
 import { PluginItem } from '@babel/core'
 import { withModulePath } from 'utils/path'
-import { SdinFoundationModule, SdinConfig } from 'core/config'
 import { filterNotNone } from 'utils/array'
 import { moduleAliasBabelPlugin } from 'plugins/babel-plugin-module-alias'
 import { styleModuleBabelPlugin } from 'plugins/babel-plugin-style-module'
 import { codeDefinitionBabelPlugin } from 'plugins/babel-plugin-code-definition'
+import { SdinFoundationModule } from 'configs/foundation-module'
 
 /**
  * 获取Babel配置
  */
-export function getBabelOptions(config: SdinConfig, module: SdinFoundationModule): any {
+export function getBabelOptions(module: SdinFoundationModule): any {
   return {
     presets: filterNotNone([
       getPresetEnvBabelPlugin(module),
@@ -17,7 +17,7 @@ export function getBabelOptions(config: SdinConfig, module: SdinFoundationModule
       withModulePath('@babel/preset-typescript')
     ]),
     plugins: filterNotNone([
-      getModuleAliasBabelPlugin(config),
+      getModuleAliasBabelPlugin(module),
       getStyleModuleBabelPlugin(module),
       getCodeDefinitionBabelPlugin(module),
       withModulePath('@babel/plugin-transform-runtime')
@@ -35,15 +35,15 @@ function getPresetEnvBabelPlugin(module: SdinFoundationModule): PluginItem | und
   ]
 }
 
-function getModuleAliasBabelPlugin(config: SdinConfig): PluginItem | undefined {
-  if (Object.keys(config.alias).length <= 0) {
+function getModuleAliasBabelPlugin(module: SdinFoundationModule): PluginItem | undefined {
+  if (Object.keys(module.alias).length <= 0) {
     return
   }
   return [
     moduleAliasBabelPlugin,
     {
-      root: config.root,
-      alias: config.alias
+      root: module.root,
+      alias: module.alias
     }
   ]
 }
@@ -61,13 +61,14 @@ function getStyleModuleBabelPlugin(module: SdinFoundationModule): PluginItem | u
 }
 
 function getCodeDefinitionBabelPlugin(module: SdinFoundationModule): PluginItem | undefined {
-  if (Object.keys(module.definitions).length <= 0) {
+  const macros = module.getMacros()
+  if (Object.keys(macros).length <= 0) {
     return
   }
   return [
     codeDefinitionBabelPlugin,
     {
-      definitions: module.definitions
+      definitions: macros
     }
   ]
 }

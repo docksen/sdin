@@ -1,8 +1,10 @@
-import type { SdinConfigParams } from 'sdin'
+import type { SdinProjectParams, SdinTestingParams } from 'sdin'
 
-export const sdinConfigParams: SdinConfigParams = {
+export const sdinProjectParams: SdinProjectParams = {
+  testing: getSdinTestingParams(),
   alias: {
     main: 'src/main',
+    tools: 'src/tools',
     utils: 'src/utils'
   },
   modules: [
@@ -21,4 +23,12 @@ export const sdinConfigParams: SdinConfigParams = {
       name: 'diana'
     }
   ]
+}
+
+function getSdinTestingParams(): SdinTestingParams {
+  return {
+    alias: {
+      '<%= projectName %>': 'tar/cjs'
+    }
+  }
 }

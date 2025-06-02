@@ -5,13 +5,15 @@ import { printTask, green, red, yellow } from './print'
 import { isEmail, isPackageName } from './check'
 import { isPlainObject } from 'lodash'
 import { execute } from './execute'
-import { SdinUtilsError } from './error'
+import { NpmError } from './errors'
 
 export interface PackageInfo extends Record<string, any> {
   /** 包名称 */
   name: string
   /** 版本 */
   version: string
+  /** 描述 */
+  description: string
   /** "xxx <xxx@xxx.xxx>"*/
   author: string
   /** "xxx" */
@@ -23,6 +25,7 @@ export interface PackageInfo extends Record<string, any> {
 export const PACKAGE_INFO: PackageInfo = {
   name: 'unknown',
   version: '1.0.0',
+  description: 'unknown',
   author: 'unknown <unknown@unknown.domain>',
   authorName: 'unknown',
   authorEmail: 'unknown@unknown.domain'
@@ -30,7 +33,8 @@ export const PACKAGE_INFO: PackageInfo = {
 
 export const PACKAGE_INFO_FILE_NAME = 'package.json'
 
-const PACKAGE_AUTHOR_REG = /^(.+) <(.+)>$/
+const PACKAGE_AUTHOR_EXP = /^(.+) <(.+)>$/
+const MODULE_NAME_SEPARATOR_EXP = /[\/\?]+/
 
 /**
  * 获取给定文件所属包的根目录
@@ -44,7 +48,7 @@ export function getPackageRootPath(path: string) {
       root = resolve(root, '../')
     }
   }
-  throw new SdinUtilsError(SdinUtilsError.NOT_HAS_ROOT_PATH, 'Cannot find root path.')
+  throw new NpmError(NpmError.NOT_HAS_ROOT_PATH, 'Cannot find root path.')
 }
 
 /**
@@ -57,23 +61,23 @@ export function readPackageInfo(root: string, strict?: boolean): PackageInfo | u
   const data = readExportsSync(filePath, strict)
   if (!isPlainObject(data)) {
     if (strict) {
-      throw new SdinUtilsError(
-        SdinUtilsError.PACKAGE_JSON_CONTENT_IS_NOT_PLAIN_OBJECT,
+      throw new NpmError(
+        NpmError.PACKAGE_JSON_CONTENT_IS_NOT_PLAIN_OBJECT,
         `File ${filePath} exports is not ${PACKAGE_INFO_FILE_NAME} content.`
       )
     } else {
       return undefined
     }
   }
-  if (!data.name || !data.version || !data.author) {
-    throw new SdinUtilsError(
-      SdinUtilsError.PACKAGE_JSON_MISSING_REQUIRED_FIELD,
-      `${PACKAGE_INFO_FILE_NAME} must contain "name", "version", "author" fields`
+  if (!data.name || !data.version || !data.description || !data.author) {
+    throw new NpmError(
+      NpmError.PACKAGE_JSON_MISSING_REQUIRED_FIELD,
+      `${PACKAGE_INFO_FILE_NAME} must contain "name", "version", "description", "author" fields`
     )
   }
   if (!isPackageName(data.name)) {
-    throw new SdinUtilsError(
-      SdinUtilsError.PACKAGE_NAME_IS_NOT_KEBAB_CASE,
+    throw new NpmError(
+      NpmError.PACKAGE_NAME_IS_NOT_KEBAB_CASE,
       'Please change package name to kebab-case'
     )
   }
@@ -87,42 +91,48 @@ export function readPackageInfo(root: string, strict?: boolean): PackageInfo | u
       data.author = data.authorName
     }
   } else {
-    const mtd = PACKAGE_AUTHOR_REG.exec(atr)
+    const mtd = PACKAGE_AUTHOR_EXP.exec(atr)
     if (mtd && mtd.length >= 3) {
       data.authorName = mtd[1]
       data.authorEmail = mtd[2]
     } else {
-      throw new SdinUtilsError(
-        SdinUtilsError.PACKAGE_AUTHOR_MARK_FORMAT_ERROR,
+      throw new NpmError(
+        NpmError.PACKAGE_AUTHOR_MARK_FORMAT_ERROR,
         `Please change author to "name <xxx@xxx.xxx>" in ${PACKAGE_INFO_FILE_NAME}`
       )
     }
   }
   if (!isEmail(data.authorEmail)) {
-    throw new SdinUtilsError(
-      SdinUtilsError.PACKAGE_AUTHOR_EMAIL_FORMAT_ERROR,
+    throw new NpmError(
+      NpmError.PACKAGE_AUTHOR_EMAIL_FORMAT_ERROR,
       `Author email format error in ${PACKAGE_INFO_FILE_NAME}`
     )
   }
   return data
 }
 
+export function getDependenceName(importedPath: string) {
+  const segments = importedPath.split(MODULE_NAME_SEPARATOR_EXP)
+  if (segments.length === 1) {
+    return importedPath
+  }
+  if (segments[0][0] === '@') {
+    return segments[0] + '/' + segments[1]
+  }
+  return segments[0]
+}
+
 export function getDependenceVersion(pkg: PackageInfo, dep: string): string {
-  const curDep = pkg.dependencies
-    ? pkg.dependencies[dep]
-    : pkg.devDependencies
-    ? pkg.devDependencies[dep]
-    : ''
-  return curDep || ''
+  return pkg.dependencies[dep] || pkg.devDependencies[dep] || ''
 }
 
 export async function downloadModules(root: string): Promise<void> {
   return printTask<any, void>({
-    exitCode: SdinUtilsError.DOWNLOAD_MODULES_FAILED,
+    exitCode: NpmError.DOWNLOAD_MODULES_FAILED,
     task: async ({ loading }) => {
       if (!(await pathExists(root))) {
-        throw new SdinUtilsError(
-          SdinUtilsError.DOWNLOAD_MODULES_ROOT_IS_NOT_EXIST,
+        throw new NpmError(
+          NpmError.DOWNLOAD_MODULES_ROOT_IS_NOT_EXIST,
           `Folder ${root} is not exist.`
         )
       }

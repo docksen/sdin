@@ -1,6 +1,7 @@
 import { isNil } from 'lodash'
 import { ellipsis } from './string'
 import { filterNotNone } from './array'
+import { RuntimeError } from './errors'
 
 export function red(msg: any): string {
   return isNil(msg) ? '' : '\x1B[31m' + msg + '\x1B[0m'
@@ -113,14 +114,18 @@ export function printError(arg1: any, arg2: any, arg3?: number) {
     msg = arg1
     exitCode = arg2
   }
-  if (msg) {
-    print(msg, red('x'))
-  }
-  if (error) {
-    console.error(error)
-  }
-  if (exitCode !== undefined) {
-    print(undefined, undefined, exitCode)
+  if (error instanceof RuntimeError) {
+    print(error.message, red('x'), error.code)
+  } else {
+    if (msg) {
+      print(msg, red('x'))
+    }
+    if (error) {
+      console.error(error)
+    }
+    if (exitCode !== undefined) {
+      print(undefined, undefined, exitCode)
+    }
   }
 }
 
@@ -149,8 +154,8 @@ export async function printTask<P, R>({
 }: {
   exitCode?: number
   loading: (payload?: P) => string
-  resolve: (result: R) => string
-  reject: (reason: any) => string
+  resolve: (result: R) => string | void
+  reject: (reason: any) => string | void
   task: (props: PrintableTaskProps<P>) => Promise<R>
 }): Promise<R> {
   let percent: number | undefined
@@ -190,18 +195,22 @@ export async function printTask<P, R>({
       loading: handleLoading
     })
     clear()
-    printSuccess(resolve(result))
+    const succText = resolve(result)
+    if (succText) {
+      printSuccess(succText)
+    }
     return result
   } catch (error: any) {
     clear()
+    const errText = reject(error)
     if (exitCode !== undefined) {
       if (error instanceof Error) {
-        printError(reject(error), error, exitCode)
+        printError(errText, error, exitCode)
       } else {
-        printError(reject(error), exitCode)
+        printError(errText, exitCode)
       }
     } else {
-      printError(reject(error))
+      printError(errText)
       throw error
     }
   }
