@@ -10,6 +10,11 @@ export const sdinProjectParams: SdinProjectParams = {
       mode: 'cjs'
     },
     {
+      type: 'foundation',
+      name: 'elise',
+      mode: 'esm'
+    },
+    {
       type: 'declaration',
       name: 'diana'
     },
