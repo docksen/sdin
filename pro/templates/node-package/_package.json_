@@ -12,9 +12,11 @@
   "license": "LGPL-3.0",
   "author": "<%= authorMark %>",
   "main": "tar/cjs",
+  "module": "tar/esm",
   "types": "tar/dts",
   "files": [
     "tar/cjs",
+    "tar/esm",
     "tar/dts",
     "tar/umds"
   ],
