@@ -1,7 +1,5 @@
+import { assertTrue } from './assert'
 import {} from '<%= projectName %>'
 
-main()
-
-function main() {
-  console.log('Please implement testing code.')
-}
+console.log('Please implement testing code.')
+// assertTrue('Testing case name', true)

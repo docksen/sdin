@@ -183,19 +183,14 @@ export function getWebpackRules(module: SdinApplicationModule): RuleSetRule[] {
 function getRowRule(module: SdinApplicationModule) {
   return defaultsDeep(
     {
-      type: 'asset',
+      type: 'asset/source',
       generator: {
         filename: 'raw/[name].[contenthash][ext]'
       }
     },
     module.rawRule,
     {
-      test: /\.txt$/i,
-      parser: {
-        dataUrlCondition: {
-          maxSize: 10 * 1024
-        }
-      }
+      test: /\.txt$/i
     }
   )
 }

@@ -19,7 +19,9 @@ export async function testSdinProject(options: SdinProjectTestingOptions): Promi
   try {
     await buildSdinFoundationModule({ module: testing })
     printInfo(`Testing starts from ${blue(testing.src)}\n`)
-    await execute(`node ${testing.getIdxTar()}`, console.log)
+    await execute(`node ${testing.getIdxTar()}`, data => {
+      process.stdout.write(data)
+    })
   } finally {
     await emptyDir(testing.tar)
   }
