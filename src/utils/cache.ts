@@ -68,6 +68,7 @@ export function createLazyer<V = any>(init: () => V): Lazyer<V> {
     get: () => {
       if (!lazyer.initialized) {
         const value = init()
+        init = undefined as any
         lazyer.get = () => value
         lazyer.initialized = true
         return value

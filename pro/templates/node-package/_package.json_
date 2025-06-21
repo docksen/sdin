@@ -7,7 +7,7 @@
   "bugs": "https://github.com/<%= authorName %>/<%= projectFolderName %>/issues",
   "repository": {
     "type": "git",
-    "url":  "git+https://github.com/<%= authorName %>/<%= projectFolderName %>.git"
+    "url": "git+https://github.com/<%= authorName %>/<%= projectFolderName %>.git"
   },
   "license": "LGPL-3.0",
   "author": "<%= authorMark %>",

@@ -17,9 +17,7 @@ export function execute(command: string, loading?: (chunk: any) => void): Promis
       }
     })
     if (loading && childProcess.stdout) {
-      childProcess.stdout.on('data', data => {
-        loading(data)
-      })
+      childProcess.stdout.on('data', loading)
     }
   })
 }
