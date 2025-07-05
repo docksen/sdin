@@ -28,7 +28,7 @@ export class SdinPlaying extends SdinApplicationModule {
       minify: false,
       uglify: false,
       sourceMap: false,
-      devEmoji: '🎮'
+      devEmoji: '🎲'
     })
   }
 }

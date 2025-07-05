@@ -512,14 +512,11 @@ interface SdinApplicationPageParams {
 Testing module configuration parameters.
 
 ```typescript
-interface SdinTestingParams
+export interface SdinTestingParams
   extends Omit<
-    SdinFoundationModuleParams,
-    'type' | 'name' | 'mode' | 'monify' | 'uglify' | 'sourceMap'
-  > {
-  /** entry file (default: index.(ts|tsx|js|jsx), relative to the module source directory) */
-  index?: string
-}
+    SdinIntegrationModuleParams,
+    'type' | 'name' | 'mode' | 'monify' | 'uglify' | 'sourceMap' | 'mixinClass'
+  > {}
 ```
 
 ### SdinPlayingParams

@@ -9,12 +9,14 @@ import { SdinBuildingError } from 'tools/errors'
 
 export interface SdinIntegrationModuleBuildingOptions {
   module: SdinIntegrationModule
+  /** 不展示打包统计数据 */
+  notShowStats?: boolean
 }
 
 export async function buildSdinIntegrationModule(
   options: SdinIntegrationModuleBuildingOptions
 ): Promise<void> {
-  const { module } = options
+  const { module, notShowStats } = options
   const startTime = Date.now()
   module.setEnv('pro')
   await emptyDir(module.tar)
@@ -27,7 +29,9 @@ export async function buildSdinIntegrationModule(
     resolve: (stats: Stats | undefined) => {
       showStats(stats, showDetails => {
         printBuildingSuccess(module, startTime)
-        showDetails()
+        if (!notShowStats) {
+          showDetails()
+        }
       })
     }
   })

@@ -61,7 +61,7 @@ function getStyleModuleBabelPlugin(module: SdinFoundationModule): PluginItem | u
 }
 
 function getCodeDefinitionBabelPlugin(module: SdinFoundationModule): PluginItem | undefined {
-  const macros = module.getMacros()
+  const macros = module.toMacros()
   if (Object.keys(macros).length <= 0) {
     return
   }

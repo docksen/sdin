@@ -1,7 +1,8 @@
-import { SdinPlayingError } from 'tools/errors'
+import { emptyDir } from 'fs-extra'
 import { SdinProject } from 'configs/project'
-import { blue, printInfo } from 'utils/print'
 import { startSdinApplicationModule } from 'core/start-application-module'
+import { SdinPlayingError } from 'tools/errors'
+import { blue, printInfo } from 'utils/print'
 
 export interface SdinProjectPlayingOptions {
   /** Sdin 配置 */
@@ -14,6 +15,7 @@ export async function playSdinProject(options: SdinProjectPlayingOptions): Promi
   if (!playing) {
     throw new SdinPlayingError(SdinPlayingError.MISSING_MODULE, 'Missing playing module.')
   }
+  await emptyDir(playing.tar)
   printInfo(`Playing starts from ${blue(playing.src)}`)
   await startSdinApplicationModule({ module: playing })
 }

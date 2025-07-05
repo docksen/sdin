@@ -512,14 +512,11 @@ interface SdinApplicationPageParams {
 测试模块配置参数
 
 ```typescript
-interface SdinTestingParams
+export interface SdinTestingParams
   extends Omit<
-    SdinFoundationModuleParams,
-    'type' | 'name' | 'mode' | 'monify' | 'uglify' | 'sourceMap'
-  > {
-  /** 入口文件（默认：index.(ts|tsx|js|jsx)，相对模块源码目录而言） */
-  index?: string
-}
+    SdinIntegrationModuleParams,
+    'type' | 'name' | 'mode' | 'monify' | 'uglify' | 'sourceMap' | 'mixinClass'
+  > {}
 ```
 
 ### SdinPlayingParams

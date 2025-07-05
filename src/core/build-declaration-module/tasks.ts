@@ -33,7 +33,7 @@ export function buildTypeScriptContentFiles(module: SdinDeclarationModule): Prom
     srcFilter,
     gulpExtraFilter(module.includes),
     gulpExtraFilter(module.excludes, { reverse: true }),
-    gulpReplaceVariables(module.getMacros()),
+    gulpReplaceVariables(module.toMacros()),
     srcFilter.restore,
     tsStream,
     (ts: any) => ts.dts,

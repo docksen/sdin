@@ -3,6 +3,7 @@ import { getDependenceVersion } from 'utils/npm'
 import { relativePosix } from 'utils/path'
 
 export function getHtmlString(page: SdinApplicationPage) {
+  const devEmoji = page.parent.devEmoji
   const scripts = page.scripts.filter(item => {
     return !getDependenceVersion(page.parent.pkg, item.key)
   })
@@ -11,7 +12,7 @@ export function getHtmlString(page: SdinApplicationPage) {
   <head>
     <meta charset="UTF-8"/>
     ${page.getMetaHtmlString()}
-    <title>${page.parent.devEmoji}${page.getHtmlTitle()}</title>
+    <title>${devEmoji ? devEmoji + ' ' : ''}${page.getHtmlTitle()}</title>
     <script>window.datas=${JSON.stringify(page.getHtmlDatas())}</script>
     ${page.getLinkHtmlString()}
     ${page.getScriptHtmlString(scripts)}

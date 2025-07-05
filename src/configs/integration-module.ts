@@ -157,4 +157,8 @@ export class SdinIntegrationModule extends SdinAbstractModule<
       )
     }
   }
+
+  public getTarIndex(): string {
+    return this.withTar(this.bundle + '.js')
+  }
 }

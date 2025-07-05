@@ -97,10 +97,10 @@ export class SdinApplicationPage extends SdinAbstractConfig<
       ? module.withSrc(params.index)
       : resolveExtensionSync(module.src, this.name + '/index', TJSX_FILE_EXTENSIONS)
     this.path = resolvePosixSlash(params.path || this.name, false, false)
-    this.metas = this.assingLabels(module.params.metas, params.metas)
-    this.links = this.assingLabels(module.params.links, params.links)
-    this.styles = this.assingLabels(module.params.styles, params.styles)
-    this.scripts = this.assingLabels(module.params.scripts, params.scripts)
+    this.metas = this.assignLabels(module.params.metas, params.metas)
+    this.links = this.assignLabels(module.params.links, params.links)
+    this.styles = this.assignLabels(module.params.styles, params.styles)
+    this.scripts = this.assignLabels(module.params.scripts, params.scripts)
     this.skeleton = params.skeleton || module.params.skeleton || defaultSkeleton
     this.datas = {
       ...this.parent.datas,
@@ -155,7 +155,7 @@ export class SdinApplicationPage extends SdinAbstractConfig<
     return this.skeleton(this)
   }
 
-  private assingLabels(
+  private assignLabels(
     labels1?: OrNil<SdinApplicationPageElement>[],
     labels2?: OrNil<SdinApplicationPageElement>[]
   ): SdinApplicationPageElement[] {

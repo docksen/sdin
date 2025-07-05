@@ -50,19 +50,14 @@ export function getWebpackRules(module: SdinIntegrationModule): RuleSetRule[] {
 function getRowRule(module: SdinIntegrationModule) {
   return defaultsDeep(
     {
-      type: 'asset',
       generator: {
         filename: '[name].[contenthash][ext]'
       }
     },
     module.rawRule,
     {
-      test: /\.txt$/i,
-      parser: {
-        dataUrlCondition: {
-          maxSize: 10 * 1024
-        }
-      }
+      type: 'asset/source',
+      test: /\.txt$/
     }
   )
 }
@@ -70,13 +65,13 @@ function getRowRule(module: SdinIntegrationModule) {
 function getFontRule(module: SdinIntegrationModule) {
   return defaultsDeep(
     {
-      type: 'asset',
       generator: {
         filename: '[name].[contenthash][ext]'
       }
     },
     module.fontRule,
     {
+      type: 'asset',
       test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
       parser: {
         dataUrlCondition: {
@@ -90,13 +85,13 @@ function getFontRule(module: SdinIntegrationModule) {
 function getImageRule(module: SdinIntegrationModule) {
   return defaultsDeep(
     {
-      type: 'asset',
       generator: {
         filename: '[name].[contenthash][ext]'
       }
     },
     module.imageRule,
     {
+      type: 'asset',
       test: /\.(png|jpg|jpeg|svg|webp|gif|bmp|tif)(\?.*)?$/,
       parser: {
         dataUrlCondition: {
@@ -110,13 +105,13 @@ function getImageRule(module: SdinIntegrationModule) {
 function getAudioRule(module: SdinIntegrationModule) {
   return defaultsDeep(
     {
-      type: 'asset',
       generator: {
         filename: '[name].[contenthash][ext]'
       }
     },
     module.audioRule,
     {
+      type: 'asset',
       test: /\.(mp3|wma|wav|aac|amr|ogg)(\?.*)?$/,
       parser: {
         dataUrlCondition: {
@@ -130,13 +125,13 @@ function getAudioRule(module: SdinIntegrationModule) {
 function getVideoRule(module: SdinIntegrationModule) {
   return defaultsDeep(
     {
-      type: 'asset',
       generator: {
         filename: '[name].[contenthash][ext]'
       }
     },
     module.videoRule,
     {
+      type: 'asset',
       test: /\.(mp4|3gp|webm|mpg|avi|wmv|flv)(\?.*)?$/,
       parser: {
         dataUrlCondition: {

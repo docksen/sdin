@@ -33,7 +33,7 @@ export function getWebpackPlugins(module: SdinApplicationModule): WebpackPluginI
       filename: 'css/[name].[contenthash].css',
       chunkFilename: 'css/[id].[contenthash].css'
     }),
-    new DefinePlugin(module.getMacros())
+    new DefinePlugin(module.toMacros())
   ]
   for (let page of module.pages) {
     plugins.push(
@@ -164,19 +164,14 @@ export function getWebpackRules(module: SdinApplicationModule): RuleSetRule[] {
 function getRowRule(module: SdinApplicationModule) {
   return defaultsDeep(
     {
-      type: 'asset',
       generator: {
         filename: 'raw/[name].[contenthash][ext]'
       }
     },
     module.rawRule,
     {
-      test: /\.txt$/i,
-      parser: {
-        dataUrlCondition: {
-          maxSize: 10 * 1024
-        }
-      }
+      type: 'asset/source',
+      test: /\.txt$/
     }
   )
 }
@@ -184,13 +179,13 @@ function getRowRule(module: SdinApplicationModule) {
 function getFontRule(module: SdinApplicationModule) {
   return defaultsDeep(
     {
-      type: 'asset',
       generator: {
         filename: 'fnt/[name].[contenthash][ext]'
       }
     },
     module.fontRule,
     {
+      type: 'asset',
       test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
       parser: {
         dataUrlCondition: {
@@ -204,13 +199,13 @@ function getFontRule(module: SdinApplicationModule) {
 function getImageRule(module: SdinApplicationModule) {
   return defaultsDeep(
     {
-      type: 'asset',
       generator: {
         filename: 'img/[name].[contenthash][ext]'
       }
     },
     module.imageRule,
     {
+      type: 'asset',
       test: /\.(png|jpg|jpeg|svg|webp|gif|bmp|tif)(\?.*)?$/,
       parser: {
         dataUrlCondition: {
@@ -224,13 +219,13 @@ function getImageRule(module: SdinApplicationModule) {
 function getAudioRule(module: SdinApplicationModule) {
   return defaultsDeep(
     {
-      type: 'asset',
       generator: {
         filename: 'ado/[name].[contenthash][ext]'
       }
     },
     module.audioRule,
     {
+      type: 'asset',
       test: /\.(mp3|wma|wav|aac|amr|ogg)(\?.*)?$/,
       parser: {
         dataUrlCondition: {
@@ -244,13 +239,13 @@ function getAudioRule(module: SdinApplicationModule) {
 function getVideoRule(module: SdinApplicationModule) {
   return defaultsDeep(
     {
-      type: 'asset',
       generator: {
         filename: 'vdo/[name].[contenthash][ext]'
       }
     },
     module.videoRule,
     {
+      type: 'asset',
       test: /\.(mp4|3gp|webm|mpg|avi|wmv|flv)(\?.*)?$/,
       parser: {
         dataUrlCondition: {
