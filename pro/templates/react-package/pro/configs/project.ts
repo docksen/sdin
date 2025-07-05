@@ -31,7 +31,7 @@ export const sdinProjectParams: SdinProjectParams = {
 function getSdinTestingParams(): SdinTestingParams {
   return {
     alias: {
-      '<%= projectName %>': 'tar/cjs'
+      '<%= projectName %>': 'src'
     }
   }
 }

@@ -100,9 +100,20 @@ export abstract class SdinAbstractProject<
   }
 
   /**
+   * 将用户定义的代码和数据宏定义，转成可用于编译的宏定义
+   */
+  public toMacros() {
+    const result = { ...this.codes }
+    for (const key in this.datas) {
+      result[key] = JSON.stringify(this.datas[key])
+    }
+    return result
+  }
+
+  /**
    * 将 alias 转换成 tsconfig paths
    */
-  public getTsConfigPaths(): Record<string, string[]> {
+  public toTsCfgPaths(): Record<string, string[]> {
     const paths: Record<string, string[]> = {}
     Object.keys(this.alias).forEach(key => {
       const value = this.alias[key]
@@ -110,13 +121,5 @@ export abstract class SdinAbstractProject<
       paths[key] = [value]
     })
     return paths
-  }
-
-  public getMacros() {
-    const result = { ...this.codes }
-    for (const key in this.datas) {
-      result[key] = JSON.stringify(this.datas[key])
-    }
-    return result
   }
 }

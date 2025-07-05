@@ -1,6 +1,7 @@
-import type { SdinProjectParams, SdinPlayingParams } from 'sdin'
+import type { SdinProjectParams, SdinTestingParams, SdinPlayingParams } from 'sdin'
 
 export const sdinProjectParams: SdinProjectParams = {
+  testing: getSdinTestingParams(),
   playing: getSdinPlayingParams(),
   alias: {},
   modules: [
@@ -20,6 +21,14 @@ export const sdinProjectParams: SdinProjectParams = {
       variable: '<%= projectVariableName %>'
     }
   ]
+}
+
+function getSdinTestingParams(): SdinTestingParams {
+  return {
+    alias: {
+      '<%= projectName %>': 'src'
+    }
+  }
 }
 
 function getSdinPlayingParams(): SdinPlayingParams {

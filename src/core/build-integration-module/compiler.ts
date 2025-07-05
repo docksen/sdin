@@ -64,7 +64,7 @@ export function createCompiler(module: SdinIntegrationModule): Compiler {
     plugins: [
       new ProgressPlugin(),
       new MiniCssExtractPlugin(),
-      new DefinePlugin(module.getMacros())
+      new DefinePlugin(module.toMacros())
     ],
     optimization: {
       minimize: module.minify,

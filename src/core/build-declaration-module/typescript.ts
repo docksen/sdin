@@ -28,7 +28,7 @@ export function getTypeScriptSettings(module: SdinDeclarationModule): Settings {
     module: 'ESNext',
     moduleResolution: 'node',
     baseUrl: module.root,
-    paths: module.getTsConfigPaths(),
+    paths: module.toTsCfgPaths(),
     getCustomTransformers: () => ({
       afterDeclarations: [
         createStyleModuleTypescriptTransformer(),

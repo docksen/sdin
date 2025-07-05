@@ -1,8 +1,17 @@
-import type { SdinProjectParams, SdinApplicationModuleParams } from 'sdin'
+import type { SdinProjectParams, SdinTestingParams, SdinApplicationModuleParams } from 'sdin'
 
 export const sdinProjectParams: SdinProjectParams = {
+  testing: getSdinTestingParams(),
   alias: {},
   modules: [getSdinApplicationModuleParams()]
+}
+
+function getSdinTestingParams(): SdinTestingParams {
+  return {
+    alias: {
+      '<%= projectName %>': 'src'
+    }
+  }
 }
 
 function getSdinApplicationModuleParams(): SdinApplicationModuleParams {
