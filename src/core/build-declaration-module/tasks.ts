@@ -1,10 +1,10 @@
 import { join } from 'path'
 import gulp from 'gulp'
 import gulpTypeScript from 'gulp-typescript'
-import { pipeline } from 'utils/stream'
-import { gulpExtraFilter, gulpReplaceVariables } from 'utils/gulp'
+import { pipeline } from 'util/stream'
+import { gulpExtraFilter, gulpReplaceVariables } from 'util/gulp'
 import { getTypeScriptSettings } from './typescript'
-import { SdinDeclarationModule } from 'configs/declaration-module'
+import { SdinDeclarationModule } from 'config/declaration-module'
 
 const DTS_EXP = /\.d\.ts$/
 
@@ -29,7 +29,7 @@ export function buildTypeScriptContentFiles(module: SdinDeclarationModule): Prom
     restore: true
   })
   return pipeline(
-    gulp.src([module.withPro('declarations/**/*.d.ts'), join(module.src, '**/*.{ts,tsx}')]),
+    gulp.src([module.withPro('declaration/**/*.d.ts'), join(module.src, '**/*.{ts,tsx}')]),
     srcFilter,
     gulpExtraFilter(module.includes),
     gulpExtraFilter(module.excludes, { reverse: true }),

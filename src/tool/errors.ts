@@ -1,4 +1,4 @@
-import { RuntimeError } from 'utils/errors'
+import { RuntimeError } from 'util/errors'
 
 export class SdinBusinessError extends RuntimeError {}
 

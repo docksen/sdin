@@ -1,6 +1,6 @@
 import { resolve } from 'path'
-import { PackageInfo, getPackageRootPath, readPackageInfo } from 'utils/npm'
-import { getWorkPath, joinPosix } from 'utils/path'
+import { PackageInfo, getPackageRootPath, readPackageInfo } from 'util/npm'
+import { getWorkPath, joinPosix } from 'util/path'
 import { SdinAbstractConfig } from './abstract-config'
 
 /**
@@ -49,7 +49,7 @@ export abstract class SdinAbstractProject<
       this.root = resolve(getPackageRootPath(params.root || getWorkPath()))
       this.tmp = this.withRoot('.tmp')
       this.pro = this.withRoot('pro')
-      this.cfg = this.withRoot('pro/configs')
+      this.cfg = this.withRoot('pro/config')
       this.pkg = readPackageInfo(this.root, true)
       this.alias = params.alias || {}
       this.codes = params.codes || {}
@@ -63,7 +63,7 @@ export abstract class SdinAbstractProject<
       } else {
         this.tmp = this.withRoot('.tmp')
         this.pro = this.withRoot('pro')
-        this.cfg = this.withRoot('pro/configs')
+        this.cfg = this.withRoot('pro/config')
         this.pkg = readPackageInfo(this.root, true)
       }
       this.alias = params.alias ? Object.assign({}, parent.alias, params.alias) : parent.alias

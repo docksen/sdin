@@ -1,5 +1,5 @@
-import { getErrorCode, getErrorMessage } from 'utils/errors'
-import { printError } from 'utils/print'
+import { getErrorCode, getErrorMessage } from 'util/errors'
+import { printError } from 'util/print'
 
 /** 未捕获的异常错误码 */
 export const UNCAUGHT_EXCEPTION = 100001

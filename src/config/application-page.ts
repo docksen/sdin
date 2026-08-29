@@ -1,20 +1,20 @@
 import { keyBy, omit } from 'lodash'
-import { OrNil } from 'utils/declaration'
+import { OrNil } from 'util/declaration'
 import { SdinProject } from './project'
 import { SdinAbstractConfig } from './abstract-config'
 import { SdinApplicationModule, SdinApplicationModuleDatas } from './application-module'
-import { filterNotNone } from 'utils/array'
-import { replaceByCode } from 'utils/string'
-import { APP_PAGE_NAME_EXP, RELATIVE_URL_PATH_EXP } from 'tools/check'
-import { matchRegExpOrThrow } from 'utils/check'
-import { SdinConfigError } from 'tools/errors'
-import { blue, magenta, yellow } from 'utils/print'
+import { filterNotNone } from 'util/array'
+import { replaceByCode } from 'util/string'
+import { APP_PAGE_NAME_EXP, RELATIVE_URL_PATH_EXP } from 'src/tool/check'
+import { matchRegExpOrThrow } from 'util/check'
+import { SdinConfigError } from 'src/tool/errors'
+import { blue, magenta, yellow } from 'util/print'
 import {
   fileExistOrThrow,
   resolveExtensionSync,
   resolvePosixSlash,
   TJSX_FILE_EXTENSIONS
-} from 'utils/path'
+} from 'util/path'
 
 export interface SdinApplicationPageElement extends Record<string, string | boolean | undefined> {
   key: string

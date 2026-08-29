@@ -1,10 +1,10 @@
-import { getDependenceVersion } from 'utils/npm'
-import { cyan, printInfo } from 'utils/print'
-import { ms2s } from 'utils/unit'
-import { deepRead } from 'utils/read'
-import { isSdinFileName, FILE_NAME_EXP } from 'tools/check'
-import { SdinCheckingError } from 'tools/errors'
-import { SdinProject } from 'configs/project'
+import { getDependenceVersion } from 'util/npm'
+import { cyan, printInfo } from 'util/print'
+import { ms2s } from 'util/unit'
+import { deepRead } from 'util/read'
+import { isSdinFileName, FILE_NAME_EXP } from 'src/tool/check'
+import { SdinCheckingError } from 'src/tool/errors'
+import { SdinProject } from 'config/project'
 
 export interface SdinProjectCheckingOptions {
   project: SdinProject

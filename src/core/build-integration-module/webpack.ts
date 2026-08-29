@@ -1,8 +1,8 @@
 import { mapValues, defaultsDeep } from 'lodash'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import { TJSXS_FILE_EXTENSIONS, withModulePath, withRootPath } from 'utils/path'
+import { TJSXS_FILE_EXTENSIONS, withModulePath, withRootPath } from 'util/path'
 import { Configuration, RuleSetRule } from 'webpack'
-import { SdinIntegrationModule } from 'configs/integration-module'
+import { SdinIntegrationModule } from 'config/integration-module'
 
 /**
  * webpack.config.resolve

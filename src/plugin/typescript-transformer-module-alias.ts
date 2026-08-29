@@ -13,7 +13,7 @@ import {
   ImportDeclaration,
   SourceFile
 } from 'typescript'
-import { aliasPosix, relativePosix } from 'utils/path'
+import { aliasPosix, relativePosix } from 'util/path'
 
 export interface ModuleAliasTypescriptTransformerOptions {
   /** 项目根目录 */

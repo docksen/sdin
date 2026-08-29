@@ -1,8 +1,8 @@
 import { emptyDir } from 'fs-extra'
-import { SdinProject } from 'configs/project'
+import { SdinProject } from 'config/project'
 import { startSdinApplicationModule } from 'core/start-application-module'
-import { SdinPlayingError } from 'tools/errors'
-import { blue, printInfo } from 'utils/print'
+import { SdinPlayingError } from 'src/tool/errors'
+import { blue, printInfo } from 'util/print'
 
 export interface SdinProjectPlayingOptions {
   /** Sdin 配置 */

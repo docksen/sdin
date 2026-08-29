@@ -1,8 +1,8 @@
-import { SdinProject } from 'configs/project'
+import { SdinProject } from 'config/project'
 import { checkSdinProject } from 'core/check-project'
 import { startSdinApplicationModule } from 'core/start-application-module'
-import { SdinStartingError } from 'tools/errors'
-import { select } from 'utils/enquire'
+import { SdinStartingError } from 'src/tool/errors'
+import { select } from 'util/enquire'
 
 const SUPPORTED_MODULE_TYPE = ['application']
 

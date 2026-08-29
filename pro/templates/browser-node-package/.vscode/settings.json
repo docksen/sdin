@@ -19,6 +19,6 @@
   "gitlens.defaultDateLocale": null,
   "gitlens.defaultDateShortFormat": "YY-MM-DD",
   "gitlens.defaultTimeFormat": "HH:mm",
-  "prettier.configPath": "./pro/configs/.prettierrc",
-  "prettier.ignorePath": "./pro/configs/.prettierignore"
+  "prettier.configPath": "./pro/config/.prettierrc",
+  "prettier.ignorePath": "./pro/config/.prettierignore"
 }

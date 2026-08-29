@@ -2,7 +2,7 @@ import { NodePath, PluginObj, PluginPass } from '@babel/core'
 import { MemberExpression, Identifier, UnaryExpression } from '@babel/types'
 import { valueToNode } from '@babel/types'
 import { mapValues } from 'lodash'
-import { executeCode } from 'utils/string'
+import { executeCode } from 'util/string'
 
 export interface ModuleAliasBabelPluginOptions {
   /** 全局定义 */

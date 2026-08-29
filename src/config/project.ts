@@ -1,5 +1,5 @@
-import { OrNil } from 'utils/declaration'
-import { asyncForEach, filterNotNone } from 'utils/array'
+import { OrNil } from 'util/declaration'
+import { asyncForEach, filterNotNone } from 'util/array'
 import { SdinModule, SdinModuleParams } from './module'
 import { SdinTesting, SdinTestingParams } from './testing'
 import { SdinPlaying, SdinPlayingParams } from './playing'
@@ -8,8 +8,8 @@ import { SdinFoundationModule } from './foundation-module'
 import { SdinIntegrationModule } from './integration-module'
 import { SdinDeclarationModule } from './declaration-module'
 import { SdinApplicationModule } from './application-module'
-import { SdinConfigError } from 'tools/errors'
-import { green, yellow } from 'utils/print'
+import { SdinConfigError } from 'src/tool/errors'
+import { green, yellow } from 'util/print'
 
 export interface SdinProjectDatas extends Record<string, any> {
   SDIN_PROJECT_NAME: string

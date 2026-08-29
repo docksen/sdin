@@ -4,10 +4,10 @@ import gulpBabel from 'gulp-babel'
 import gulpRename from 'gulp-rename'
 import { resolve } from 'path'
 import { pathExists, remove, removeSync } from 'fs-extra'
-import { createCacher } from 'utils/cache'
-import { RuntimeError, getErrorMessage } from 'utils/errors'
-import { withModulePath } from 'utils/path'
-import { pipeline } from 'utils/stream'
+import { createCacher } from 'util/cache'
+import { RuntimeError, getErrorMessage } from 'util/errors'
+import { withModulePath } from 'util/path'
+import { pipeline } from 'util/stream'
 
 export class TypescriptError extends RuntimeError {
   /** 编译要导出的 TS 文件时，文件不存在 */

@@ -23,21 +23,21 @@
     "module": "CommonJS",
     "target": "ES2015",
     "jsx": "react",
-    "outDir": "tar",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
+    "ignoreDeprecations": "6.0",
     "sourceMap": true,
     "declarationMap": false,
     "baseUrl": ".",
     "paths": {
       "bin/*": ["src/bin/*"],
-      "configs/*": ["src/configs/*"],
+      "config/*": ["src/config/*"],
       "core/*": ["src/core/*"],
       "main/*": ["src/main/*"],
-      "plugins/*": ["src/plugins/*"],
-      "tools/*": ["src/tools/*"],
-      "utils/*": ["src/utils/*"]
+      "plugin/*": ["src/plugin/*"],
+      "tool/*": ["src/tool/*"],
+      "util/*": ["src/util/*"]
     }
   }
 }

@@ -1,11 +1,11 @@
 import { emptyDir } from 'fs-extra'
 import { createCompiler } from './compiler'
-import { SdinIntegrationModule } from 'configs/integration-module'
-import { compile, showStats } from 'tools/webpack'
-import { printBuildingSuccess } from 'tools/print'
-import { printTask } from 'utils/print'
+import { SdinIntegrationModule } from 'config/integration-module'
+import { compile, showStats } from 'src/tool/webpack'
+import { printBuildingSuccess } from 'src/tool/print'
+import { printTask } from 'util/print'
 import { Stats } from 'webpack'
-import { SdinBuildingError } from 'tools/errors'
+import { SdinBuildingError } from 'src/tool/errors'
 
 export interface SdinIntegrationModuleBuildingOptions {
   module: SdinIntegrationModule

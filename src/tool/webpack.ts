@@ -1,6 +1,6 @@
 import { Stats, Compiler } from 'webpack'
-import { printWarn, printInfo } from 'utils/print'
-import { RuntimeError } from 'utils/errors'
+import { printWarn, printInfo } from 'util/print'
+import { RuntimeError } from 'util/errors'
 
 export class WebpackError extends RuntimeError {
   /** Webpack 编译出错 */

@@ -13,7 +13,7 @@ export {
   SdinBuildingError,
   SdinTestingError,
   SdinPlayingError
-} from 'tools/errors'
+} from 'src/tool/errors'
 export {
   RuntimeError,
   GitError,
@@ -23,7 +23,7 @@ export {
   SteamError,
   WritingError,
   EnquiringError
-} from 'utils/errors'
+} from 'util/errors'
 
 export type { SdinProjectReadingParams } from 'main/config'
 export type { SdinProjectCreatingOptions, SdinTemplateMeta } from 'main/create'
@@ -31,34 +31,34 @@ export type { SdinProjectStartingOptions } from 'main/start'
 export type { SdinProjectBuildingOptions } from 'main/build'
 export type { SdinProjectTestingOptions } from 'main/test'
 export type { SdinProjectPlayingOptions } from 'main/play'
-export type { SdinProject, SdinProjectParams } from 'configs/project'
-export type { SdinModule, SdinModuleParams } from 'configs/module'
+export type { SdinProject, SdinProjectParams } from 'config/project'
+export type { SdinModule, SdinModuleParams } from 'config/module'
 export type {
   SdinDeclarationModule,
   SdinDeclarationModuleParams,
   SdinDeclarationModuleDatas
-} from 'configs/declaration-module'
+} from 'config/declaration-module'
 export type {
   SdinFoundationModule,
   SdinFoundationModuleParams,
   SdinFoundationModuleDatas
-} from 'configs/foundation-module'
+} from 'config/foundation-module'
 export type {
   SdinIntegrationModule,
   SdinIntegrationModuleParams,
   SdinIntegrationModuleDatas
-} from 'configs/integration-module'
+} from 'config/integration-module'
 export type {
   SdinApplicationModule,
   SdinApplicationModuleParams,
   SdinApplicationModuleDatas
-} from 'configs/application-module'
+} from 'config/application-module'
 export type {
   SdinApplicationPage,
   SdinApplicationPageParams,
   SdinApplicationPageDatas,
   SdinApplicationPageElement,
   SdinApplicationPageSkeleton
-} from 'configs/application-page'
-export type { SdinTesting, SdinTestingParams } from 'configs/testing'
-export type { SdinPlaying, SdinPlayingParams, SdinPlayingDatas } from 'configs/playing'
+} from 'config/application-page'
+export type { SdinTesting, SdinTestingParams } from 'config/testing'
+export type { SdinPlaying, SdinPlayingParams, SdinPlayingDatas } from 'config/playing'

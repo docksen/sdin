@@ -2,7 +2,7 @@ import { NodePath, PluginObj, PluginPass } from '@babel/core'
 import { ImportOrExportDeclaration } from '@babel/types'
 import { mapValues } from 'lodash'
 import { resolve } from 'path'
-import { aliasPosix, relativePosix } from 'utils/path'
+import { aliasPosix, relativePosix } from 'util/path'
 
 export interface ModuleAliasBabelPluginOptions {
   /** 项目根目录 */

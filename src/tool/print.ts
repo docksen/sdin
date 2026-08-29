@@ -1,7 +1,7 @@
-import { SdinModule } from 'configs/module'
-import { SdinProject } from 'configs/project'
-import { ms2s } from 'utils/unit'
-import { blue, cyan, green, magenta, printInfo, printSuccess, yellow } from 'utils/print'
+import { SdinModule } from 'config/module'
+import { SdinProject } from 'config/project'
+import { ms2s } from 'util/unit'
+import { blue, cyan, green, magenta, printInfo, printSuccess, yellow } from 'util/print'
 
 export function printHeader(project: SdinProject) {
   const pkg = project.pkg

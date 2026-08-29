@@ -3,10 +3,10 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
 import { getWebpackResolve, getWebpackResolveLoader, getWebpackRules } from './webpack'
-import { filterNotNone } from 'utils/array'
-import { GLOBAL_MODE_LIST } from 'configs/integration-module'
+import { filterNotNone } from 'util/array'
+import { GLOBAL_MODE_LIST } from 'config/integration-module'
 import { Compiler } from 'webpack'
-import { SdinIntegrationModule, SdinIntegrationModuleMode } from 'configs/integration-module'
+import { SdinIntegrationModule, SdinIntegrationModuleMode } from 'config/integration-module'
 
 interface ModeConfig {
   libraryType: string

@@ -1,9 +1,9 @@
 import { RuleSetCondition, RuleSetRule } from 'webpack'
-import { filterNotNone } from 'utils/array'
-import { fileExistOrThrow, resolveExtensionSync, TJSX_FILE_EXTENSIONS } from 'utils/path'
-import { OrNil } from 'utils/declaration'
+import { filterNotNone } from 'util/array'
+import { fileExistOrThrow, resolveExtensionSync, TJSX_FILE_EXTENSIONS } from 'util/path'
+import { OrNil } from 'util/declaration'
 import { SdinProject } from './project'
-import { SdinConfigError } from 'tools/errors'
+import { SdinConfigError } from 'src/tool/errors'
 import {
   SdinAbstractModule,
   SdinAbstractModuleDatas,

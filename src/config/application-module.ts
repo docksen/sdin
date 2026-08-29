@@ -1,13 +1,13 @@
 import { RuleSetCondition, RuleSetRule } from 'webpack'
 import { Options as ProxyOptions } from 'koa-proxy'
-import { asyncForEach, filterNotNone } from 'utils/array'
-import { OrNil } from 'utils/declaration'
+import { asyncForEach, filterNotNone } from 'util/array'
+import { OrNil } from 'util/declaration'
 import { keyBy } from 'lodash'
-import { joinPosix, resolvePosixSlash } from 'utils/path'
-import { SdinConfigError } from 'tools/errors'
-import { getDependenceVersion } from 'utils/npm'
-import { ABSOLUTE_URL_PATH_EXP } from 'tools/check'
-import { matchRegExpOrThrow } from 'utils/check'
+import { joinPosix, resolvePosixSlash } from 'util/path'
+import { SdinConfigError } from 'src/tool/errors'
+import { getDependenceVersion } from 'util/npm'
+import { ABSOLUTE_URL_PATH_EXP } from 'src/tool/check'
+import { matchRegExpOrThrow } from 'util/check'
 import { SdinProject } from './project'
 import {
   SdinAbstractModule,
@@ -20,7 +20,7 @@ import {
   SdinApplicationPageParams,
   SdinApplicationPageSkeleton
 } from './application-page'
-import { yellow } from 'utils/print'
+import { yellow } from 'util/print'
 
 export type SdinApplicationModuleType = 'application'
 

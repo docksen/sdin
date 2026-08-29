@@ -8,11 +8,11 @@ import postCssImport from 'postcss-import'
 import postCssModules from 'postcss-modules'
 import { writeJSONSync } from 'fs-extra'
 import { getBabelOptions } from './babel'
-import { pipeline } from 'utils/stream'
-import { gulpExtraFilter } from 'utils/gulp'
-import { relativePosix } from 'utils/path'
-import { filterNotNone } from 'utils/array'
-import type { SdinFoundationModule } from 'configs/foundation-module'
+import { pipeline } from 'util/stream'
+import { gulpExtraFilter } from 'util/gulp'
+import { relativePosix } from 'util/path'
+import { filterNotNone } from 'util/array'
+import type { SdinFoundationModule } from 'config/foundation-module'
 
 const gulpSass = gulpSassFactory(sass)
 

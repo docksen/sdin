@@ -1,5 +1,5 @@
 import { capitalize } from 'lodash'
-import { CheckingError } from 'utils/errors'
+import { CheckingError } from 'util/errors'
 import { blue, yellow } from './print'
 
 const EMAIL_EXP = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/

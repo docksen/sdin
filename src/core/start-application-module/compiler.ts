@@ -1,5 +1,5 @@
 import Webpack, { Compiler } from 'webpack'
-import { SdinApplicationModule } from 'configs/application-module'
+import { SdinApplicationModule } from 'config/application-module'
 import {
   getWebpackEntry,
   getWebpackExternals,

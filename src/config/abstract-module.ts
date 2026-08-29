@@ -1,9 +1,9 @@
 import { resolve } from 'path'
 import { SdinProject, SdinProjectDatas } from './project'
-import { MODULE_NAME_EXP } from 'tools/check'
-import { dirExistOrThrow } from 'utils/path'
+import { MODULE_NAME_EXP } from 'src/tool/check'
+import { dirExistOrThrow } from 'util/path'
 import { SdinAbstractProject, SdinAbstractProjectParams } from './abstract-project'
-import { matchRegExpOrThrow } from 'utils/check'
+import { matchRegExpOrThrow } from 'util/check'
 
 export interface SdinAbstractModuleDatas extends SdinProjectDatas {
   SDIN_MODULE_ENV: string

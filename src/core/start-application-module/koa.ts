@@ -6,11 +6,11 @@ import koaStatic from 'koa-static'
 import e2k from 'express-to-koa'
 import wdm from 'webpack-dev-middleware'
 import whm from 'webpack-hot-middleware'
-import { SdinApplicationModule } from 'configs/application-module'
+import { SdinApplicationModule } from 'config/application-module'
 import type { Compiler } from 'webpack'
 import type { Middleware, Context } from 'koa'
-import { isNonEmptyDir, resolvePosixSlash } from 'utils/path'
-import { SdinApplicationPage } from 'configs/application-page'
+import { isNonEmptyDir, resolvePosixSlash } from 'util/path'
+import { SdinApplicationPage } from 'config/application-page'
 
 export function createKoa(module: SdinApplicationModule, compiler: Compiler): Koa {
   const koa = new Koa()

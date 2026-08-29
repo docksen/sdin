@@ -1,8 +1,8 @@
 import Webpack, { Compiler } from 'webpack'
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
-import { filterNotNone } from 'utils/array'
-import { SdinApplicationModule } from 'configs/application-module'
+import { filterNotNone } from 'util/array'
+import { SdinApplicationModule } from 'config/application-module'
 import {
   getWebpackEntry,
   getWebpackPlugins,

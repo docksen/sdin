@@ -2,7 +2,7 @@ import { pathExists, stat, readdir, readJson, readJsonSync, pathExistsSync } fro
 import { resolve, join, basename } from 'path'
 import { createCacher } from './cache'
 import { ReadingError, getErrorMessage } from './errors'
-import { compileTypeScriptFile } from '../tools/typescript'
+import { compileTypeScriptFile } from '../tool/typescript'
 import type { Stats } from 'fs-extra'
 
 export interface DeepReadingNode {

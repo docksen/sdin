@@ -211,8 +211,8 @@ export function aliasPosix(path: string, alias: Record<string, string>): string 
 /**
  * 计算 path2 相对于 path1 的路径，返回的路径以 '/' 为分隔符
  *
- * relativePosix('/src\\index.js', '/src/utils//array.js')
- * result === './utils/array.js'
+ * relativePosix('/src\\index.js', '/src/util//array.js')
+ * result === './util/array.js'
  */
 export function relativePosix(path1: string, path2: string): string {
   let path1List = getPosixPathSegments(path1)

@@ -1,5 +1,5 @@
-import { filterNotNone } from 'utils/array'
-import { OrNil } from 'utils/declaration'
+import { filterNotNone } from 'util/array'
+import { OrNil } from 'util/declaration'
 import { SdinProject } from './project'
 import {
   SdinAbstractModule,
