@@ -1,0 +1,116 @@
+plugins {
+    id 'org.springframework.boot' version '4.1.0' apply false
+    id 'io.spring.dependency-management' version '1.1.7' apply false
+}
+
+ext {
+    commonsLang3Version = '3.20.0'
+    commonsPool2Version = '2.13.1'
+    lombokVersion = '1.18.42'
+    mybatisPlusVersion = '3.5.15'
+    mysqlConnectorVersion = '9.7.0'
+    springBootVersion = '4.1.0'
+    velocityEngineVersion = '2.3'
+}
+
+allprojects {
+    group = 'com.zuttokin'
+    version = '1.0.0'
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:$springBootVersion"
+        }
+        dependencies {
+            dependency "org.apache.commons:commons-lang3:$commonsLang3Version"
+            dependency "org.apache.commons:commons-pool2:$commonsPool2Version"
+            dependency "org.apache.velocity:velocity-engine-core:$velocityEngineVersion"
+            dependency "org.projectlombok:lombok:$lombokVersion"
+            dependency "com.mysql:mysql-connector-j:$mysqlConnectorVersion"
+            dependency "com.baomidou:mybatis-plus-generator:$mybatisPlusVersion"
+            dependency "com.baomidou:mybatis-plus-spring-boot4-starter:$mybatisPlusVersion"
+        }
+    }
+    dependencies {
+        implementation 'org.apache.commons:commons-lang3'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'org.junit.platform:junit-platform-launcher'
+        testImplementation 'org.junit.jupiter:junit-jupiter-engine'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api'
+        testImplementation 'org.junit.jupiter:junit-jupiter-params'
+    }
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(25)
+            vendor = JvmVendorSpec.ADOPTIUM
+            implementation = JvmImplementation.VENDOR_SPECIFIC
+        }
+    }
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+        options.compilerArgs += ['--enable-preview']
+    }
+    tasks.withType(JavaExec).configureEach {
+        jvmArgs += ['--enable-preview', '-Xshare:off']
+    }
+    tasks.withType(Test).configureEach {
+        jvmArgs += ['--enable-preview', '-Xshare:off', '-XX:+EnableDynamicAgentLoading']
+    }
+    test {
+        useJUnitPlatform()
+        failOnNoDiscoveredTests = false
+    }
+}
+
+project(':rose-api') {
+    apply plugin: 'org.springframework.boot'
+    dependencies {
+        implementation project(':rose-base')
+        implementation project(':rose-core')
+    }
+    bootJar {
+        mainClass = 'com.zuttokin.rose.api.ApiApplication'
+    }
+}
+
+project(':rose-base') {
+    dependencies {
+    }
+}
+
+project(':rose-core') {
+    dependencies {
+        implementation project(':rose-base')
+        implementation project(':rose-data')
+        implementation project(':rose-extra')
+    }
+}
+
+project(':rose-data') {
+    dependencies {
+        implementation project(':rose-base')
+        implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+        implementation 'com.baomidou:mybatis-plus-spring-boot4-starter'
+        implementation 'com.baomidou:mybatis-plus-generator'
+        implementation 'org.apache.velocity:velocity-engine-core'
+        implementation 'org.apache.commons:commons-pool2'
+        runtimeOnly 'com.mysql:mysql-connector-j'
+    }
+}
+
+project(':rose-extra') {
+    dependencies {
+        implementation project(':rose-base')
+    }
+}

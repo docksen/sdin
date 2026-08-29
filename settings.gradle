@@ -1,0 +1,6 @@
+rootProject.name = 'rose'
+include ':rose-api'
+include ':rose-base'
+include ':rose-core'
+include ':rose-data'
+include ':rose-extra'
