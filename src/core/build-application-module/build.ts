@@ -1,11 +1,11 @@
 import { emptyDir } from 'fs-extra'
-import { SdinApplicationModule } from 'configs/application-module'
+import { SdinApplicationModule } from 'config/application-module'
 import { createCompiler } from './compiler'
 import { copyAssetsFiles, createManifest } from './tasks'
-import { compile, showStats } from 'tools/webpack'
-import { printBuildingSuccess } from 'tools/print'
-import { SdinBuildingError } from 'tools/errors'
-import { printTask } from 'utils/print'
+import { compile, showStats } from 'tool/webpack'
+import { printBuildingSuccess } from 'tool/print'
+import { SdinBuildingError } from 'tool/errors'
+import { printTask } from 'util/print'
 import { Stats } from 'webpack'
 
 export interface SdinApplicationModuleBuildingOptions {

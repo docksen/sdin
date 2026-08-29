@@ -1,6 +1,6 @@
-import { SdinApplicationPage } from 'configs/application-page'
-import { getDependenceVersion } from 'utils/npm'
-import { relativePosix } from 'utils/path'
+import { SdinApplicationPage } from 'config/application-page'
+import { getDependenceVersion } from 'util/npm'
+import { relativePosix } from 'util/path'
 
 export function getHtmlString(page: SdinApplicationPage) {
   const devEmoji = page.parent.devEmoji

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-import 'tools/entry'
+import 'tool/entry'
 import { Command } from 'commander'
-import { withWorkPath } from 'utils/path'
-import { printHeader } from 'tools/print'
+import { withWorkPath } from 'util/path'
+import { printHeader } from 'tool/print'
 import { readSdinProject } from 'main/config'
 import { buildSdinProject } from 'main/build'
-import { splitBySeparator } from 'utils/string'
+import { splitBySeparator } from 'util/string'
 
 interface SdinBuildingCommandOptions {
   modules: string

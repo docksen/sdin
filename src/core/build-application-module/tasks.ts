@@ -2,10 +2,10 @@ import gulp from 'gulp'
 import gulpFilter from 'gulp-filter'
 import gulpUglify from 'gulp-uglify'
 import gulpCleanCss from 'gulp-clean-css'
-import { pipeline } from 'utils/stream'
-import { SdinApplicationModule } from 'configs/application-module'
+import { pipeline } from 'util/stream'
+import { SdinApplicationModule } from 'config/application-module'
 import { outputJson } from 'fs-extra'
-import { isNonEmptyDir } from 'utils/path'
+import { isNonEmptyDir } from 'util/path'
 
 export async function copyAssetsFiles(module: SdinApplicationModule): Promise<any> {
   if (!isNonEmptyDir(module.astSrc)) {

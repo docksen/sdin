@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import 'tools/entry'
+import 'tool/entry'
 import { Command } from 'commander'
-import { withWorkPath } from 'utils/path'
+import { withWorkPath } from 'util/path'
 import { createSdinProject } from 'main/create'
 
 interface SdinCreatingCommandOptions {

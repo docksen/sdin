@@ -1,5 +1,5 @@
-import { SdinApplicationPage } from 'configs/application-page'
-import { relativePosix } from 'utils/path'
+import { SdinApplicationPage } from 'config/application-page'
+import { relativePosix } from 'util/path'
 
 export function getHtmlString(page: SdinApplicationPage) {
   return `<!DOCTYPE html>

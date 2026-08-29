@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import 'tools/entry'
+import 'tool/entry'
 import { resolve } from 'path'
 import { Command } from 'commander'
-import { getRootPath } from 'utils/path'
-import { magenta, green } from 'utils/print'
-import { readPackageInfo } from 'utils/npm'
+import { getRootPath } from 'util/path'
+import { magenta, green } from 'util/print'
+import { readPackageInfo } from 'util/npm'
 
 const cmd = new Command()
 const pkg = readPackageInfo(getRootPath(), true)

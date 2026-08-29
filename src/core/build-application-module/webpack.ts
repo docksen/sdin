@@ -2,8 +2,8 @@ import { outputFile } from 'fs-extra'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { mapValues, defaultsDeep, padStart } from 'lodash'
-import { TJSXS_FILE_EXTENSIONS, withModulePath, withRootPath } from 'utils/path'
-import { SdinApplicationModule } from 'configs/application-module'
+import { TJSXS_FILE_EXTENSIONS, withModulePath, withRootPath } from 'util/path'
+import { SdinApplicationModule } from 'config/application-module'
 import { getScriptString, getHtmlString } from './template'
 import {
   Configuration,

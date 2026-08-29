@@ -1,5 +1,5 @@
 {
-  "include": ["src", "pro/declarations"],
+  "include": ["src", "pro/declaration"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "checkJs": false,
@@ -23,7 +23,6 @@
     "module": "CommonJS",
     "target": "ES2015",
     "jsx": "react",
-    "outDir": "tar",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
@@ -32,12 +31,12 @@
     "baseUrl": ".",
     "paths": {
       "bin/*": ["src/bin/*"],
-      "configs/*": ["src/configs/*"],
+      "config/*": ["src/config/*"],
       "core/*": ["src/core/*"],
       "main/*": ["src/main/*"],
-      "plugins/*": ["src/plugins/*"],
-      "tools/*": ["src/tools/*"],
-      "utils/*": ["src/utils/*"]
+      "plugin/*": ["src/plugin/*"],
+      "tool/*": ["src/tool/*"],
+      "util/*": ["src/util/*"]
     }
   }
 }

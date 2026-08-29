@@ -1,9 +1,9 @@
 import { emptyDir } from 'fs-extra'
-import { SdinProject } from 'configs/project'
+import { SdinProject } from 'config/project'
 import { buildSdinIntegrationModule } from 'core/build-integration-module'
-import { SdinTestingError } from 'tools/errors'
-import { execute } from 'utils/execute'
-import { blue, printInfo } from 'utils/print'
+import { SdinTestingError } from 'tool/errors'
+import { execute } from 'util/execute'
+import { blue, printInfo } from 'util/print'
 
 export interface SdinProjectTestingOptions {
   /** Sdin 配置 */

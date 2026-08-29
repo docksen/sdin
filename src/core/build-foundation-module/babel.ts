@@ -1,10 +1,10 @@
 import { PluginItem } from '@babel/core'
-import { withModulePath } from 'utils/path'
-import { filterNotNone } from 'utils/array'
-import { moduleAliasBabelPlugin } from 'plugins/babel-plugin-module-alias'
-import { styleModuleBabelPlugin } from 'plugins/babel-plugin-style-module'
-import { codeDefinitionBabelPlugin } from 'plugins/babel-plugin-code-definition'
-import { SdinFoundationModule } from 'configs/foundation-module'
+import { withModulePath } from 'util/path'
+import { filterNotNone } from 'util/array'
+import { moduleAliasBabelPlugin } from 'plugin/babel-plugin-module-alias'
+import { styleModuleBabelPlugin } from 'plugin/babel-plugin-style-module'
+import { codeDefinitionBabelPlugin } from 'plugin/babel-plugin-code-definition'
+import { SdinFoundationModule } from 'config/foundation-module'
 
 /**
  * 获取Babel配置

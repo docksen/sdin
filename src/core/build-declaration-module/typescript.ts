@@ -1,8 +1,8 @@
 import TypeScript from 'typescript'
 import { Settings } from 'gulp-typescript'
-import { createStyleModuleTypescriptTransformer } from 'plugins/typescript-transformer-style-module'
-import { createModuleAliasTypescriptTransformer } from 'plugins/typescript-transformer-module-alias'
-import { SdinDeclarationModule } from 'configs/declaration-module'
+import { createStyleModuleTypescriptTransformer } from 'plugin/typescript-transformer-style-module'
+import { createModuleAliasTypescriptTransformer } from 'plugin/typescript-transformer-module-alias'
+import { SdinDeclarationModule } from 'config/declaration-module'
 
 export function getTypeScriptSettings(module: SdinDeclarationModule): Settings {
   return {

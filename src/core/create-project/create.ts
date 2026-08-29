@@ -1,8 +1,8 @@
-import { downloadModules } from 'utils/npm'
-import { createGitRepository } from 'utils/git'
-import { deepCopyWithLoading } from 'utils/write'
-import { replaceByLodash } from 'utils/string'
-import { getPosixPath } from 'utils/path'
+import { downloadModules } from 'util/npm'
+import { createGitRepository } from 'util/git'
+import { deepCopyWithLoading } from 'util/write'
+import { replaceByLodash } from 'util/string'
+import { getPosixPath } from 'util/path'
 import { TEMPLATE_CONFIG_FILE_PATH } from './template'
 
 export interface SdinProjectCreatingOptions {

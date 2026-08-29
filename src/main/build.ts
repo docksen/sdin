@@ -1,6 +1,6 @@
 import { keyBy } from 'lodash'
-import { SdinModule } from 'configs/module'
-import { SdinProject } from 'configs/project'
+import { SdinModule } from 'config/module'
+import { SdinProject } from 'config/project'
 import { checkSdinProject } from 'core/check-project'
 import { buildSdinFoundationModule } from 'core/build-foundation-module'
 import { buildSdinIntegrationModule } from 'core/build-integration-module'

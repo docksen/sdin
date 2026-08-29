@@ -1,9 +1,9 @@
 import { resolve } from 'path'
-import { readExports } from 'utils/read'
-import { SdinConfigError } from 'tools/errors'
-import { SdinProject } from 'configs/project'
+import { readExports } from 'util/read'
+import { SdinConfigError } from 'tool/errors'
+import { SdinProject } from 'config/project'
 
-const PROJECT_CONFIG_FILE_PATH = 'pro/configs/project.ts'
+const PROJECT_CONFIG_FILE_PATH = 'pro/config/project.ts'
 
 export interface SdinProjectReadingParams {
   /** 项目根目录 */

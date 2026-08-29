@@ -1,7 +1,7 @@
 import { emptyDir } from 'fs-extra'
 import { copyOtherFiles, buildSassFiles, buildScriptContentFiles } from './tasks'
-import { SdinFoundationModule } from 'configs/foundation-module'
-import { printBuildingSuccess } from 'tools/print'
+import { SdinFoundationModule } from 'config/foundation-module'
+import { printBuildingSuccess } from 'tool/print'
 
 export interface SdinFoundationModuleBuildingOptions {
   module: SdinFoundationModule

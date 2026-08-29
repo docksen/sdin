@@ -1,9 +1,9 @@
 import http from 'http'
-import { SdinApplicationModule } from 'configs/application-module'
+import { SdinApplicationModule } from 'config/application-module'
 import { createCompiler } from './compiler'
 import { createKoa } from './koa'
-import { green, printTask } from 'utils/print'
-import { SdinStartingError } from 'tools/errors'
+import { green, printTask } from 'util/print'
+import { SdinStartingError } from 'tool/errors'
 
 export interface SdinApplicationModuleStartingOptions {
   module: SdinApplicationModule
