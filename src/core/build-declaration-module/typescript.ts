@@ -1,7 +1,7 @@
 import TypeScript from 'typescript'
 import { Settings } from 'gulp-typescript'
-import { createStyleModuleTypescriptTransformer } from 'src/plugin/typescript-transformer-style-module'
-import { createModuleAliasTypescriptTransformer } from 'src/plugin/typescript-transformer-module-alias'
+import { createStyleModuleTypescriptTransformer } from 'plugin/typescript-transformer-style-module'
+import { createModuleAliasTypescriptTransformer } from 'plugin/typescript-transformer-module-alias'
 import { SdinDeclarationModule } from 'config/declaration-module'
 
 export function getTypeScriptSettings(module: SdinDeclarationModule): Settings {

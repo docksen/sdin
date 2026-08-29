@@ -1,5 +1,5 @@
 {
-  "include": ["src", "pro/declarations"],
+  "include": ["src", "pro/declaration"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "checkJs": false,
@@ -26,7 +26,6 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
-    "ignoreDeprecations": "6.0",
     "sourceMap": true,
     "declarationMap": false,
     "baseUrl": ".",

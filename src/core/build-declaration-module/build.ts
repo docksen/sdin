@@ -1,7 +1,7 @@
 import { emptyDir } from 'fs-extra'
 import { buildTypeScriptSrcDeclarationFiles, buildTypeScriptContentFiles } from './tasks'
 import { SdinDeclarationModule } from 'config/declaration-module'
-import { printBuildingSuccess } from 'src/tool/print'
+import { printBuildingSuccess } from 'tool/print'
 
 export interface SdinDeclarationModuleBuildingOptions {
   module: SdinDeclarationModule

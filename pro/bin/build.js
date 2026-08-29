@@ -3,8 +3,8 @@
 process.on('uncaughtException', error => console.error(error))
 process.on('unhandledRejection', reason => console.error(reason))
 
-const { build } = require('../scripts/build')
-const { getRootPath } = require('../scripts/utils/path')
+const { build } = require('../script/build')
+const { getRootPath } = require('../script/util/path')
 
 main()
 
@@ -17,12 +17,12 @@ function main() {
     mode: 'production',
     alias: {
       bin: 'src/bin',
-      configs: 'src/configs',
+      config: 'src/config',
       core: 'src/core',
       main: 'src/main',
-      plugins: 'src/plugins',
-      tools: 'src/tools',
-      utils: 'src/utils'
+      plugin: 'src/plugin',
+      tool: 'src/tool',
+      util: 'src/util'
     },
     modules: [
       {

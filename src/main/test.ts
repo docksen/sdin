@@ -1,7 +1,7 @@
 import { emptyDir } from 'fs-extra'
 import { SdinProject } from 'config/project'
 import { buildSdinIntegrationModule } from 'core/build-integration-module'
-import { SdinTestingError } from 'src/tool/errors'
+import { SdinTestingError } from 'tool/errors'
 import { execute } from 'util/execute'
 import { blue, printInfo } from 'util/print'
 

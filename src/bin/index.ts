@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import 'src/tool/entry'
+import 'tool/entry'
 import { resolve } from 'path'
 import { Command } from 'commander'
 import { getRootPath } from 'util/path'

@@ -1,9 +1,9 @@
 import { PluginItem } from '@babel/core'
 import { withModulePath } from 'util/path'
 import { filterNotNone } from 'util/array'
-import { moduleAliasBabelPlugin } from 'src/plugin/babel-plugin-module-alias'
-import { styleModuleBabelPlugin } from 'src/plugin/babel-plugin-style-module'
-import { codeDefinitionBabelPlugin } from 'src/plugin/babel-plugin-code-definition'
+import { moduleAliasBabelPlugin } from 'plugin/babel-plugin-module-alias'
+import { styleModuleBabelPlugin } from 'plugin/babel-plugin-style-module'
+import { codeDefinitionBabelPlugin } from 'plugin/babel-plugin-code-definition'
 import { SdinFoundationModule } from 'config/foundation-module'
 
 /**

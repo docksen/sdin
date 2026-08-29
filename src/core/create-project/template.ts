@@ -6,7 +6,7 @@ import { withRootPath } from 'util/path'
 import { readExports } from 'util/read'
 import { FunctionParam } from 'util/declaration'
 
-export const TEMPLATE_LIST_PATH = 'pro/templates'
+export const TEMPLATE_FOLDER_PATH = 'pro/template'
 export const TEMPLATE_CONFIG_FILE_PATH = 'pro/config/template.ts'
 
 export interface SdinTemplateMeta {
@@ -26,10 +26,10 @@ export interface SdinTemplateExtraMeta {
  * 扫描文件夹下的所有模板，返回它们的元信息
  */
 export async function readSdinTemplateMetaList(): Promise<SdinTemplateExtraMeta[]> {
-  const templatesPath = withRootPath(TEMPLATE_LIST_PATH)
-  const files = await readdir(templatesPath)
+  const templatePath = withRootPath(TEMPLATE_FOLDER_PATH)
+  const files = await readdir(templatePath)
   const originList = await asyncMap(files, file => {
-    return readSdinTemplateMeta(resolve(templatesPath, file))
+    return readSdinTemplateMeta(resolve(templatePath, file))
   })
   return filterNotNone(originList)
 }

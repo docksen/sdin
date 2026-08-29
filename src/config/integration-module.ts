@@ -3,7 +3,7 @@ import { filterNotNone } from 'util/array'
 import { fileExistOrThrow, resolveExtensionSync, TJSX_FILE_EXTENSIONS } from 'util/path'
 import { OrNil } from 'util/declaration'
 import { SdinProject } from './project'
-import { SdinConfigError } from 'src/tool/errors'
+import { SdinConfigError } from 'tool/errors'
 import {
   SdinAbstractModule,
   SdinAbstractModuleDatas,

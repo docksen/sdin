@@ -2,7 +2,7 @@
 
 [English Document](https://github.com/docksen/sdin/blob/main/README.md)
 
-Sdin /s'dɪn/ 的意思是 **_Small Dinosaur_**（小恐龙）。
+> Sdin /s'dɪn/ 的意思是 **_Small Dinosaur_**（小恐龙）。
 
 Sdin 是一个 JavaScript 包构建器，内部使用 Webpack 和 Gulp 进行打包，它有如下特性：
 
@@ -92,7 +92,7 @@ Sdin 提供了六种项目模板。
 
 ## 如何修改项目配置文件？
 
-项目的配置内容，在项目根目录下的 `pro/configs/project.ts` 文件中，其结构如下：
+项目的配置内容，在项目根目录下的 `pro/config/project.ts` 文件中，其结构如下：
 
 ```typescript
 import { SdinConfigParams } from 'sdin'
@@ -413,7 +413,7 @@ interface SdinApplicationModuleParams
   tar?: string
   /** 模块网络路径（默认：/模块名称/） */
   path?: string
-  /** 模块素材源码目录（默认：pro/assets，相对项目根目录而言） */
+  /** 模块素材源码目录（默认：pro/asset，相对项目根目录而言） */
   astSrc?: string
   /** 模块素材网络路径（默认：ast/，相对模块网络路径而言） */
   astPath?: string

@@ -5,7 +5,7 @@ process.on('unhandledRejection', reason => console.error(reason))
 
 const { writeJsonSync } = require('fs-extra')
 const { mapValues } = require('lodash')
-const { withRootPath } = require('../scripts/utils/path')
+const { withRootPath } = require('../script/util/path')
 
 main()
 

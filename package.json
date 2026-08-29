@@ -1,6 +1,6 @@
 {
   "name": "sdin",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "JavaScript package builder.",
   "keywords": [
     "react",
@@ -25,7 +25,7 @@
     "sdin": "tar/cjs/bin/index.js"
   },
   "files": [
-    "pro/templates",
+    "pro/template",
     "tar/cjs",
     "tar/esm",
     "tar/dts"

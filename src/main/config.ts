@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 import { readExports } from 'util/read'
-import { SdinConfigError } from 'src/tool/errors'
+import { SdinConfigError } from 'tool/errors'
 import { SdinProject } from 'config/project'
 
 const PROJECT_CONFIG_FILE_PATH = 'pro/config/project.ts'

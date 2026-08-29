@@ -4,9 +4,9 @@ import { asyncForEach, filterNotNone } from 'util/array'
 import { OrNil } from 'util/declaration'
 import { keyBy } from 'lodash'
 import { joinPosix, resolvePosixSlash } from 'util/path'
-import { SdinConfigError } from 'src/tool/errors'
+import { SdinConfigError } from 'tool/errors'
 import { getDependenceVersion } from 'util/npm'
-import { ABSOLUTE_URL_PATH_EXP } from 'src/tool/check'
+import { ABSOLUTE_URL_PATH_EXP } from 'tool/check'
 import { matchRegExpOrThrow } from 'util/check'
 import { SdinProject } from './project'
 import {
@@ -47,7 +47,7 @@ export interface SdinApplicationModuleParams
   tar?: string
   /** 模块网络路径（默认：/模块名称/） */
   path?: string
-  /** 模块素材源码目录（默认：pro/assets，相对项目根目录而言） */
+  /** 模块素材源码目录（默认：pro/asset，相对项目根目录而言） */
   astSrc?: string
   /** 模块素材网络路径（默认：ast/，相对模块网络路径而言） */
   astPath?: string
@@ -171,7 +171,7 @@ export class SdinApplicationModule extends SdinAbstractModule<
     super(project, params, 'csr', '')
     this.title = params.title ?? null
     this.path = resolvePosixSlash(params.path ?? this.name, true, true)
-    this.astSrc = this.withRoot(params.astSrc || 'pro/assets')
+    this.astSrc = this.withRoot(params.astSrc || 'pro/asset')
     this.astPath = resolvePosixSlash(params.astPath || 'ast', false, true)
     this.minify = params.minify ?? true
     this.uglify = params.uglify ?? true

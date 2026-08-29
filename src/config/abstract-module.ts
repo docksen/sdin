@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 import { SdinProject, SdinProjectDatas } from './project'
-import { MODULE_NAME_EXP } from 'src/tool/check'
+import { MODULE_NAME_EXP } from 'tool/check'
 import { dirExistOrThrow } from 'util/path'
 import { SdinAbstractProject, SdinAbstractProjectParams } from './abstract-project'
 import { matchRegExpOrThrow } from 'util/check'

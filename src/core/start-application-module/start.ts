@@ -3,7 +3,7 @@ import { SdinApplicationModule } from 'config/application-module'
 import { createCompiler } from './compiler'
 import { createKoa } from './koa'
 import { green, printTask } from 'util/print'
-import { SdinStartingError } from 'src/tool/errors'
+import { SdinStartingError } from 'tool/errors'
 
 export interface SdinApplicationModuleStartingOptions {
   module: SdinApplicationModule

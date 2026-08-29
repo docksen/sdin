@@ -8,7 +8,7 @@ import { SdinFoundationModule } from './foundation-module'
 import { SdinIntegrationModule } from './integration-module'
 import { SdinDeclarationModule } from './declaration-module'
 import { SdinApplicationModule } from './application-module'
-import { SdinConfigError } from 'src/tool/errors'
+import { SdinConfigError } from 'tool/errors'
 import { green, yellow } from 'util/print'
 
 export interface SdinProjectDatas extends Record<string, any> {

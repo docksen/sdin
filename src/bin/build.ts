@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import 'src/tool/entry'
+import 'tool/entry'
 import { Command } from 'commander'
 import { withWorkPath } from 'util/path'
-import { printHeader } from 'src/tool/print'
+import { printHeader } from 'tool/print'
 import { readSdinProject } from 'main/config'
 import { buildSdinProject } from 'main/build'
 import { splitBySeparator } from 'util/string'

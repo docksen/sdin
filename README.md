@@ -2,7 +2,7 @@
 
 [中文文档](https://github.com/docksen/sdin/blob/main/README_zh.md)
 
-Sdin /s'dɪn/ means **_Small Dinosaur_**.
+> Sdin /s'dɪn/ means **_Small Dinosaur_**.
 
 Sdin is a JavaScript package builder, which uses Webpack and Gulp for packaging internally, and has the following features:
 
@@ -92,7 +92,7 @@ Sdin provides six project templates.
 
 ## How to modify the project configuration file?
 
-The configuration content of the project is in the `pro/configs/project.ts` file in the project root directory. Its structure is as follows:
+The configuration content of the project is in the `pro/config/project.ts` file in the project root directory. Its structure is as follows:
 
 ```typescript
 import { SdinConfigParams } from 'sdin'
@@ -413,7 +413,7 @@ interface SdinApplicationModuleParams
   tar?: string
   /** Module network path (default: /module name/) */
   path?: string
-  /** Module source directory (default: pro/assets, relative to the project root directory) */
+  /** Module source directory (default: pro/asset, relative to the project root directory) */
   astSrc?: string
   /** Module source network path (default: ast/, relative to the module network path) */
   astPath?: string

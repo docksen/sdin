@@ -5,9 +5,9 @@ import { SdinAbstractConfig } from './abstract-config'
 import { SdinApplicationModule, SdinApplicationModuleDatas } from './application-module'
 import { filterNotNone } from 'util/array'
 import { replaceByCode } from 'util/string'
-import { APP_PAGE_NAME_EXP, RELATIVE_URL_PATH_EXP } from 'src/tool/check'
+import { APP_PAGE_NAME_EXP, RELATIVE_URL_PATH_EXP } from 'tool/check'
 import { matchRegExpOrThrow } from 'util/check'
-import { SdinConfigError } from 'src/tool/errors'
+import { SdinConfigError } from 'tool/errors'
 import { blue, magenta, yellow } from 'util/print'
 import {
   fileExistOrThrow,

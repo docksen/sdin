@@ -13,7 +13,7 @@ export {
   SdinBuildingError,
   SdinTestingError,
   SdinPlayingError
-} from 'src/tool/errors'
+} from 'tool/errors'
 export {
   RuntimeError,
   GitError,
