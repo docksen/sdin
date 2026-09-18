@@ -7,15 +7,12 @@ import org.springframework.http.HttpStatus;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 import static org.springframework.http.HttpStatus.OK;
 
 @Getter
-public final class Success<TData extends Serializable, TError extends ServiceException>
-        extends Result<TData, TError> implements Serializable {
+public final class Success<TData, TError extends ServiceException> extends Result<TData, TError> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -1429806873500399820L;
@@ -28,12 +25,14 @@ public final class Success<TData extends Serializable, TError extends ServiceExc
         this.data = data;
     }
 
+    @NotNull
     @SuppressWarnings("unchecked")
-    public static <TData extends Serializable, TError extends ServiceException> Success<TData, TError> of() {
+    public static <TData, TError extends ServiceException> Success<TData, TError> of() {
         return (Success<TData, TError>) EMPTY;
     }
 
-    public static <TData extends Serializable, TError extends ServiceException> Success<TData, TError> of(TData data) {
+    @NotNull
+    public static <TData, TError extends ServiceException> Success<TData, TError> of(TData data) {
         return data == null ? of() : new Success<>(data);
     }
 
@@ -58,8 +57,18 @@ public final class Success<TData extends Serializable, TError extends ServiceExc
     }
 
     @Override
+    public <RData> RData unwrap(@NotNull Function<@NotNull TData, RData> converter) throws TError {
+        return data == null ? null : converter.apply(data);
+    }
+
+    @Override
     public TData unwrapSuccess() {
         return data;
+    }
+
+    @Override
+    public <RData> RData unwrapSuccess(@NotNull Function<@NotNull TData, RData> converter) {
+        return data == null ? null : converter.apply(data);
     }
 
     @Override
@@ -68,47 +77,21 @@ public final class Success<TData extends Serializable, TError extends ServiceExc
     }
 
     @Override
-    public <RData extends Serializable> RData unwrap(
-            @NotNull Function<@NotNull TData, RData> converter) throws TError {
-        return data == null ? null : converter.apply(data);
-    }
-
-    @Override
-    public <RData extends Serializable> RData unwrapSuccess(@NotNull Function<@NotNull TData, RData> converter) {
-        return data == null ? null : converter.apply(data);
-    }
-
-    @Override
-    public <RError extends ServiceException> RError unwrapFailure(
-            @NotNull Function<@NotNull TError, RError> converter) {
+    public <RError extends ServiceException> RError unwrapFailure(@NotNull Function<@NotNull TError, RError> converter) {
         return null;
     }
 
+    @NotNull
     @Override
-    public void on(@NotNull BiConsumer<TData, TError> consumer) {
-        consumer.accept(data, null);
-    }
-
-    @Override
-    public void onSuccess(@NotNull Consumer<TData> consumer) {
-        consumer.accept(data);
-    }
-
-    @Override
-    public void onFailure(@NotNull Consumer<@NotNull TError> consumer) {
-    }
-
-    @Override
-    public <RData extends Serializable> Result<RData, TError> mapSuccess(
-            @NotNull Function<@NotNull TData, RData> mapper) {
+    public <RData> Result<RData, TError> mapSuccess(@NotNull Function<@NotNull TData, RData> mapper) {
         RData newData = data == null ? null : mapper.apply(data);
         return newData == null ? Success.of() : Success.of(newData);
     }
 
+    @NotNull
     @Override
     @SuppressWarnings("unchecked")
-    public <RError extends ServiceException> Result<TData, RError> mapFailure(
-            @NotNull Function<@NotNull TError, RError> mapper) {
+    public <RError extends ServiceException> Result<TData, RError> mapFailure(@NotNull Function<@NotNull TError, RError> mapper) {
         return (Result<TData, RError>) this;
     }
 

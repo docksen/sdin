@@ -7,27 +7,26 @@ import org.springframework.http.ResponseEntity;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
-public sealed abstract class Result<TData extends Serializable, TError extends ServiceException>
+public sealed abstract class Result<TData, TError extends ServiceException>
         implements Serializable permits Success, Failure {
 
     @Serial
     private static final long serialVersionUID = 4734001200382416274L;
 
-    public static <TData extends Serializable, TError extends ServiceException> Result<TData, TError> ofSuccess() {
+    @NotNull
+    public static <TData, TError extends ServiceException> Result<TData, TError> ofSuccess() {
         return Success.of();
     }
 
-    public static <TData extends Serializable, TError extends ServiceException>
-    Result<TData, TError> ofSuccess(TData data) {
+    @NotNull
+    public static <TData, TError extends ServiceException> Result<TData, TError> ofSuccess(TData data) {
         return Success.of(data);
     }
 
-    public static <TData extends Serializable, TError extends ServiceException>
-    Result<TData, TError> ofFailure(@NotNull TError error) {
+    @NotNull
+    public static <TData, TError extends ServiceException> Result<TData, TError> ofFailure(@NotNull TError error) {
         return Failure.of(error);
     }
 
@@ -40,28 +39,21 @@ public sealed abstract class Result<TData extends Serializable, TError extends S
 
     public abstract TData unwrap() throws TError;
 
+    public abstract <RData> RData unwrap(@NotNull Function<@NotNull TData, RData> converter) throws TError;
+
     public abstract TData unwrapSuccess();
 
+    public abstract <RData> RData unwrapSuccess(@NotNull Function<@NotNull TData, RData> converter);
+
     public abstract TError unwrapFailure();
-
-    public abstract <RData extends Serializable> RData unwrap(
-            @NotNull Function<@NotNull TData, RData> converter) throws TError;
-
-    public abstract <RData extends Serializable> RData unwrapSuccess(
-            @NotNull Function<@NotNull TData, RData> converter);
 
     public abstract <RError extends ServiceException> RError unwrapFailure(
             @NotNull Function<@NotNull TError, RError> converter);
 
-    public abstract void on(@NotNull BiConsumer<TData, TError> consumer);
+    @NotNull
+    public abstract <RData> Result<RData, TError> mapSuccess(@NotNull Function<@NotNull TData, RData> mapper);
 
-    public abstract void onSuccess(@NotNull Consumer<TData> consumer);
-
-    public abstract void onFailure(@NotNull Consumer<@NotNull TError> consumer);
-
-    public abstract <RData extends Serializable> Result<RData, TError> mapSuccess(
-            @NotNull Function<@NotNull TData, RData> mapper);
-
+    @NotNull
     public abstract <RError extends ServiceException> Result<TData, RError> mapFailure(
             @NotNull Function<@NotNull TError, RError> mapper);
 

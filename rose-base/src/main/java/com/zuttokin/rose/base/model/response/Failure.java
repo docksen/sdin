@@ -8,12 +8,10 @@ import org.springframework.http.HttpStatus;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 @Getter
-public final class Failure<TData extends Serializable, TError extends ServiceException>
+public final class Failure<TData, TError extends ServiceException>
         extends Result<TData, TError> implements Serializable {
 
     @Serial
@@ -26,8 +24,8 @@ public final class Failure<TData extends Serializable, TError extends ServiceExc
         this.error = error;
     }
 
-    public static <TData extends Serializable, TError extends ServiceException>
-    Failure<TData, TError> of(@NotNull TError exception) {
+    @NotNull
+    public static <TData, TError extends ServiceException> Failure<TData, TError> of(@NotNull TError exception) {
         return new Failure<>(exception);
     }
 
@@ -58,7 +56,17 @@ public final class Failure<TData extends Serializable, TError extends ServiceExc
     }
 
     @Override
+    public <RData> RData unwrap(@NotNull Function<@NotNull TData, RData> converter) throws TError {
+        throw error;
+    }
+
+    @Override
     public TData unwrapSuccess() {
+        return null;
+    }
+
+    @Override
+    public <RData> RData unwrapSuccess(@NotNull Function<@NotNull TData, RData> converter) {
         return null;
     }
 
@@ -69,43 +77,19 @@ public final class Failure<TData extends Serializable, TError extends ServiceExc
     }
 
     @Override
-    public <RData extends Serializable> RData unwrap(
-            @NotNull Function<@NotNull TData, RData> converter) throws TError {
-        throw error;
-    }
-
-    @Override
-    public <RData extends Serializable> RData unwrapSuccess(@NotNull Function<@NotNull TData, RData> converter) {
-        return null;
-    }
-
-    @Override
     public <RError extends ServiceException> RError unwrapFailure(
             @NotNull Function<@NotNull TError, RError> converter) {
         return converter.apply(error);
     }
 
-    @Override
-    public void on(@NotNull BiConsumer<TData, TError> consumer) {
-        consumer.accept(null, error);
-    }
-
-    @Override
-    public void onSuccess(@NotNull Consumer<TData> consumer) {
-    }
-
-    @Override
-    public void onFailure(@NotNull Consumer<@NotNull TError> consumer) {
-        consumer.accept(error);
-    }
-
+    @NotNull
     @Override
     @SuppressWarnings("unchecked")
-    public <RData extends Serializable> Result<RData, TError> mapSuccess(
-            @NotNull Function<@NotNull TData, RData> mapper) {
+    public <RData> Result<RData, TError> mapSuccess(@NotNull Function<@NotNull TData, RData> mapper) {
         return (Result<RData, TError>) this;
     }
 
+    @NotNull
     @Override
     public <RError extends ServiceException> Result<TData, RError> mapFailure(
             @NotNull Function<@NotNull TError, RError> mapper) {
