@@ -38,23 +38,11 @@ subprojects {
             dependency "com.baomidou:mybatis-plus-spring-boot4-starter:$mybatisPlusVersion"
         }
     }
-    dependencies {
-        implementation 'org.apache.commons:commons-lang3'
-        implementation 'org.springframework.boot:spring-boot-starter-web'
-        implementation 'org.springframework.boot:spring-boot-starter-validation'
-        compileOnly 'org.projectlombok:lombok'
-        annotationProcessor 'org.projectlombok:lombok'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
-        testImplementation 'org.junit.platform:junit-platform-launcher'
-        testImplementation 'org.junit.jupiter:junit-jupiter-engine'
-        testImplementation 'org.junit.jupiter:junit-jupiter-api'
-        testImplementation 'org.junit.jupiter:junit-jupiter-params'
-    }
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(25)
             vendor = JvmVendorSpec.ADOPTIUM
             implementation = JvmImplementation.VENDOR_SPECIFIC
+            languageVersion = JavaLanguageVersion.of(25)
         }
     }
     tasks.withType(JavaCompile).configureEach {
@@ -78,6 +66,12 @@ project(':rose-api') {
     dependencies {
         implementation project(':rose-base')
         implementation project(':rose-core')
+        implementation project(':rose-frame')
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
     bootJar {
         mainClass = 'com.zuttokin.rose.api.ApiApplication'
@@ -86,6 +80,12 @@ project(':rose-api') {
 
 project(':rose-base') {
     dependencies {
+        implementation project(':rose-frame')
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 }
 
@@ -94,23 +94,52 @@ project(':rose-core') {
         implementation project(':rose-base')
         implementation project(':rose-data')
         implementation project(':rose-extra')
+        implementation project(':rose-frame')
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 }
 
 project(':rose-data') {
     dependencies {
         implementation project(':rose-base')
+        implementation project(':rose-frame')
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
         implementation 'org.springframework.boot:spring-boot-starter-data-redis'
         implementation 'com.baomidou:mybatis-plus-spring-boot4-starter'
         implementation 'com.baomidou:mybatis-plus-generator'
         implementation 'org.apache.velocity:velocity-engine-core'
         implementation 'org.apache.commons:commons-pool2'
         runtimeOnly 'com.mysql:mysql-connector-j'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 }
 
 project(':rose-extra') {
     dependencies {
         implementation project(':rose-base')
+        implementation project(':rose-frame')
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+}
+
+project(':rose-frame') {
+    dependencies {
+        implementation 'org.apache.commons:commons-lang3'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 }
